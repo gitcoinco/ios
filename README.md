@@ -6,7 +6,11 @@ This is an app that allows one to explore funded issues from their iPhone.
 
 # Demo
 
+Watch the gif below, or <a href="https://youtu.be/BhOA1EI4hJw">check out the video</a>.
+
+<a href="https://youtu.be/BhOA1EI4hJw">
 <img src='img/demo.gif'/>
+</a>
 
 # Gitcoin
 
