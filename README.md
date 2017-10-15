@@ -2,11 +2,11 @@
 
 # Gitcoin iOS app (pre-alpha)
 
-This is an app that allows one to explore funded issues from their phone
+This is an app that allows one to explore funded issues from their iPhone.
 
 # Demo
 
-Demo video will go here when the app is ready.
+<img src='img/demo.gif'/>
 
 # Gitcoin
 
@@ -27,6 +27,7 @@ Thanks to Richard Kim for [RKSwipeCards](https://github.com/cwRichardKim/RKSwipe
 # Legal
 
 '''
+
     Copyright (C) 2017 Gitcoin Core 
 
     This program is free software: you can redistribute it and/or modify
@@ -41,6 +42,7 @@ Thanks to Richard Kim for [RKSwipeCards](https://github.com/cwRichardKim/RKSwipe
 
     You should have received a copy of the GNU Affero General Public License
     along with this program. If not, see <http://www.gnu.org/licenses/>.
+
 
 '''
 
