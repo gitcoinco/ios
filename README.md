@@ -4,6 +4,8 @@
 
 This is an app that allows one to explore funded issues from their iPhone.
 
+[Star](https://github.com/gitcoinco/ios/stargazers) and [watch](https://github.com/gitcoinco/ios/watchers) this github repository to stay up to date, we're pushing new code several times per week!
+
 # Demo
 
 Watch the gif below, or <a href="https://youtu.be/BhOA1EI4hJw">check out the video</a>.
