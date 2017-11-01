@@ -8,10 +8,11 @@ This is an app that allows one to explore funded issues from their iPhone.
 
 # Demo
 
-Watch the gif below, or <a href="https://youtu.be/BhOA1EI4hJw">check out the video</a>.
+Watch the gif below, or <a href="https://TBD">check out the video</a>.
 
-<a href="https://youtu.be/BhOA1EI4hJw">
+<a href="https://TBD">
 <img src='img/demo.gif'/>
+TBD
 </a>
 
 # Gitcoin
@@ -23,11 +24,14 @@ Gitcoin pushes Open Source Forward. Learn more at [https://gitcoin.co](https://g
 Built as part of the [ETHWaterloo Hackathon 2017](https://ethwaterloo.com).
 
 
+# Credits
 
-# credits
+Thanks to  [Koloda](https://github.com/Yalantis/Koloda).
 
-Thanks to Richard Kim for [RKSwipeCards](https://github.com/cwRichardKim/RKSwipeCards).
 
+# Setup
+1. Install cocoapods, and run pod install
+2.
 
 
 # Legal
