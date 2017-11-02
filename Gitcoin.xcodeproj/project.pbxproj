@@ -18,6 +18,8 @@
 		2094607E1FA8AB8F00555F06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2094607C1FA8AB8F00555F06 /* LaunchScreen.storyboard */; };
 		209460891FA8AB8F00555F06 /* GitcoinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209460881FA8AB8F00555F06 /* GitcoinTests.swift */; };
 		209460941FA8AB8F00555F06 /* GitcoinUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209460931FA8AB8F00555F06 /* GitcoinUITests.swift */; };
+		20B8373E1FABD71E00680FC0 /* GitcoinAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B8373D1FABD71E00680FC0 /* GitcoinAPIService.swift */; };
+		20B837421FABDC2D00680FC0 /* Bounty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B837411FABDC2D00680FC0 /* Bounty.swift */; };
 		20B942BC1FA932110015481C /* BountyCardOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B942BA1FA932110015481C /* BountyCardOverlayView.swift */; };
 		20B942BD1FA932110015481C /* BountyCardOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20B942BB1FA932110015481C /* BountyCardOverlayView.xib */; };
 		20B942C01FA932700015481C /* BountyKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B942BF1FA932700015481C /* BountyKolodaView.swift */; };
@@ -63,6 +65,8 @@
 		2094608F1FA8AB8F00555F06 /* GitcoinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitcoinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		209460931FA8AB8F00555F06 /* GitcoinUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitcoinUITests.swift; sourceTree = "<group>"; };
 		209460951FA8AB8F00555F06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20B8373D1FABD71E00680FC0 /* GitcoinAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitcoinAPIService.swift; sourceTree = "<group>"; };
+		20B837411FABDC2D00680FC0 /* Bounty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bounty.swift; sourceTree = "<group>"; };
 		20B942BA1FA932110015481C /* BountyCardOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BountyCardOverlayView.swift; sourceTree = "<group>"; };
 		20B942BB1FA932110015481C /* BountyCardOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BountyCardOverlayView.xib; sourceTree = "<group>"; };
 		20B942BF1FA932700015481C /* BountyKolodaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyKolodaView.swift; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 		200DA7991FA93DD800FDCE67 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				20B837411FABDC2D00680FC0 /* Bounty.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -159,8 +164,9 @@
 		209460721FA8AB8F00555F06 /* Gitcoin */ = {
 			isa = PBXGroup;
 			children = (
+				20B837431FABDC7E00680FC0 /* UI */,
+				20B8373C1FABD70900680FC0 /* Network */,
 				200DA7991FA93DD800FDCE67 /* Model */,
-				200DA7901FA9350F00FDCE67 /* BountyCards */,
 				200D9F5F1FA8BBAE006C7C06 /* Main.storyboard */,
 				209460731FA8AB8F00555F06 /* AppDelegate.swift */,
 				2094607C1FA8AB8F00555F06 /* LaunchScreen.storyboard */,
@@ -187,6 +193,22 @@
 				209460951FA8AB8F00555F06 /* Info.plist */,
 			);
 			path = GitcoinUITests;
+			sourceTree = "<group>";
+		};
+		20B8373C1FABD70900680FC0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				20B8373D1FABD71E00680FC0 /* GitcoinAPIService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		20B837431FABDC7E00680FC0 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				200DA7901FA9350F00FDCE67 /* BountyCards */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		42FD5E90C7098D8C7D1738D3 /* Pods */ = {
@@ -430,6 +452,11 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Koloda/Koloda.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper/Mapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya-ModelMapper/Moya_ModelMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -437,6 +464,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Koloda.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_ModelMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,9 +546,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20B837421FABDC2D00680FC0 /* Bounty.swift in Sources */,
 				209460741FA8AB8F00555F06 /* AppDelegate.swift in Sources */,
 				200D9F671FA8BBB0006C7C06 /* BountyCardViewController.swift in Sources */,
 				20B942BC1FA932110015481C /* BountyCardOverlayView.swift in Sources */,
+				20B8373E1FABD71E00680FC0 /* GitcoinAPIService.swift in Sources */,
 				200DA7921FA9385A00FDCE67 /* BountyCardView.swift in Sources */,
 				200D9F6B1FA8BBB0006C7C06 /* BountyCardKolodaAnimator.swift in Sources */,
 				20B942C01FA932700015481C /* BountyKolodaView.swift in Sources */,

@@ -9,6 +9,8 @@
 import UIKit
 import Koloda
 import pop
+import Moya
+import Moya_ModelMapper
 import Alamofire
 import AlamofireImage
 
@@ -18,7 +20,7 @@ class BountyCardViewController: UIViewController {
     let kolodaCountOfVisibleCards = 2
     let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
     
-    var data = [[String:Any]]()
+    var data = [Bounty]()
 
     @IBOutlet weak var kolodaView: BountyKolodaView!
     
@@ -35,8 +37,7 @@ class BountyCardViewController: UIViewController {
         
         loadData()
     }
-    
-    
+
     //MARK: IBActions
     @IBAction func leftButtonTapped() {
         kolodaView?.swipe(.left)
@@ -59,8 +60,11 @@ extension BountyCardViewController: KolodaViewDelegate {
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
-        if let gitHubUrl = data[index]["github_url"] as? String {
-            UIApplication.shared.openURL(URL(string: gitHubUrl)!)
+        //TODO: What to do on tap??? native detail? someother action?
+        if let gitHubUrl = data[index].githubUrl {
+            UIApplication.shared.open(URL(string: gitHubUrl)!, options: [:], completionHandler: { _ in
+                
+            })
         }
     }
     
@@ -98,18 +102,16 @@ extension BountyCardViewController: KolodaViewDataSource {
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let item = data[index]
         
+        //TODO: RxBinding data to view elements
         let bountyCardView = Bundle.main.loadNibNamed("BountyCardView", owner: self, options: nil)?[0] as? BountyCardView
         
-        bountyCardView?.titleLabel.text = item["title"] as? String
+        bountyCardView?.titleLabel.text = item.title
         
-       
-        if let avatarUrl = item["avatar_url"] as? String {
-             print("avatarUrl = \(avatarUrl)")
+        if let avatarUrl = item.avatarUrl {
             
             Alamofire.request(avatarUrl).responseImage { response in
                 
                 if let image = response.result.value {
-                    print("image downloaded: \(image)")
                     let circularImage = image.af_imageRoundedIntoCircle()
                     
                     bountyCardView?.avatarImageView.image = circularImage
@@ -127,60 +129,21 @@ extension BountyCardViewController: KolodaViewDataSource {
 
 extension BountyCardViewController {
     func loadData(){
+        let provider = MoyaProvider<GitcoinAPIService>()
         
-        Alamofire.request("https://gitcoin.co/api/v0.1/bounties/")
-            .responseJSON { response in
-                if let bounties = response.result.value as? [[String:Any]]{
+        _ = provider.rx.request(.bounties)
+            .mapOptional(to: [Bounty].self)
+            .subscribe { [unowned self] event in
+                switch event {
+                case .success(let repos):
+                    if let repos = repos {
+                        self.data = repos
+                        self.kolodaView.reloadData()
+                    }
                     
-                    self.data = bounties
-                    
-                    self.kolodaView.reloadData()
-                    
-                    
-//                    if let error = bounties["error"] {
-//                        print("No venue found | error :\(error)")
-//
-//                        return
-//                    }
-//                    let venueCount = bounties.count
-//                    print(" count : \(bounties.count)")
-//                    if (venueCount == 0) {
-//                        print("No venue found")
-//                        self.restaurantName.text = "Nothing found! Try again"
-//                        self.stopSpinner(nil)
-//                        return
-//                    }
-//                    let venueLimit = min(venueCount, 50)
-//                    let randomRestaurantIndex = Int(arc4random_uniform(UInt32(venueLimit)))
-//                    print(randomRestaurantIndex)
-//                    guard let results = bounties as? NSArray
-//                        else {
-//                            print ("cannot find key location in \(bounties)")
-//                            return
-//                    }
-//                    for r in results{
-//                        let photoURL = NSURL(string:r["photo_url"] as! String)
-//                        if let imageData = NSData(contentsOfURL: photoURL!) {
-//                            let image  = UIImage(data: imageData)
-//
-//                            let name = r["name"] as! String
-//                            let address = r["address"] as! String
-//                            let lat = r["latitude"] as! String
-//                            let lng = r["longitude"] as! String
-//                            let venue_id = r["venue_id"] as! String
-//                            let checkins = r["checkins"] as! UInt
-//                            let restaurant = Restaurant(name: name, photo: image, address: address, checkins: checkins, latitude: lat, longitude: lng, venue_id: venue_id)!
-//                            self.bounties.append(restaurant)
-//
-//                            print("\(name) \(checkins) \(lat) \(venue_id)")
-//                        }
-//
-//                    }
-//                    let randomRestaurant = self.bounties[randomRestaurantIndex]
-//                    self.setRandomRestaurant(randomRestaurant)
-//
-//                    self.savebounties()
-//                    self.stopSpinner(nil)
+                case .error(let error):
+                    //TODO: better error handling
+                    print(error)
                 }
         }
     }

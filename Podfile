@@ -8,7 +8,10 @@ target 'Gitcoin' do
   # Pods for Gitcoin
 
   pod 'Koloda', '~> 4.3.1'
-  pod 'Alamofire', '~> 4.5'
+  
+  pod 'Moya/RxSwift'
+  pod 'Moya-ModelMapper/RxSwift'
+  
   pod 'AlamofireImage', '~> 3.3'
 
   target 'GitcoinTests' do
