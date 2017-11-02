@@ -13,6 +13,8 @@ target 'Gitcoin' do
   pod 'Moya-ModelMapper/RxSwift'
   
   pod 'AlamofireImage', '~> 3.3'
+  
+  pod 'SCLAlertView'
 
   target 'GitcoinTests' do
     inherit! :search_paths

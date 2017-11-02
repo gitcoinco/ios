@@ -13,6 +13,7 @@ import Moya
 import Moya_ModelMapper
 import Alamofire
 import AlamofireImage
+import SCLAlertView
 
 class BountyCardViewController: UIViewController {
     let frameAnimationSpringBounciness: CGFloat = 9
@@ -37,16 +38,21 @@ class BountyCardViewController: UIViewController {
         
         loadData()
     }
-
+    
     //MARK: IBActions
+    
+    //TODO: how to persist the state of bounties that the user isnt interested in
     @IBAction func leftButtonTapped() {
         kolodaView?.swipe(.left)
     }
     
+    //TODO: Shall we make an api call to connect this user to the bounty creator?
+    // then what will we do with this "liked" bounty? hide it? save it somewhere?
     @IBAction func rightButtonTapped() {
         kolodaView?.swipe(.right)
     }
-    
+
+    //TODO: reset state of app here? or perhaps just recent state?
     @IBAction func undoButtonTapped() {
         kolodaView?.revertAction()
     }
@@ -56,6 +62,12 @@ class BountyCardViewController: UIViewController {
 extension BountyCardViewController: KolodaViewDelegate {
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
+        
+        //TODO: Need copy and action
+        
+        // https://github.com/vikmeup/SCLAlertView-Swift
+        SCLAlertView().showSuccess("No More Bounties", subTitle: "TBD: Text about how your going to get a push notification when new bounties are available!", closeButtonTitle: "Start Over")
+        
         kolodaView.resetCurrentCardIndex()
     }
     

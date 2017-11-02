@@ -23,12 +23,14 @@ PODS:
   - pop (1.0.10)
   - Result (3.2.4)
   - RxSwift (4.0.0)
+  - SCLAlertView (0.7.0)
 
 DEPENDENCIES:
   - AlamofireImage (~> 3.3)
   - Koloda (~> 4.3.1)
   - Moya-ModelMapper/RxSwift
   - Moya/RxSwift
+  - SCLAlertView
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
@@ -40,7 +42,8 @@ SPEC CHECKSUMS:
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
+  SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
 
-PODFILE CHECKSUM: beaa7994a83bbdaaad563d7baecdabdc45d68182
+PODFILE CHECKSUM: e8c631aef263d52aa8f611de03da35dfcca9e8c3
 
 COCOAPODS: 1.3.1
