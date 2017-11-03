@@ -55,6 +55,9 @@
                                         <state key="normal" image="ic_koloda">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="buttonTapped" destination="dh2-Wx-deB" eventType="touchUpInside" id="Wg2-tO-76q"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jg8-XG-VvV">
                                         <rect key="frame" x="339" y="40" width="21" height="22"/>

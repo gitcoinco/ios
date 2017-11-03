@@ -14,6 +14,7 @@ import Moya_ModelMapper
 import Alamofire
 import AlamofireImage
 import SCLAlertView
+import Octokit
 
 class BountyCardViewController: UIViewController {
     let frameAnimationSpringBounciness: CGFloat = 9
@@ -55,6 +56,15 @@ class BountyCardViewController: UIViewController {
     //TODO: reset state of app here? or perhaps just recent state?
     @IBAction func undoButtonTapped() {
         kolodaView?.revertAction()
+    }
+    
+    @IBAction func buttonTapped(){
+        
+        let url = oAuthConfig.authenticate()
+        
+        UIApplication.shared.open(url!, options: [:], completionHandler: { _ in
+            
+        })
     }
 }
 

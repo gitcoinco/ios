@@ -15,6 +15,8 @@ target 'Gitcoin' do
   pod 'AlamofireImage', '~> 3.3'
   
   pod 'SCLAlertView'
+  
+  pod 'OctoKit.swift'
 
   target 'GitcoinTests' do
     inherit! :search_paths
