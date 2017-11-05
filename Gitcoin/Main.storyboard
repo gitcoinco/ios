@@ -216,7 +216,7 @@
                         <nil key="title"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="avatarImage" destination="RMN-oZ-LkA" id="bc9-3Z-mEh"/>
+                        <outlet property="avatarImage" destination="RMN-oZ-LkA" id="7Ia-zs-LfG"/>
                         <outlet property="button" destination="ShT-YC-FvT" id="esj-OL-RQu"/>
                         <outlet property="nameLabel" destination="jcT-K5-yKk" id="QP3-WT-TBV"/>
                     </connections>

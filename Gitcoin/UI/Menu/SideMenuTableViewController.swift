@@ -8,14 +8,16 @@
 
 import UIKit
 import RxSwift
+import Alamofire
+import AlamofireImage
 
 class SideMenuTableViewController: UITableViewController {
 
     @IBOutlet weak var button: UIButton!
     
-    @IBOutlet weak var avatarImage: UIImageView!
-    
     @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var avatarImage: UIImageView!
     
     var disposeBag = DisposeBag()
     
@@ -32,11 +34,25 @@ class SideMenuTableViewController: UITableViewController {
                 }
                 
                 self?.button.setTitle("Sign out",for: .normal)
+                
+                if let avatarUrl = user.avatarURL {
+                    
+                    Alamofire.request(avatarUrl).responseImage { response in
+                        
+                        if let image = response.result.value {
+                            let circularImage = image.af_imageRoundedIntoCircle()
+                            
+                            self?.avatarImage.image = circularImage
+                        }
+                    }
+                }
             }else{
                 self?.nameLabel.text = "Hi, Bounty Hunter"
                 
                 // TODO: persist these defaults in one place, right now its in storyboard
                 self?.button.setTitle("Sign in",for: .normal)
+                
+                self?.avatarImage.image = #imageLiteral(resourceName: "guy1_black")
             }
         }, onError: { error in
             // error
