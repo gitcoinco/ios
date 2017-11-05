@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2008F2C01FAF9E7B0030807F /* SideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2008F2BF1FAF9E7B0030807F /* SideMenuNavigationController.swift */; };
+		2008F2C21FAFA1DA0030807F /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2008F2C11FAFA1DA0030807F /* SideMenuTableViewController.swift */; };
+		2008F2C71FAFA6930030807F /* OctokitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2008F2C61FAFA6930030807F /* OctokitManager.swift */; };
 		200D9F671FA8BBB0006C7C06 /* BountyCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200D9F5D1FA8BBAE006C7C06 /* BountyCardViewController.swift */; };
 		200D9F691FA8BBB0006C7C06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 200D9F5F1FA8BBAE006C7C06 /* Main.storyboard */; };
 		200D9F6B1FA8BBB0006C7C06 /* BountyCardKolodaAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200D9F611FA8BBAF006C7C06 /* BountyCardKolodaAnimator.swift */; };
@@ -47,6 +50,9 @@
 
 /* Begin PBXFileReference section */
 		12B2483E19BA87527CE4B9A4 /* Pods_Gitcoin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gitcoin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2008F2BF1FAF9E7B0030807F /* SideMenuNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuNavigationController.swift; sourceTree = "<group>"; };
+		2008F2C11FAFA1DA0030807F /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
+		2008F2C61FAFA6930030807F /* OctokitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctokitManager.swift; sourceTree = "<group>"; };
 		200D9F4D1FA8B1DE006C7C06 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		200D9F5D1FA8BBAE006C7C06 /* BountyCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BountyCardViewController.swift; sourceTree = "<group>"; };
 		200D9F5F1FA8BBAE006C7C06 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -108,6 +114,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2008F2BE1FAF98C10030807F /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				2008F2BF1FAF9E7B0030807F /* SideMenuNavigationController.swift */,
+				2008F2C11FAFA1DA0030807F /* SideMenuTableViewController.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		2008F2C31FAFA3850030807F /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				2008F2C61FAFA6930030807F /* OctokitManager.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		200DA7901FA9350F00FDCE67 /* BountyCards */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +190,7 @@
 				20B837431FABDC7E00680FC0 /* UI */,
 				20B8373C1FABD70900680FC0 /* Network */,
 				200DA7991FA93DD800FDCE67 /* Model */,
+				2008F2C31FAFA3850030807F /* Util */,
 				200D9F5F1FA8BBAE006C7C06 /* Main.storyboard */,
 				209460731FA8AB8F00555F06 /* AppDelegate.swift */,
 				2094607C1FA8AB8F00555F06 /* LaunchScreen.storyboard */,
@@ -206,6 +230,7 @@
 		20B837431FABDC7E00680FC0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2008F2BE1FAF98C10030807F /* Menu */,
 				200DA7901FA9350F00FDCE67 /* BountyCards */,
 			);
 			path = UI;
@@ -460,6 +485,8 @@
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
 				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -475,6 +502,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -553,13 +582,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				20B837421FABDC2D00680FC0 /* Bounty.swift in Sources */,
+				2008F2C01FAF9E7B0030807F /* SideMenuNavigationController.swift in Sources */,
 				209460741FA8AB8F00555F06 /* AppDelegate.swift in Sources */,
 				200D9F671FA8BBB0006C7C06 /* BountyCardViewController.swift in Sources */,
 				20B942BC1FA932110015481C /* BountyCardOverlayView.swift in Sources */,
 				20B8373E1FABD71E00680FC0 /* GitcoinAPIService.swift in Sources */,
 				200DA7921FA9385A00FDCE67 /* BountyCardView.swift in Sources */,
+				2008F2C71FAFA6930030807F /* OctokitManager.swift in Sources */,
 				200D9F6B1FA8BBB0006C7C06 /* BountyCardKolodaAnimator.swift in Sources */,
 				20B942C01FA932700015481C /* BountyKolodaView.swift in Sources */,
+				2008F2C21FAFA1DA0030807F /* SideMenuTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

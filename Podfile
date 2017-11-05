@@ -17,6 +17,10 @@ target 'Gitcoin' do
   pod 'SCLAlertView'
   
   pod 'OctoKit.swift'
+  
+  pod 'SideMenu'
+  
+  pod 'SwiftyUserDefaults'
 
   target 'GitcoinTests' do
     inherit! :search_paths

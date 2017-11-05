@@ -57,15 +57,6 @@ class BountyCardViewController: UIViewController {
     @IBAction func undoButtonTapped() {
         kolodaView?.revertAction()
     }
-    
-    @IBAction func buttonTapped(){
-        
-        let url = oAuthConfig.authenticate()
-        
-        UIApplication.shared.open(url!, options: [:], completionHandler: { _ in
-            
-        })
-    }
 }
 
 //MARK: KolodaViewDelegate

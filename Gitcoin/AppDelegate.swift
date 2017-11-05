@@ -7,35 +7,21 @@
 //
 
 import UIKit
-import Octokit
 import SCLAlertView
-
-let oAuthConfig = OAuthConfiguration(token: "e032164d070bfacd1dbe", secret: "0dc9460fabc08acd2ec2e12d3b2a83d909b34d06", scopes: ["repo", "read:org"])
+import SwiftyUserDefaults
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    let octokitManager = OctokitManager.shared
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         
-        // After an oauth session has been authorized on github, the callback url will
-        // enter here
-        
-        //TODO: persist the token! and move all this to a manager
-        oAuthConfig.handleOpenURL(url: url, completion: { (token) in
-            _ = Octokit(token).me() { response in
-                switch response {
-                case .success(let user):
-                    print("User login: \(String(describing: user.email))")
-                    
-                    DispatchQueue.main.async {
-                        SCLAlertView().showSuccess("Success", subTitle: "Your email is \(user.email!)", closeButtonTitle: "OK")
-                    }
-                    
-                case .failure(let error):
-                    print("Error: \(error)")
-                }
-            }
+        // See OctokitManager for the observation of this default value
+        octokitManager.oAuthConfig.handleOpenURL(url: url, completion: { (token) in
+            self.octokitManager.tokenConfiguration = token
         })
         
         return false
