@@ -7,10 +7,12 @@
 //
 
 import Moya
+import Octokit
 
 // API endpoint definitions https://github.com/Moya/Moya/blob/master/docs/Examples/Basic.md
 enum GitcoinAPIService {
     case bounties
+    case fundingSave(bounty: Bounty?, user: User?, direction: String?)
 }
 
 // MARK: - TargetType Protocol Implementation
@@ -20,20 +22,31 @@ extension GitcoinAPIService: TargetType {
         switch self {
         case .bounties:
             return "bounties"
+        case .fundingSave(_, _, _):
+            return "funding/save"
         }
     }
     var method: Moya.Method {
         switch self {
         case .bounties:
             return .get
+        case .fundingSave:
+            return .post
         }
     }
     var task: Task {
-        return .requestPlain
+        switch self {
+        case let .fundingSave(bounty, user, direction):
+            return .requestParameters(parameters: ["bounty_id": bounty?.id ?? "", "email_address": user?.email ?? "", "direction":  direction ?? ""], encoding: JSONEncoding.default)
+        default:
+            return .requestPlain
+        }
     }
     var sampleData: Data {
         switch self {
         case .bounties:
+            return "[]".utf8Encoded
+        case .fundingSave:
             return "[]".utf8Encoded
 
         }

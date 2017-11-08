@@ -88,6 +88,25 @@ extension BountyCardViewController: KolodaViewDelegate {
         logger.verbose("set last bounty viewed to \(bounty.id)")
     }
     
+    /// When an action has been taken on a bounty card, pass the information to the gitcoinAPI
+    func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
+        let bounty = data[index]
+        let user = OctokitManager.shared.user.value
+        let directionString = direction.rawValue
+        
+        logger.verbose("Swiped \(bounty.title) to the \(direction)")
+
+        _ = gitcoinAPI.rx.request(.fundingSave(bounty: bounty, user: user, direction: directionString))
+            .subscribe { event in
+                switch event {
+                case .success(let response):
+                    logger.verbose("fundingSave success \(response)")
+                case .error(let error):
+                    logger.warning(error)
+                }
+        }
+    }
+    
     func kolodaShouldApplyAppearAnimation(_ koloda: KolodaView) -> Bool {
         return true
     }
@@ -136,13 +155,11 @@ extension BountyCardViewController: KolodaViewDataSource {
 
 extension BountyCardViewController {
     func loadData(){
-        let provider = MoyaProvider<GitcoinAPIService>()
-        
         //TODO: setup a UIApplication.keyWindow so we dont have to set the container view for the spinner
         SwiftSpinner.useContainerView(self.view)
         SwiftSpinner.show("Loading...")
         
-        _ = provider.rx.request(.bounties)
+        _ = gitcoinAPI.rx.request(.bounties)
             .mapOptional(to: [Bounty].self)
             .subscribe { [unowned self] event in
                 switch event {

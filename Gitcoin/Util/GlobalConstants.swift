@@ -9,8 +9,11 @@
 import Foundation
 import SwiftyUserDefaults
 import SwiftyBeaver
+import Moya
 
 let logger = SwiftyBeaver.self
+
+let gitcoinAPI = MoyaProvider<GitcoinAPIService>()//(plugins: [NetworkLoggerPlugin()])
 
 /// UserDefaultKeyConstants: All UserDefaults persisted key definitions
 struct UserDefaultKeyConstants {
