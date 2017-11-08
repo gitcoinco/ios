@@ -28,6 +28,10 @@ target 'Gitcoin' do
   
   pod 'SwiftyPlistManager'
   
+  pod 'Fabric'
+  
+  pod 'Crashlytics'
+  
   target 'GitcoinTests' do
     inherit! :search_paths
     # Pods for testing

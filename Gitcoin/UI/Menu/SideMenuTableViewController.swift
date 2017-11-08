@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import Alamofire
 import AlamofireImage
+import Crashlytics
 
 class SideMenuTableViewController: UITableViewController {
 
@@ -65,10 +66,14 @@ class SideMenuTableViewController: UITableViewController {
             
             OctokitManager.shared.signOut()
             
+            Answers.logCustomEvent(withName: "Logout")
+            
             return
         }
         
         let url = OctokitManager.shared.oAuthConfig.authenticate()
+        
+        Answers.logCustomEvent(withName: "Login")
         
         UIApplication.shared.open(url!, options: [:], completionHandler: { _ in
             

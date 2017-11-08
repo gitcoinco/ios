@@ -9,6 +9,7 @@
 import UIKit
 import SideMenu
 import Octokit
+import Crashlytics
 
 class SideMenuNavigationController: UISideMenuNavigationController {
 
@@ -18,6 +19,18 @@ class SideMenuNavigationController: UISideMenuNavigationController {
         let appScreenRect = UIApplication.shared.keyWindow?.bounds ?? UIWindow().bounds
         
         // Do any additional setup after loading the view.
-        self.menuWidth = max(round(min((appScreenRect.width), (appScreenRect.height)) * 0.95), 240)
+        self.menuWidth = max(round(min((appScreenRect.width), (appScreenRect.height)) * 0.70), 240)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Answers.logCustomEvent(withName: "Open Menu")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        Answers.logCustomEvent(withName: "Closed Menu")
     }
 }

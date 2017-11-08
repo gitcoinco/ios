@@ -14,6 +14,7 @@ import Moya_ModelMapper
 import SCLAlertView
 import SwiftyUserDefaults
 import SwiftSpinner
+import Crashlytics
 
 class BountyCardViewController: UIViewController {
     let frameAnimationSpringBounciness: CGFloat = 9
@@ -69,11 +70,21 @@ extension BountyCardViewController: KolodaViewDelegate {
         SCLAlertView().showSuccess("No More Bounties", subTitle: "TBD: Text about how your going to get a push notification when new bounties are available!", closeButtonTitle: "Start Over")
         
         kolodaView.resetCurrentCardIndex()
+        
+        Answers.logCustomEvent(withName: "End of Bounties")
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
+        
+        let bounty = data[index]
+    
+        Answers.logContentView(withName: "Tap",
+                               contentType: "Bounty",
+                               contentId: bounty.id,
+                               customAttributes: ["title": bounty.title])
+        
         //TODO: What to do on tap??? native detail? someother action?
-        if let gitHubUrl = data[index].githubUrl {
+        if let gitHubUrl = bounty.githubUrl {
             UIApplication.shared.open(URL(string: gitHubUrl)!, options: [:], completionHandler: { _ in
                 
             })
@@ -86,6 +97,11 @@ extension BountyCardViewController: KolodaViewDelegate {
         Defaults[UserDefaultKeyConstants.lastViewedBountyId] = bounty.id
         
         logger.verbose("set last bounty viewed to \(bounty.id)")
+        
+        Answers.logContentView(withName: "View",
+                               contentType: "Bounty",
+                               contentId: bounty.id,
+                               customAttributes: ["title": bounty.title])
     }
     
     /// When an action has been taken on a bounty card, pass the information to the gitcoinAPI
@@ -94,7 +110,12 @@ extension BountyCardViewController: KolodaViewDelegate {
         let user = OctokitManager.shared.user.value
         let directionString = direction.rawValue
         
-        logger.verbose("Swiped \(bounty.title) to the \(direction)")
+        logger.verbose("Swiped \(bounty.title) to the \(directionString)")
+        
+        Answers.logContentView(withName: "Swipe",
+                               contentType: "Bounty",
+                               contentId: bounty.id,
+                               customAttributes: ["title": bounty.title, "direction": directionString, "user_email": user?.email])
 
         _ = gitcoinAPI.rx.request(.fundingSave(bounty: bounty, user: user, direction: directionString))
             .subscribe { event in
