@@ -41,7 +41,7 @@ extension GitcoinAPIService: TargetType {
             
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
         case let .bounties(lastViewedBountyId):
-            let params = ["pk__gt": lastViewedBountyId ?? ""]
+            let params = ["pk__gt": lastViewedBountyId ?? "", "idx_status": "open", "order_by": "-web3_created"]
             
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         }
