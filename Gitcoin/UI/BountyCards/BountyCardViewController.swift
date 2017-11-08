@@ -11,10 +11,9 @@ import Koloda
 import pop
 import Moya
 import Moya_ModelMapper
-import Alamofire
-import AlamofireImage
 import SCLAlertView
-import Octokit
+import SwiftyUserDefaults
+import SwiftSpinner
 
 class BountyCardViewController: UIViewController {
     let frameAnimationSpringBounciness: CGFloat = 9
@@ -81,6 +80,14 @@ extension BountyCardViewController: KolodaViewDelegate {
         }
     }
     
+    func koloda(_ koloda: KolodaView, didShowCardAt index: Int) {
+        let bounty = data[index]
+        
+        Defaults[UserDefaultKeyConstants.lastBountyViewed] = bounty.id
+        
+        logger.verbose("set last bounty viewed to \(bounty.id)")
+    }
+    
     func kolodaShouldApplyAppearAnimation(_ koloda: KolodaView) -> Bool {
         return true
     }
@@ -112,27 +119,14 @@ extension BountyCardViewController: KolodaViewDataSource {
         return data.count
     }
     
+    /// instantiate a custom BountyCardView and set its bounty value
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        let item = data[index]
+        guard let bountyCardView = Bundle.main.loadNibNamed("BountyCardView", owner: self, options: nil)?[0] as? BountyCardView
+            else { return UIView() }
         
-        //TODO: RxBinding data to view elements
-        let bountyCardView = Bundle.main.loadNibNamed("BountyCardView", owner: self, options: nil)?[0] as? BountyCardView
+        bountyCardView.bounty.value = data[index]
         
-        bountyCardView?.titleLabel.text = item.title
-        
-        if let avatarUrl = item.avatarUrl {
-            
-            Alamofire.request(avatarUrl).responseImage { response in
-                
-                if let image = response.result.value {
-                    let circularImage = image.af_imageRoundedIntoCircle()
-                    
-                    bountyCardView?.avatarImageView.image = circularImage
-                }
-            }
-        }
-        
-        return bountyCardView!
+        return bountyCardView
     }
     
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
@@ -144,6 +138,10 @@ extension BountyCardViewController {
     func loadData(){
         let provider = MoyaProvider<GitcoinAPIService>()
         
+        //TODO: setup a UIApplication.keyWindow so we dont have to set the container view for the spinner
+        SwiftSpinner.useContainerView(self.view)
+        SwiftSpinner.show("Loading...")
+        
         _ = provider.rx.request(.bounties)
             .mapOptional(to: [Bounty].self)
             .subscribe { [unowned self] event in
@@ -152,11 +150,17 @@ extension BountyCardViewController {
                     if let repos = repos {
                         self.data = repos
                         self.kolodaView.reloadData()
+                        SwiftSpinner.hide()
                     }
-                    
+                
+                //TODO: Test Error handling
                 case .error(let error):
-                    //TODO: better error handling
-                    print(error)
+                    logger.error(error)
+                    
+                    SwiftSpinner.hide()
+                    
+                    //TODO: better error messages?
+                    SCLAlertView().showError("Something went wrong", subTitle: "Please try again", closeButtonTitle: "OK")
                 }
         }
     }

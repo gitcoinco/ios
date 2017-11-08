@@ -28,6 +28,8 @@ PODS:
   - RxSwift (4.0.0)
   - SCLAlertView (0.7.0)
   - SideMenu (3.1.4)
+  - SwiftSpinner (1.4.1)
+  - SwiftyBeaver (1.4.2)
   - SwiftyUserDefaults (3.0.0)
 
 DEPENDENCIES:
@@ -38,6 +40,8 @@ DEPENDENCIES:
   - OctoKit.swift
   - SCLAlertView
   - SideMenu
+  - SwiftSpinner
+  - SwiftyBeaver
   - SwiftyUserDefaults
 
 SPEC CHECKSUMS:
@@ -54,8 +58,10 @@ SPEC CHECKSUMS:
   RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
   SideMenu: 99021e70b3f2eee65b5dd88e4274d09031b1221e
+  SwiftSpinner: bf7c13332ad008952a09358cadf24a186510ae31
+  SwiftyBeaver: 91057725648ee4980308f1650af077d04b3654a0
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: f2002b0825388f7ef4e94ce52467aa7a655cc960
+PODFILE CHECKSUM: c07e3f734a149b209a9ea43373588525289706cb
 
 COCOAPODS: 1.3.1

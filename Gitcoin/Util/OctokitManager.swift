@@ -14,8 +14,6 @@ import SCLAlertView
 
 class OctokitManager: NSObject {
     static let shared = OctokitManager()
-    
-    let githubAccessTokenKey = DefaultsKey<String?>("githubaccesstoken")
 
     let oAuthConfig: OAuthConfiguration
 
@@ -25,7 +23,7 @@ class OctokitManager: NSObject {
     
     var tokenConfiguration: TokenConfiguration? {
         get {
-            let tokenKeyValue = Defaults[self.githubAccessTokenKey]
+            let tokenKeyValue = Defaults[UserDefaultKeyConstants.githubAccessTokenKey]
             
             if let tokenKeyValue = tokenKeyValue {
                 return TokenConfiguration(tokenKeyValue)
@@ -36,10 +34,10 @@ class OctokitManager: NSObject {
         set(newTokenConfig) {
             
             if let newTokenConfig = newTokenConfig {
-                Defaults[self.githubAccessTokenKey] = newTokenConfig.accessToken
+                Defaults[UserDefaultKeyConstants.githubAccessTokenKey] = newTokenConfig.accessToken
                 loadMe()
             }else{
-                Defaults.remove(self.githubAccessTokenKey)
+                Defaults.remove(UserDefaultKeyConstants.githubAccessTokenKey)
                 unloadMe()
             }
         }
@@ -73,13 +71,11 @@ class OctokitManager: NSObject {
 //                    }
                     
                 case .failure(let error):
-                    // TODO: handle github api errors
-                    print("Error: \(error)")
+                    logger.error(error)
                 }
             }
         }else{
-            // TODO: write nice logger
-            print("OctokitManager::loadMe() no tokenConfig!")
+            logger.warning("No tokenConfiguration found to get me()")
         }
     }
     

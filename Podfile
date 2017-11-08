@@ -21,7 +21,11 @@ target 'Gitcoin' do
   pod 'SideMenu'
   
   pod 'SwiftyUserDefaults'
+  
+  pod 'SwiftyBeaver'
 
+  pod 'SwiftSpinner'
+  
   target 'GitcoinTests' do
     inherit! :search_paths
     # Pods for testing

@@ -17,6 +17,7 @@
 		200DA7941FA9388300FDCE67 /* BountyCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 200DA7931FA9388300FDCE67 /* BountyCardView.xib */; };
 		200DA7971FA93BAE00FDCE67 /* Futura.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 200DA7961FA93BAE00FDCE67 /* Futura.ttc */; };
 		200DA79B1FA9468900FDCE67 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 200DA79A1FA9468900FDCE67 /* Images.xcassets */; };
+		20559D661FB2771600170860 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20559D651FB2771600170860 /* GlobalConstants.swift */; };
 		209460741FA8AB8F00555F06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209460731FA8AB8F00555F06 /* AppDelegate.swift */; };
 		2094607E1FA8AB8F00555F06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2094607C1FA8AB8F00555F06 /* LaunchScreen.storyboard */; };
 		209460891FA8AB8F00555F06 /* GitcoinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209460881FA8AB8F00555F06 /* GitcoinTests.swift */; };
@@ -61,6 +62,7 @@
 		200DA7931FA9388300FDCE67 /* BountyCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BountyCardView.xib; sourceTree = "<group>"; };
 		200DA7961FA93BAE00FDCE67 /* Futura.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Futura.ttc; sourceTree = "<group>"; };
 		200DA79A1FA9468900FDCE67 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		20559D651FB2771600170860 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		209460701FA8AB8F00555F06 /* Gitcoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gitcoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209460731FA8AB8F00555F06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2094607D1FA8AB8F00555F06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				2008F2C61FAFA6930030807F /* OctokitManager.swift */,
+				20559D651FB2771600170860 /* GlobalConstants.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -486,6 +489,8 @@
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSpinner/SwiftSpinner.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
 				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
@@ -503,6 +508,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSpinner.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
@@ -589,6 +596,7 @@
 				20B8373E1FABD71E00680FC0 /* GitcoinAPIService.swift in Sources */,
 				200DA7921FA9385A00FDCE67 /* BountyCardView.swift in Sources */,
 				2008F2C71FAFA6930030807F /* OctokitManager.swift in Sources */,
+				20559D661FB2771600170860 /* GlobalConstants.swift in Sources */,
 				200D9F6B1FA8BBB0006C7C06 /* BountyCardKolodaAnimator.swift in Sources */,
 				20B942C01FA932700015481C /* BountyKolodaView.swift in Sources */,
 				2008F2C21FAFA1DA0030807F /* SideMenuTableViewController.swift in Sources */,
