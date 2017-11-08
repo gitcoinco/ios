@@ -83,7 +83,7 @@ extension BountyCardViewController: KolodaViewDelegate {
     func koloda(_ koloda: KolodaView, didShowCardAt index: Int) {
         let bounty = data[index]
         
-        Defaults[UserDefaultKeyConstants.lastBountyViewed] = bounty.id
+        Defaults[UserDefaultKeyConstants.lastViewedBountyId] = bounty.id
         
         logger.verbose("set last bounty viewed to \(bounty.id)")
     }
@@ -159,7 +159,10 @@ extension BountyCardViewController {
         SwiftSpinner.useContainerView(self.view)
         SwiftSpinner.show("Loading...")
         
-        _ = gitcoinAPI.rx.request(.bounties)
+        // Filter the results so that we only display what we haven't seen
+        let lastViewedBountyId = Defaults[UserDefaultKeyConstants.lastViewedBountyId]
+        
+        _ = gitcoinAPI.rx.request(.bounties(lastViewedBountyId: lastViewedBountyId))
             .mapOptional(to: [Bounty].self)
             .subscribe { [unowned self] event in
                 switch event {

@@ -11,7 +11,7 @@ import Octokit
 
 // API endpoint definitions https://github.com/Moya/Moya/blob/master/docs/Examples/Basic.md
 enum GitcoinAPIService {
-    case bounties
+    case bounties(lastViewedBountyId: String?)
     case fundingSave(bounty: Bounty?, user: User?, direction: String?)
 }
 
@@ -37,9 +37,13 @@ extension GitcoinAPIService: TargetType {
     var task: Task {
         switch self {
         case let .fundingSave(bounty, user, direction):
-            return .requestParameters(parameters: ["bounty_id": bounty?.id ?? "", "email_address": user?.email ?? "", "direction":  direction ?? ""], encoding: JSONEncoding.default)
-        default:
-            return .requestPlain
+            let params = ["bounty_id": bounty?.id ?? "", "email_address": user?.email ?? "", "direction":  direction ?? ""]
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+        case let .bounties(lastViewedBountyId):
+            let params = ["pk__gt": lastViewedBountyId ?? ""]
+            
+            return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         }
     }
     var sampleData: Data {
