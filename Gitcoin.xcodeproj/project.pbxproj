@@ -18,6 +18,7 @@
 		200DA7971FA93BAE00FDCE67 /* Futura.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 200DA7961FA93BAE00FDCE67 /* Futura.ttc */; };
 		200DA79B1FA9468900FDCE67 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 200DA79A1FA9468900FDCE67 /* Images.xcassets */; };
 		20559D661FB2771600170860 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20559D651FB2771600170860 /* GlobalConstants.swift */; };
+		209430CC1FB29CAB006F0671 /* SafeConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 209430CB1FB29CAB006F0671 /* SafeConfiguration.plist */; };
 		209460741FA8AB8F00555F06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209460731FA8AB8F00555F06 /* AppDelegate.swift */; };
 		2094607E1FA8AB8F00555F06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2094607C1FA8AB8F00555F06 /* LaunchScreen.storyboard */; };
 		209460891FA8AB8F00555F06 /* GitcoinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209460881FA8AB8F00555F06 /* GitcoinTests.swift */; };
@@ -63,6 +64,8 @@
 		200DA7961FA93BAE00FDCE67 /* Futura.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Futura.ttc; sourceTree = "<group>"; };
 		200DA79A1FA9468900FDCE67 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		20559D651FB2771600170860 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		209430CB1FB29CAB006F0671 /* SafeConfiguration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SafeConfiguration.plist; sourceTree = "<group>"; };
+		209430CD1FB29D59006F0671 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		209460701FA8AB8F00555F06 /* Gitcoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gitcoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209460731FA8AB8F00555F06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2094607D1FA8AB8F00555F06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -200,6 +203,8 @@
 				2094607F1FA8AB8F00555F06 /* Info.plist */,
 				200DA79A1FA9468900FDCE67 /* Images.xcassets */,
 				200DA7951FA93BA100FDCE67 /* Fonts */,
+				209430CB1FB29CAB006F0671 /* SafeConfiguration.plist */,
+				209430CD1FB29D59006F0671 /* README.md */,
 			);
 			path = Gitcoin;
 			sourceTree = "<group>";
@@ -382,6 +387,7 @@
 				200D9F691FA8BBB0006C7C06 /* Main.storyboard in Resources */,
 				20B942BD1FA932110015481C /* BountyCardOverlayView.xib in Resources */,
 				200DA79B1FA9468900FDCE67 /* Images.xcassets in Resources */,
+				209430CC1FB29CAB006F0671 /* SafeConfiguration.plist in Resources */,
 				2094607E1FA8AB8F00555F06 /* LaunchScreen.storyboard in Resources */,
 				200DA7941FA9388300FDCE67 /* BountyCardView.xib in Resources */,
 			);
@@ -491,6 +497,7 @@
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSpinner/SwiftSpinner.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyPlistManager/SwiftyPlistManager.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
 				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
@@ -510,6 +517,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSpinner.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyPlistManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);

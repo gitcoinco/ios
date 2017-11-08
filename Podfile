@@ -26,6 +26,8 @@ target 'Gitcoin' do
 
   pod 'SwiftSpinner'
   
+  pod 'SwiftyPlistManager'
+  
   target 'GitcoinTests' do
     inherit! :search_paths
     # Pods for testing

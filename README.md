@@ -31,7 +31,7 @@ Thanks to  [Koloda](https://github.com/Yalantis/Koloda).
 
 # Setup
 1. Install cocoapods, and run pod install
-2.
+2. Create a SafeConfiguration.plist file and add the following keys as strings: gitHubOAuthToken, gitHubOAuthSecret
 
 
 # Legal

@@ -11,6 +11,7 @@ import Octokit
 import RxSwift
 import SwiftyUserDefaults
 import SCLAlertView
+import SwiftyPlistManager
 
 class OctokitManager: NSObject {
     static let shared = OctokitManager()
@@ -33,6 +34,9 @@ class OctokitManager: NSObject {
         }
         set(newTokenConfig) {
             
+            //TODO: store these tokens somewhere safer
+            // https://github.com/soffes/SAMKeychain?
+            // https://github.com/kishikawakatsumi/UICKeyChainStore?
             if let newTokenConfig = newTokenConfig {
                 Defaults[UserDefaultKeyConstants.githubAccessTokenKey] = newTokenConfig.accessToken
                 loadMe()
@@ -48,8 +52,15 @@ class OctokitManager: NSObject {
     }
     
     override init() {
-        //TODO: move these configs more secure, and perhaps pass them in to init
-        self.oAuthConfig = OAuthConfiguration(token: "e032164d070bfacd1dbe", secret: "0dc9460fabc08acd2ec2e12d3b2a83d909b34d06", scopes: ["repo", "read:org"])
+        guard let gitHubOAuthToken = SwiftyPlistManager.shared.fetchValue(for: "gitHubOAuthToken", fromPlistWithName: "SafeConfiguration") as? String else {
+            fatalError("\n The SafeConfiguration.plist file can't be found. Please generate it with the following keys: gitHubOAuthToken, gitHubOAuthSecret")
+        }
+        
+        guard let gitHubOAuthSecret = SwiftyPlistManager.shared.fetchValue(for: "gitHubOAuthSecret", fromPlistWithName: "SafeConfiguration") as? String else {
+            fatalError("\n The SafeConfiguration.plist file can't be found. Please generate it with the following keys: gitHubOAuthToken, gitHubOAuthSecret")
+        }
+        
+        self.oAuthConfig = OAuthConfiguration(token: gitHubOAuthToken, secret: gitHubOAuthSecret, scopes: ["repo", "read:org"])
         
         super.init()
         
