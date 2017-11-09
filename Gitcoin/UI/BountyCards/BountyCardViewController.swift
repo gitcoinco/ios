@@ -15,6 +15,8 @@ import SCLAlertView
 import SwiftyUserDefaults
 import SwiftSpinner
 import Crashlytics
+import Alamofire
+import AlamofireImage
 
 class BountyCardViewController: UIViewController {
     let frameAnimationSpringBounciness: CGFloat = 9
@@ -166,7 +168,21 @@ extension BountyCardViewController: KolodaViewDataSource {
         guard let bountyCardView = Bundle.main.loadNibNamed("BountyCardView", owner: self, options: nil)?[0] as? BountyCardView
             else { return UIView() }
         
-        bountyCardView.bounty.value = data[index]
+       let bounty = data[index]
+        
+        bountyCardView.titleLabel.text = bounty.title
+        
+        if let avatarUrl = bounty.avatarUrl {
+            
+            Alamofire.request(avatarUrl).responseImage { response in
+                
+                if let image = response.result.value {
+                    let circularImage = image.af_imageRoundedIntoCircle()
+                    
+                    bountyCardView.avatarImageView.image = circularImage
+                }
+            }
+        }
         
         return bountyCardView
     }
