@@ -9,9 +9,13 @@
 import Moya
 import Octokit
 
+/// GitcoinAPIService defines the endpoints and contract to the gitcoin api
 // API endpoint definitions https://github.com/Moya/Moya/blob/master/docs/Examples/Basic.md
 enum GitcoinAPIService {
-    case bounties(lastViewedBountyId: String?)
+    // Bounties index
+    case bounties(lastViewedBountyId: Int?)
+    
+    // After bounty swipes (left, right) X or ❤ we send event to api
     case fundingSave(bounty: Bounty?, user: User?, direction: String?)
 }
 
@@ -37,12 +41,16 @@ extension GitcoinAPIService: TargetType {
     var task: Task {
         switch self {
         case let .fundingSave(bounty, user, direction):
-            let params = ["bounty_id": bounty?.id ?? "", "email_address": user?.email ?? "", "direction":  direction ?? ""]
+            let params = ["bounty_id": bounty?.idString ?? "", "email_address": user?.email ?? "", "direction":  direction ?? "", "github_username": user?.login ?? ""]
             
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
         case let .bounties(lastViewedBountyId):
-            let params = ["pk__gt": lastViewedBountyId ?? "", "idx_status": "open", "order_by": "-web3_created"]
+            var params = ["idx_status": "open", "order_by": "pk"]
             
+            if let lastViewedBountyId = lastViewedBountyId {
+                params["pk__gt"] = String(lastViewedBountyId)
+            }
+
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         }
     }

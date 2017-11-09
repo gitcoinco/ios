@@ -80,7 +80,7 @@ extension BountyCardViewController: KolodaViewDelegate {
     
         Answers.logContentView(withName: "Tap",
                                contentType: "Bounty",
-                               contentId: bounty.id,
+                               contentId: bounty.idString,
                                customAttributes: ["title": bounty.title])
         
         //TODO: What to do on tap??? native detail? someother action?
@@ -94,13 +94,9 @@ extension BountyCardViewController: KolodaViewDelegate {
     func koloda(_ koloda: KolodaView, didShowCardAt index: Int) {
         let bounty = data[index]
         
-        Defaults[UserDefaultKeyConstants.lastViewedBountyId] = bounty.id
-        
-        logger.verbose("set last bounty viewed to \(bounty.id)")
-        
         Answers.logContentView(withName: "View",
                                contentType: "Bounty",
-                               contentId: bounty.id,
+                               contentId: bounty.idString,
                                customAttributes: ["title": bounty.title])
     }
     
@@ -108,22 +104,28 @@ extension BountyCardViewController: KolodaViewDelegate {
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
         let bounty = data[index]
         let user = OctokitManager.shared.user.value
-        let directionString = direction.rawValue
         
-        logger.verbose("Swiped \(bounty.title) to the \(directionString)")
+        // The api is looking for + or -
+        let mappedDirection = direction == SwipeResultDirection.left ? "-" : "+"
         
         Answers.logContentView(withName: "Swipe",
                                contentType: "Bounty",
-                               contentId: bounty.id,
-                               customAttributes: ["title": bounty.title, "direction": directionString, "user_email": user?.email])
+                               contentId: bounty.idString,
+                               customAttributes: ["title": bounty.title,
+                                                  "direction": mappedDirection,
+                                                  "user_email": user?.email ?? "",
+                                                  "github_username": user?.login ?? ""])
 
-        _ = gitcoinAPI.rx.request(.fundingSave(bounty: bounty, user: user, direction: directionString))
+        _ = gitcoinAPI.rx.request(.fundingSave(bounty: bounty, user: user, direction: mappedDirection))
             .subscribe { event in
                 switch event {
-                case .success(let response):
-                    logger.verbose("fundingSave success \(response)")
+                case .success(_):
+                    // set the lastViewedBountyId after a successful action has been taken
+                    Defaults[UserDefaultKeyConstants.lastViewedBountyId] = bounty.id
+                    
+                    logger.verbose("set lastViewedBountyId=\(Defaults[UserDefaultKeyConstants.lastViewedBountyId] ?? -1)")
                 case .error(let error):
-                    logger.warning(error)
+                    logger.error(error)
                 }
         }
     }

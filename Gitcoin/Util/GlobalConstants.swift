@@ -19,5 +19,5 @@ let gitcoinAPI = MoyaProvider<GitcoinAPIService>()//(plugins: [NetworkLoggerPlug
 struct UserDefaultKeyConstants {
     static let githubAccessTokenKey = DefaultsKey<String?>("githubaccesstoken")
     
-    static let lastViewedBountyId = DefaultsKey<String?>("lastViewedBountyId")
+    static let lastViewedBountyId = DefaultsKey<Int?>("lastViewedBountyId")
 }
