@@ -202,24 +202,60 @@ extension BountyCardViewController {
         let lastViewedBountyId = Defaults[UserDefaultKeyConstants.lastViewedBountyId]
         
         _ = gitcoinAPI.rx.request(.bounties(lastViewedBountyId: lastViewedBountyId))
-            .mapOptional(to: [Bounty].self)
+            .map(to: [Bounty].self)
             .subscribe { [unowned self] event in
                 switch event {
                 case .success(let repos):
-                    if let repos = repos {
-                        self.data = repos
-                        self.kolodaView.reloadData()
-                        SwiftSpinner.hide()
+                    self.data = repos
+                    self.kolodaView.reloadData()
+                    SwiftSpinner.hide()
+                case .error(let e):
+                    
+                    Answers.logCustomEvent(withName: "Bounties API Request Error", customAttributes: ["error": e])
+                    
+                    guard let error = e as? MoyaError else {
+                        return
                     }
-                
-                //TODO: Test Error handling
-                case .error(let error):
-                    logger.error(error)
+                    
+                    switch error {
+                    case .imageMapping(let response):
+                        logger.error(response)
+                    case .jsonMapping(let response):
+                        logger.error(response)
+                    case .statusCode(let response):
+                        logger.error(response)
+                    case .stringMapping(let response):
+                        logger.error(response)
+                    case .objectMapping(let error, let response):
+                        // error is DecodingError
+                        logger.error(error)
+                        logger.error(response)
+                    case .encodableMapping(let error):
+                        logger.error(error)
+                    case .underlying(let error, let response):
+                        logger.error(error)
+                        logger.error(response.debugDescription)
+                    case .requestMapping(let url):
+                        logger.error(url)
+                    case .parameterEncoding(let error):
+                        logger.error(error)
+                    }
+                    
+                    //TODO: How should we display errors?
                     
                     SwiftSpinner.hide()
                     
-                    //TODO: better error messages?
-                    SCLAlertView().showError("Something went wrong", subTitle: "Please try again", closeButtonTitle: "OK")
+                    let appearance = SCLAlertView.SCLAppearance(
+                        showCloseButton: false
+                    )
+                    
+                    let alertView = SCLAlertView(appearance: appearance)
+
+                    alertView.addButton("Try Again") {
+                        self.loadData()
+                    }
+                    
+                    alertView.showError("Something went wrong", subTitle: error.localizedDescription)
                 }
         }
     }
