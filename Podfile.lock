@@ -7,7 +7,7 @@ PODS:
   - Fabric (1.7.2)
   - Koloda (4.3.1):
     - pop (~> 1.0)
-  - ModelMapper (7.2.0)
+  - ModelMapper (7.3.0)
   - Moya (10.0.0):
     - Moya/Core (= 10.0.0)
   - Moya-ModelMapper/Core (6.0.0):
@@ -32,7 +32,7 @@ PODS:
   - SCLAlertView (0.7.0)
   - SideMenu (3.1.4)
   - SwiftSpinner (1.4.1)
-  - SwiftyBeaver (1.4.2)
+  - SwiftyBeaver (1.4.3)
   - SwiftyPlistManager (1.0.2)
   - SwiftyUserDefaults (3.0.0)
 
@@ -57,7 +57,7 @@ SPEC CHECKSUMS:
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
   Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   Koloda: 0d39b2aa188ccd1fac48d752acaf9802e683c625
-  ModelMapper: bef729f9c7095cadffc3c2ef9432fc5e21d8fc60
+  ModelMapper: b70d373f224fc8cfc4da67b483db163a6cd05fe6
   Moya: adb58b0f4e58430db43cc6e2f6ebab1836501186
   Moya-ModelMapper: c59c0bbd042cf9d1d9b0acf38c5f930956bebed8
   NBNRequestKit: 70d514748747aca66e2e2ed17340f91d5ed6d1d4
@@ -68,7 +68,7 @@ SPEC CHECKSUMS:
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
   SideMenu: 99021e70b3f2eee65b5dd88e4274d09031b1221e
   SwiftSpinner: bf7c13332ad008952a09358cadf24a186510ae31
-  SwiftyBeaver: 91057725648ee4980308f1650af077d04b3654a0
+  SwiftyBeaver: e10b1668e0512229c36c34769b97eed3dfae2ca3
   SwiftyPlistManager: 5895924cccb7fe28deccbe14890e8aed78ae78ae
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
