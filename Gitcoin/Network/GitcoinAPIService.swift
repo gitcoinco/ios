@@ -9,18 +9,31 @@
 import Moya
 import Octokit
 
+class GitcoinAPIService {
+    static let shared = GitcoinAPIService()
+    
+    let provider: MoyaProvider<GitcoinAPIServiceContract>
+    
+    init() {
+        self.provider = MoyaProvider<GitcoinAPIServiceContract>(plugins: [NetworkLoggerPlugin()])
+    }
+}
+
 /// GitcoinAPIService defines the endpoints and contract to the gitcoin api
 // API endpoint definitions https://github.com/Moya/Moya/blob/master/docs/Examples/Basic.md
-enum GitcoinAPIService {
+enum GitcoinAPIServiceContract {
     // Bounties index
     case bounties(lastViewedBountyId: Int?)
     
     // After bounty swipes (left, right) X or ❤ we send event to api
     case fundingSave(bounty: Bounty?, user: User?, direction: String?)
+    
+    // Skills / Keywords
+    case userKeywords(user: User)
 }
 
 // MARK: - TargetType Protocol Implementation
-extension GitcoinAPIService: TargetType {
+extension GitcoinAPIServiceContract: TargetType {
     var baseURL: URL { return URL(string: "https://gitcoin.co/api/v0.1/")! }
     var path: String {
         switch self {
@@ -28,6 +41,8 @@ extension GitcoinAPIService: TargetType {
             return "bounties"
         case .fundingSave(_, _, _):
             return "funding/save"
+        case .userKeywords(let user):
+            return "profile/\(user.login ?? "")/keywords"
         }
     }
     var method: Moya.Method {
@@ -36,6 +51,8 @@ extension GitcoinAPIService: TargetType {
             return .get
         case .fundingSave:
             return .post
+        case .userKeywords:
+            return .get
         }
     }
     var task: Task {
@@ -52,15 +69,20 @@ extension GitcoinAPIService: TargetType {
             }
 
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
+        default:
+            return .requestPlain
         }
     }
+    
+    //TODO: build sample data
     var sampleData: Data {
         switch self {
         case .bounties:
             return "[]".utf8Encoded
         case .fundingSave:
             return "[]".utf8Encoded
-
+        case .userKeywords:
+            return "[]".utf8Encoded
         }
     }
     var headers: [String: String]? {

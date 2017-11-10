@@ -23,6 +23,8 @@
 		2094607E1FA8AB8F00555F06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2094607C1FA8AB8F00555F06 /* LaunchScreen.storyboard */; };
 		209460891FA8AB8F00555F06 /* GitcoinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209460881FA8AB8F00555F06 /* GitcoinTests.swift */; };
 		209460941FA8AB8F00555F06 /* GitcoinUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209460931FA8AB8F00555F06 /* GitcoinUITests.swift */; };
+		20960ECD1FB5340E0033A786 /* SideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20960ECC1FB5340E0033A786 /* SideMenu.storyboard */; };
+		20960ECF1FB53E4D0033A786 /* UserKeywordResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20960ECE1FB53E4D0033A786 /* UserKeywordResult.swift */; };
 		20B8373E1FABD71E00680FC0 /* GitcoinAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B8373D1FABD71E00680FC0 /* GitcoinAPIService.swift */; };
 		20B837421FABDC2D00680FC0 /* Bounty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B837411FABDC2D00680FC0 /* Bounty.swift */; };
 		20B942BC1FA932110015481C /* BountyCardOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B942BA1FA932110015481C /* BountyCardOverlayView.swift */; };
@@ -76,6 +78,8 @@
 		2094608F1FA8AB8F00555F06 /* GitcoinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitcoinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		209460931FA8AB8F00555F06 /* GitcoinUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitcoinUITests.swift; sourceTree = "<group>"; };
 		209460951FA8AB8F00555F06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20960ECC1FB5340E0033A786 /* SideMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SideMenu.storyboard; sourceTree = "<group>"; };
+		20960ECE1FB53E4D0033A786 /* UserKeywordResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKeywordResult.swift; sourceTree = "<group>"; };
 		20B8373D1FABD71E00680FC0 /* GitcoinAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitcoinAPIService.swift; sourceTree = "<group>"; };
 		20B837411FABDC2D00680FC0 /* Bounty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bounty.swift; sourceTree = "<group>"; };
 		20B942BA1FA932110015481C /* BountyCardOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BountyCardOverlayView.swift; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 		2008F2BE1FAF98C10030807F /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				20960ECC1FB5340E0033A786 /* SideMenu.storyboard */,
 				2008F2BF1FAF9E7B0030807F /* SideMenuNavigationController.swift */,
 				2008F2C11FAFA1DA0030807F /* SideMenuTableViewController.swift */,
 			);
@@ -163,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				20B837411FABDC2D00680FC0 /* Bounty.swift */,
+				20960ECE1FB53E4D0033A786 /* UserKeywordResult.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -388,6 +394,7 @@
 				200D9F691FA8BBB0006C7C06 /* Main.storyboard in Resources */,
 				20B942BD1FA932110015481C /* BountyCardOverlayView.xib in Resources */,
 				200DA79B1FA9468900FDCE67 /* Images.xcassets in Resources */,
+				20960ECD1FB5340E0033A786 /* SideMenu.storyboard in Resources */,
 				209430CC1FB29CAB006F0671 /* SafeConfiguration.plist in Resources */,
 				2094607E1FA8AB8F00555F06 /* LaunchScreen.storyboard in Resources */,
 				200DA7941FA9388300FDCE67 /* BountyCardView.xib in Resources */,
@@ -507,6 +514,7 @@
 				"${BUILT_PRODUCTS_DIR}/NBNRequestKit/RequestKit.framework",
 				"${BUILT_PRODUCTS_DIR}/OctoKit.swift/Octokit.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
@@ -527,6 +535,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RequestKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Octokit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
@@ -618,6 +627,7 @@
 				20B942BC1FA932110015481C /* BountyCardOverlayView.swift in Sources */,
 				20B8373E1FABD71E00680FC0 /* GitcoinAPIService.swift in Sources */,
 				200DA7921FA9385A00FDCE67 /* BountyCardView.swift in Sources */,
+				20960ECF1FB53E4D0033A786 /* UserKeywordResult.swift in Sources */,
 				2008F2C71FAFA6930030807F /* OctokitManager.swift in Sources */,
 				20559D661FB2771600170860 /* GlobalConstants.swift in Sources */,
 				200D9F6B1FA8BBB0006C7C06 /* BountyCardKolodaAnimator.swift in Sources */,

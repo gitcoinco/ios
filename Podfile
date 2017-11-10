@@ -9,6 +9,9 @@ target 'Gitcoin' do
 
   pod 'Koloda', '~> 4.3.1'
   
+  pod 'RxSwift',    '~> 4.0'
+  pod 'RxCocoa',    '~> 4.0'
+  
   pod 'Moya/RxSwift'
   pod 'Moya-ModelMapper/RxSwift'
   
