@@ -118,7 +118,7 @@ extension BountyCardViewController: KolodaViewDelegate {
                                                   "user_email": user?.email ?? "",
                                                   "github_username": user?.login ?? ""])
 
-        _ = gitcoinAPI.rx.request(.fundingSave(bounty: bounty, user: user, direction: mappedDirection))
+        _ = GitcoinAPIService.shared.provider.rx.request(.fundingSave(bounty: bounty, user: user, direction: mappedDirection))
             .subscribe { event in
                 switch event {
                 case .success(_):
@@ -201,7 +201,7 @@ extension BountyCardViewController {
         // Filter the results so that we only display what we haven't seen
         let lastViewedBountyId = Defaults[UserDefaultKeyConstants.lastViewedBountyId]
         
-        _ = gitcoinAPI.rx.request(.bounties(lastViewedBountyId: lastViewedBountyId))
+        _ = GitcoinAPIService.shared.provider.rx.request(.bounties(lastViewedBountyId: lastViewedBountyId))
             .map(to: [Bounty].self)
             .subscribe { [unowned self] event in
                 switch event {

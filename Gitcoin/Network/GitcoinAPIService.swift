@@ -9,9 +9,19 @@
 import Moya
 import Octokit
 
+class GitcoinAPIService {
+    static let shared = GitcoinAPIService()
+    
+    let provider: MoyaProvider<GitcoinAPIServiceContract>
+    
+    init() {
+        self.provider = MoyaProvider<GitcoinAPIServiceContract>(plugins: [NetworkLoggerPlugin()])
+    }
+}
+
 /// GitcoinAPIService defines the endpoints and contract to the gitcoin api
 // API endpoint definitions https://github.com/Moya/Moya/blob/master/docs/Examples/Basic.md
-enum GitcoinAPIService {
+enum GitcoinAPIServiceContract {
     // Bounties index
     case bounties(lastViewedBountyId: Int?)
     
@@ -23,14 +33,14 @@ enum GitcoinAPIService {
 }
 
 // MARK: - TargetType Protocol Implementation
-extension GitcoinAPIService: TargetType {
-    var baseURL: URL { return URL(string: "https://gitcoin.co/")! }
+extension GitcoinAPIServiceContract: TargetType {
+    var baseURL: URL { return URL(string: "https://gitcoin.co/api/v0.1/")! }
     var path: String {
         switch self {
         case .bounties:
-            return "api/v0.1/bounties"
+            return "bounties"
         case .fundingSave(_, _, _):
-            return "api/v0.1/funding/save"
+            return "funding/save"
         case .userKeywords(let user):
             return "profile/\(user.login ?? "")/keywords"
         }

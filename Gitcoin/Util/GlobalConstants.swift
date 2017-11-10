@@ -13,8 +13,6 @@ import Moya
 
 let logger = SwiftyBeaver.self
 
-let gitcoinAPI = MoyaProvider<GitcoinAPIService>()//(plugins: [NetworkLoggerPlugin()])
-
 /// UserDefaultKeyConstants: All UserDefaults persisted key definitions
 struct UserDefaultKeyConstants {
     static let githubAccessTokenKey = DefaultsKey<String?>("githubaccesstoken")
