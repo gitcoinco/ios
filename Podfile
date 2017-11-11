@@ -35,6 +35,8 @@ target 'Gitcoin' do
   
   pod 'Crashlytics'
   
+  pod 'AFDateHelper', '= 4.2.4'
+  
   target 'GitcoinTests' do
     inherit! :search_paths
     # Pods for testing

@@ -184,6 +184,28 @@ extension BountyCardViewController: KolodaViewDataSource {
             }
         }
         
+        bountyCardView.typeLabel.text = bounty.bountyType
+            
+        bountyCardView.projectLengthLabel.text = bounty.projectLength
+        
+        bountyCardView.expiresOnLabel.text = bounty.expiresIn
+        
+        bountyCardView.experienceLabel.text = bounty.experienceLevel
+        
+        bountyCardView.fundedByButton.setTitle("@\(bounty.ownerGithubUsername)", for: .normal)
+        
+        _ = bountyCardView.fundedByButton.rx.tap.bind {
+            UIApplication.shared.open(bounty.ownerGithubUrl, options: [:], completionHandler: { _ in
+                
+            })
+        }
+        
+        bountyCardView.fundingTokenAmountLabel.text = bounty.tokenDisplayValue
+        
+        bountyCardView.fundingUSDAmountLabel.text = bounty.usdtDisplayValue
+        
+        bountyCardView.postedOnLabel.text = bounty.createdAgo
+        
         return bountyCardView
     }
     
@@ -201,6 +223,7 @@ extension BountyCardViewController {
         // Filter the results so that we only display what we haven't seen
         let lastViewedBountyId = Defaults[UserDefaultKeyConstants.lastViewedBountyId]
         
+        //TODO: Add timeout
         _ = GitcoinAPIService.shared.provider.rx.request(.bounties(lastViewedBountyId: lastViewedBountyId))
             .map(to: [Bounty].self)
             .subscribe { [unowned self] event in
