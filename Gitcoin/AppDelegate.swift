@@ -12,6 +12,7 @@ import SwiftyUserDefaults
 import SwiftyBeaver
 import Fabric
 import Crashlytics
+import SwiftyPlistManager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -34,6 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupLogger()
         
         Fabric.with([Crashlytics.self])
+        
+        //TODO: add GitcoinAPIConfiguration.plist and get working properly
+        // need to find a new plist library as this one caches the values underneath and is hard to work with
+        // SwiftyPlistManager was meant more for a dynamic persistance layer
+        SwiftyPlistManager.shared.start(plistNames: ["SafeConfiguration", "GitcoinAPIConfiguration"], logging: false)
         
         return false
     }

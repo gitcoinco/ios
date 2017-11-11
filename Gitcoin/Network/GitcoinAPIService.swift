@@ -8,6 +8,7 @@
 
 import Moya
 import Octokit
+import SwiftyPlistManager
 
 class GitcoinAPIService {
     static let shared = GitcoinAPIService()
@@ -15,8 +16,33 @@ class GitcoinAPIService {
     let provider: MoyaProvider<GitcoinAPIServiceContract>
     
     init() {
-        self.provider = MoyaProvider<GitcoinAPIServiceContract>(plugins: [NetworkLoggerPlugin()])
+        
+        var plugins: [PluginType] = []
+        
+        if let gitcoinApiUsername = SwiftyPlistManager.shared.fetchValue(for: "gitcoinApiUsername", fromPlistWithName: "GitcoinAPIConfiguration") as? String,
+            let gitcoinApiPassword = SwiftyPlistManager.shared.fetchValue(for: "gitcoinApiPassword", fromPlistWithName: "GitcoinAPIConfiguration") as? String {
+           
+            if !gitcoinApiUsername.isEmpty && !gitcoinApiPassword.isEmpty {
+                
+                logger.debug("gitcoinAPI basic auth creds found.")
+                
+                plugins.append(CredentialsPlugin { _ -> URLCredential? in
+                    return URLCredential(user: gitcoinApiUsername, password: gitcoinApiPassword, persistence: .forSession)
+                })
+            }
+        }
+        
+        if let gitcoinApiLogging = SwiftyPlistManager.shared.fetchValue(for: "gitcoinApiUsername", fromPlistWithName: "GitcoinAPIConfiguration") as? Bool,
+            gitcoinApiLogging {
+            
+            logger.debug("gitcoinAPI logging on.")
+            
+            plugins.append(NetworkLoggerPlugin())
+        }
+        
+        self.provider = MoyaProvider<GitcoinAPIServiceContract>(plugins: plugins)
     }
+    
 }
 
 /// GitcoinAPIService defines the endpoints and contract to the gitcoin api
@@ -34,7 +60,13 @@ enum GitcoinAPIServiceContract {
 
 // MARK: - TargetType Protocol Implementation
 extension GitcoinAPIServiceContract: TargetType {
-    var baseURL: URL { return URL(string: "https://gitcoin.co/api/v0.1/")! }
+    var baseURL: URL {
+        let gitcoinApiBaseUrl = SwiftyPlistManager.shared.fetchValue(for: "gitcoinApiBaseUrl", fromPlistWithName: "GitcoinAPIConfiguration") as? String ?? "https://gitcoin.co/api/v0.1/"
+        
+        logger.debug("SETTING API url = \(gitcoinApiBaseUrl)")
+        
+        return URL(string: gitcoinApiBaseUrl)!
+    }
     var path: String {
         switch self {
         case .bounties:
