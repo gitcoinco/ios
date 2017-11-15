@@ -37,6 +37,8 @@ target 'Gitcoin' do
   
   pod 'AFDateHelper', '= 4.2.4'
   
+  pod 'WSTagsField'
+  
   target 'GitcoinTests' do
     inherit! :search_paths
     # Pods for testing

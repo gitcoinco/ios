@@ -13,6 +13,8 @@ import Alamofire
 import AlamofireImage
 import Crashlytics
 import SwiftyUserDefaults
+import WSTagsField
+import Octokit
 
 class ProfileViewController: UIViewController {
     
@@ -24,10 +26,16 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var doneButton: UIButton!
     
+    @IBOutlet weak var tagFieldViewContainer: UIView!
+    
+    let tagsField = WSTagsField()
+    
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupTagField()
         
         observeUI()
         
@@ -45,30 +53,6 @@ class ProfileViewController: UIViewController {
         }
         
         disposeBag.insert(doneButtonSubscription)
-        
-//        let keywordButtonSubscription = keywordSkillButton.rx.tap.bind {
-//            
-//            if let user = OctokitManager.shared.user.value {
-//                _ = GitcoinAPIService.shared.provider.rx
-//                    .request(.userKeywords(user: user))
-//                    .filterSuccessfulStatusCodes()
-//                    .map(to: UserKeywordResult.self)
-//                    .subscribe(onSuccess: { userKeywordResult in
-//                        
-//                        if let keywords = userKeywordResult.keywords {
-//                            SCLAlertView().showInfo("Your Skills are...", subTitle: keywords.joined(separator: ","))
-//                        }else{
-//                            SCLAlertView().showWarning("You Got No Skills!??", subTitle: "")
-//                        }
-//                    }, onError: { error in
-//                        
-//                    })
-//            }else{
-//                SCLAlertView().showWarning("Gotta login yo", subTitle: "")
-//            }
-//        }
-//        
-//        disposeBag.insert(keywordButtonSubscription)
         
         let authButtonSubscription = authButton.rx.tap.bind {
             if OctokitManager.shared.isSignedIn {
@@ -105,6 +89,8 @@ class ProfileViewController: UIViewController {
                 // User logged in
                 if let user = user {
                     
+                    self?.populateTagsFromApiKeywords(with: user)
+                    
                     if let name = user.name {
                         self?.nameLabel.text = "Hi, \(name)"
                     }
@@ -134,5 +120,78 @@ class ProfileViewController: UIViewController {
             })
         
         disposeBag.insert(subscription)
+    }
+    
+    fileprivate func setupTagField() {
+        tagsField.backgroundColor = .black
+        tagsField.padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tagsField.spaceBetweenTags = 10.0
+        tagsField.font = .systemFont(ofSize: 12.0)
+        tagsField.tintColor = .green
+        tagsField.textColor = .black
+        tagsField.fieldTextColor = .blue
+        tagsField.selectedColor = .black
+        tagsField.selectedTextColor = .red
+        tagsField.delimiter = ","
+        
+        // Events
+        tagsField.onDidAddTag = { _ in
+            print("DidAddTag")
+        }
+        
+        tagsField.onDidRemoveTag = { _ in
+            print("DidRemoveTag")
+        }
+        
+        tagsField.onDidChangeText = { _, text in
+            print("DidChangeText")
+        }
+        
+        tagsField.onDidBeginEditing = { _ in
+            print("DidBeginEditing")
+        }
+        
+        tagsField.onDidEndEditing = { _ in
+            print("DidEndEditing")
+        }
+        
+        tagsField.onDidChangeHeightTo = { sender, height in
+            print("HeightTo \(height)")
+        }
+        
+        
+        tagsField.placeholder = "Enter a tag"
+        tagsField.backgroundColor = .white
+        //        tagsField.frame = CGRect(x: 0, y: 0, width: 300, height: 44)
+        tagsField.translatesAutoresizingMaskIntoConstraints = false
+        tagFieldViewContainer.addSubview(tagsField)
+        
+        
+        NSLayoutConstraint.activate([
+            tagsField.topAnchor.constraint(equalTo: tagFieldViewContainer.topAnchor),
+            tagsField.leadingAnchor.constraint(equalTo: tagFieldViewContainer.leadingAnchor),
+            tagsField.trailingAnchor.constraint(equalTo: tagFieldViewContainer.trailingAnchor),
+            
+        ])
+    }
+    
+    func populateTagsFromApiKeywords(with user: User){
+        _ = GitcoinAPIService.shared.provider.rx
+            .request(.userKeywords(user: user))
+            .filterSuccessfulStatusCodes()
+            .map(to: UserKeywordResult.self)
+            .subscribeOn(MainScheduler.instance)
+            .subscribe(onSuccess: { [weak self] userKeywordResult in
+                
+                if let keywords = userKeywordResult.keywords {
+                    for keyword in keywords {
+                        self?.tagsField.addTag(keyword)
+                    }
+                }else{
+                    
+                }
+                }, onError: { error in
+                    
+            })
     }
 }
