@@ -47,7 +47,7 @@
                                     <action selector="rightButtonTapped" destination="dh2-Wx-deB" eventType="touchUpInside" id="vhG-A6-LP7"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ycz-B2-SpB">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ycz-B2-SpB" userLabel="Header View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVb-1V-eVG">
@@ -56,7 +56,7 @@
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="S3n-Mz-VUw" kind="presentation" id="P1z-ge-vWd"/>
+                                            <segue destination="c2P-oV-xcJ" kind="presentation" id="kty-FF-7gK"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jg8-XG-VvV">
@@ -65,7 +65,7 @@
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="undoButtonTapped" destination="dh2-Wx-deB" eventType="touchUpInside" id="V0e-B4-IqE"/>
+                                            <segue destination="yrO-o3-gVh" kind="presentation" id="ldk-Za-bVh"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bounties" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWg-0g-9Qs">
@@ -126,13 +126,21 @@
             </objects>
             <point key="canvasLocation" x="951" y="901"/>
         </scene>
-        <!--SideMenu-->
-        <scene sceneID="y9j-cV-NbY">
+        <!--Profile-->
+        <scene sceneID="rdS-AK-RSa">
             <objects>
-                <viewControllerPlaceholder storyboardName="SideMenu" id="S3n-Mz-VUw" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Eeg-8N-oOV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Profile" id="c2P-oV-xcJ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dz1-wa-nsT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="949" y="1393"/>
+            <point key="canvasLocation" x="632.79999999999995" y="1683.5082458770617"/>
+        </scene>
+        <!--Info-->
+        <scene sceneID="hZY-2k-KpQ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Info" id="yrO-o3-gVh" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q0N-8M-nFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1391" y="1659"/>
         </scene>
     </scenes>
     <resources>

@@ -192,7 +192,7 @@ extension BountyCardViewController: KolodaViewDataSource {
         
         bountyCardView.experienceLabel.text = bounty.experienceLevel
         
-        bountyCardView.fundedByButton.setTitle("@\(bounty.ownerGithubUsername)", for: .normal)
+        bountyCardView.fundedByButton.setTitle(bounty.ownerGithubUsername, for: .normal)
         
         _ = bountyCardView.fundedByButton.rx.tap.bind {
             UIApplication.shared.open(bounty.ownerGithubUrl, options: [:], completionHandler: { _ in
