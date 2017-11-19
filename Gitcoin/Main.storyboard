@@ -49,18 +49,12 @@
                                         <state key="normal" image="ic_koloda">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="c2P-oV-xcJ" kind="presentation" id="kty-FF-7gK"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jg8-XG-VvV">
                                         <rect key="frame" x="339" y="40" width="21" height="22"/>
                                         <state key="normal" image="ic_undo">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="yrO-o3-gVh" kind="presentation" id="ldk-Za-bVh"/>
-                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bounties" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWg-0g-9Qs">
                                         <rect key="frame" x="153" y="38" width="69" height="22"/>
@@ -113,14 +107,16 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="infoButton" destination="jg8-XG-VvV" id="cIM-6F-hJU"/>
                         <outlet property="kolodaView" destination="Jng-cF-Fd5" id="DXn-yX-NcT"/>
                         <outlet property="negativeCardActionButton" destination="lFs-5J-kjv" id="u8E-Um-hoW"/>
                         <outlet property="positiveCardActionButton" destination="fbm-oE-jd7" id="JI0-4l-lbA"/>
+                        <outlet property="profileButton" destination="dVb-1V-eVG" id="dqj-lM-xdL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yd5-80-mNJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="951" y="901"/>
+            <point key="canvasLocation" x="949.60000000000002" y="900.89955022488766"/>
         </scene>
         <!--Profile-->
         <scene sceneID="rdS-AK-RSa">

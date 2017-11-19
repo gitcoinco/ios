@@ -36,6 +36,9 @@ class BountyCardViewController: UIViewController {
     
     @IBOutlet weak var negativeCardActionButton: UIButton!
     @IBOutlet weak var positiveCardActionButton: UIButton!
+    @IBOutlet weak var profileButton: UIButton!
+    @IBOutlet weak var infoButton: UIButton!
+    
     
     //MARK: Lifecycle
     override func viewDidLoad() {
@@ -53,7 +56,13 @@ class BountyCardViewController: UIViewController {
         
         observeUserActions()
         
-        loadData()
+        if OctokitManager.shared.isSignedIn {
+            loadData()
+        }else {
+            
+        }
+        
+        
     }
 }
 
@@ -342,6 +351,7 @@ extension BountyCardViewController {
         disposeBag.insert(subscription)
     }
     
+    /// Subscribe to actions on various ui/buttons
     func observeUI(){
         let negativeCardActionButtonSubscription = negativeCardActionButton.rx.tap.bind {
             self.kolodaView?.swipe(.left)
@@ -354,6 +364,28 @@ extension BountyCardViewController {
         }
         
         disposeBag.insert(positiveCardActionButtonSubscription)
+        
+        let profileButtonSubscription = profileButton.rx.tap.bind {
+            if let profileViewController = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController
+            {
+                self.present(profileViewController, animated: true, completion: {
+                    
+                })
+            }
+        }
+        
+        disposeBag.insert(profileButtonSubscription)
+        
+        let infoButtonSubscription = infoButton.rx.tap.bind {
+            if let infoViewController = UIStoryboard(name: "Info", bundle: nil).instantiateViewController(withIdentifier: "InfoViewController") as? InfoViewController
+            {
+                self.present(infoViewController, animated: true, completion: {
+                    
+                })
+            }
+        }
+        
+        disposeBag.insert(infoButtonSubscription)
     }
     
     /// Helper method to determine if the given index is the last index of

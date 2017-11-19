@@ -17,7 +17,7 @@
         <!--Info View Controller-->
         <scene sceneID="VkB-ja-Dbg">
             <objects>
-                <viewController modalTransitionStyle="flipHorizontal" id="lLU-uW-cos" customClass="InfoViewController" customModule="Gitcoin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InfoViewController" modalTransitionStyle="flipHorizontal" id="lLU-uW-cos" customClass="InfoViewController" customModule="Gitcoin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MVN-h7-wTQ"/>
                         <viewControllerLayoutGuide type="bottom" id="3ht-o2-obQ"/>
