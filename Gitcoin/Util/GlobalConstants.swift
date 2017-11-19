@@ -18,4 +18,6 @@ struct UserDefaultKeyConstants {
     static let githubAccessTokenKey = DefaultsKey<String?>("githubaccesstoken")
     
     static let lastViewedBountyId = DefaultsKey<Int?>("lastViewedBountyId")
+    
+    static let userKeywords = DefaultsKey<[String]>("userKeywords")
 }

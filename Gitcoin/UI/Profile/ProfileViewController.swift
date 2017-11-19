@@ -18,7 +18,7 @@ import Octokit
 
 class ProfileViewController: UIViewController {
     
-    @IBOutlet weak var authButton: UIButton!
+    @IBOutlet weak var signOutButton: UIButton!
     
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -27,6 +27,10 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var doneButton: UIButton!
     
     @IBOutlet weak var tagFieldViewContainer: UIView!
+    @IBOutlet weak var signedOutStateView: UIView!
+    @IBOutlet weak var signedInStateView: UIView!
+    
+    @IBOutlet weak var signInButton: UIButton!
     
     let tagsField = WSTagsField()
     
@@ -37,9 +41,17 @@ class ProfileViewController: UIViewController {
         
         setupTagField()
         
+        if OctokitManager.shared.isSignedIn {
+            showSignedInViews()
+        }else{
+            showSignedOutViews()
+        }
+        
         observeUI()
         
         observeUser()
+        
+        observeUserActions()
         
         Answers.logContentView(withName: "Profile", contentType: "View", contentId: nil)
     }
@@ -54,16 +66,18 @@ class ProfileViewController: UIViewController {
         
         disposeBag.insert(doneButtonSubscription)
         
-        let authButtonSubscription = authButton.rx.tap.bind {
-            if OctokitManager.shared.isSignedIn {
-                
-                OctokitManager.shared.signOut()
-                
-                Answers.logCustomEvent(withName: "Logout")
-                
-                return
-            }
+        let signedOutButtonSubscription = signOutButton.rx.tap.bind {
+            OctokitManager.shared.signOut()
             
+            //TODO: maybe move to octomanager?
+            Answers.logCustomEvent(withName: "Logout")
+            
+            return
+        }
+        
+        disposeBag.insert(signedOutButtonSubscription)
+        
+        let signedInButtonSubscription = signInButton.rx.tap.bind {
             let url = OctokitManager.shared.oAuthConfig.authenticate()
             
             Answers.logCustomEvent(withName: "Login")
@@ -73,7 +87,7 @@ class ProfileViewController: UIViewController {
             })
         }
         
-        disposeBag.insert(authButtonSubscription)
+        disposeBag.insert(signedInButtonSubscription)
     }
     
     /// Observe User Object: This subscription listens for changes in the user instance
@@ -88,14 +102,11 @@ class ProfileViewController: UIViewController {
                 
                 // User logged in
                 if let user = user {
-                    
-                    self?.populateTagsFromApiKeywords(with: user)
+                    self?.showSignedInViews()
                     
                     if let name = user.name {
                         self?.nameLabel.text = "Hi, \(name)"
                     }
-                    
-                    self?.authButton.setTitle("Sign out",for: .normal)
                     
                     if let avatarUrl = user.avatarURL {
                         
@@ -110,12 +121,27 @@ class ProfileViewController: UIViewController {
                     }
                     // User logged out
                 }else{
-                    self?.nameLabel.text = "Hi, Bounty Hunter"
-                    
-                    // TODO: persist these defaults in one place, right now its in storyboard
-                    self?.authButton.setTitle("Sign in",for: .normal)
-                    
-                    self?.avatarImage.image = #imageLiteral(resourceName: "guy1_black")
+                    self?.showSignedOutViews()
+                }
+            })
+        
+        disposeBag.insert(subscription)
+    }
+    
+    /// Subscribe to user actions
+    func observeUserActions(){
+        
+        let subscription = OctokitManager.shared
+            .userActionSubject
+            .subscribeOn(MainScheduler.instance)
+            .subscribe(onNext: { userAction in
+                
+                // Reset the last view bounty when logging out
+                switch userAction {
+                case .signedIn(let user):
+                    self.populateTagsFromApiKeywords(with: user)
+                case .signedOut:
+                    break
                 }
             })
         
@@ -135,37 +161,32 @@ class ProfileViewController: UIViewController {
         tagsField.delimiter = ","
         
         // Events
-        tagsField.onDidAddTag = { _ in
-            print("DidAddTag")
+        tagsField.onDidAddTag = { _, tag in
+            let keyword = tag.text.lowercased()
+            
+            if !Defaults[UserDefaultKeyConstants.userKeywords].contains(keyword) {
+                Defaults[UserDefaultKeyConstants.userKeywords].append(keyword)
+                
+                logger.verbose("Persisted tag \(keyword) to defaults")
+            }
+            
         }
         
-        tagsField.onDidRemoveTag = { _ in
-            print("DidRemoveTag")
+        tagsField.onDidRemoveTag = { _, tag in
+            let keyword = tag.text
+            
+            if let removeIndex = Defaults[UserDefaultKeyConstants.userKeywords].index(where: { $0 == keyword }) {
+                Defaults[UserDefaultKeyConstants.userKeywords].remove(at: removeIndex)
+                
+                logger.verbose("Removed tag \(keyword)")
+            }
         }
         
-        tagsField.onDidChangeText = { _, text in
-            print("DidChangeText")
-        }
-        
-        tagsField.onDidBeginEditing = { _ in
-            print("DidBeginEditing")
-        }
-        
-        tagsField.onDidEndEditing = { _ in
-            print("DidEndEditing")
-        }
-        
-        tagsField.onDidChangeHeightTo = { sender, height in
-            print("HeightTo \(height)")
-        }
-        
-        
-        tagsField.placeholder = "Enter a tag"
+        tagsField.placeholder = "Enter a skill or keyword"
         tagsField.backgroundColor = .white
         //        tagsField.frame = CGRect(x: 0, y: 0, width: 300, height: 44)
         tagsField.translatesAutoresizingMaskIntoConstraints = false
         tagFieldViewContainer.addSubview(tagsField)
-        
         
         NSLayoutConstraint.activate([
             tagsField.topAnchor.constraint(equalTo: tagFieldViewContainer.topAnchor),
@@ -173,6 +194,8 @@ class ProfileViewController: UIViewController {
             tagsField.trailingAnchor.constraint(equalTo: tagFieldViewContainer.trailingAnchor),
             
         ])
+        
+        tagsField.addTags(Defaults[UserDefaultKeyConstants.userKeywords])
     }
     
     func populateTagsFromApiKeywords(with user: User){
@@ -185,7 +208,7 @@ class ProfileViewController: UIViewController {
                 
                 if let keywords = userKeywordResult.keywords {
                     for keyword in keywords {
-                        self?.tagsField.addTag(keyword)
+                        self?.tagsField.addTag(keyword.lowercased())
                     }
                 }else{
                     
@@ -193,5 +216,21 @@ class ProfileViewController: UIViewController {
                 }, onError: { error in
                     
             })
+    }
+    
+    fileprivate func showSignedInViews() {
+        signedOutStateView.alpha = 0.0
+        signedOutStateView.isHidden = true
+        
+        signedInStateView.alpha = 1.0
+        signedInStateView.isHidden = false
+    }
+    
+    fileprivate func showSignedOutViews() {
+        signedOutStateView.alpha = 1.0
+        signedOutStateView.isHidden = false
+        
+        signedInStateView.alpha = 0.0
+        signedInStateView.isHidden = true
     }
 }

@@ -56,13 +56,7 @@ class BountyCardViewController: UIViewController {
         
         observeUserActions()
         
-        if OctokitManager.shared.isSignedIn {
-            loadData()
-        }else {
-            
-        }
-        
-        
+        loadData()
     }
 }
 
@@ -133,6 +127,26 @@ extension BountyCardViewController: KolodaViewDelegate {
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
         
         if isEndOfBountiesCard(index) { return }
+        
+        // Force user to sign in if they want to interact with bounty
+        if OctokitManager.shared.isSignedOut {
+            
+            koloda.revertAction()
+            
+            let appearance = SCLAlertView.SCLAppearance(
+                showCloseButton: false
+            )
+            
+            let alertView = SCLAlertView(appearance: appearance)
+            
+            alertView.addButton("Goto Profile") {
+                self.profileButton.sendActions(for: .touchUpInside)
+            }
+            
+            alertView.showWarning("Please sign in to do that", subTitle: "Please goto the profile screen")
+            
+            return
+        }
         
         let bounty = data[index]
         let user = OctokitManager.shared.user.value
@@ -269,9 +283,10 @@ extension BountyCardViewController {
         
         // Filter the results so that we only display what we haven't seen
         let lastViewedBountyId = Defaults[UserDefaultKeyConstants.lastViewedBountyId]
+        let userKeywords = Defaults[UserDefaultKeyConstants.userKeywords]
         
         //TODO: Add timeout
-        _ = GitcoinAPIService.shared.provider.rx.request(.bounties(lastViewedBountyId: lastViewedBountyId))
+        _ = GitcoinAPIService.shared.provider.rx.request(.bounties(lastViewedBountyId: lastViewedBountyId, userKeywords: userKeywords))
             .map(to: [Bounty].self)
             .subscribe { [unowned self] event in
                 switch event {

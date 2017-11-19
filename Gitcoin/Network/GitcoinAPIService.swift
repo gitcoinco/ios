@@ -49,7 +49,7 @@ class GitcoinAPIService {
 // API endpoint definitions https://github.com/Moya/Moya/blob/master/docs/Examples/Basic.md
 enum GitcoinAPIServiceContract {
     // Bounties index
-    case bounties(lastViewedBountyId: Int?)
+    case bounties(lastViewedBountyId: Int?, userKeywords: [String]?)
     
     // After bounty swipes (left, right) X or ❤ we send event to api
     case fundingSave(bounty: Bounty?, user: User?, direction: String?)
@@ -91,12 +91,16 @@ extension GitcoinAPIServiceContract: TargetType {
             let params = ["bounty_id": bounty?.idString ?? "", "email_address": user?.email ?? "", "direction":  direction ?? "", "github_username": user?.login ?? ""]
             
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
-        case let .bounties(lastViewedBountyId):
+        case let .bounties(lastViewedBountyId, userKeywords):
             var params = ["idx_status": "open", "order_by": "pk"]
             
             if let lastViewedBountyId = lastViewedBountyId {
                 params["pk__gt"] = String(lastViewedBountyId)
             }
+            
+//            if let userKeywords = userKeywords {
+//                 params["raw_data"] = userKeywords.joined(separator: ",")
+//            }
 
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         default:

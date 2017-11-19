@@ -17,7 +17,7 @@ class OctokitManager: NSObject {
     static let shared = OctokitManager()
     
     enum UserAction {
-        case signedIn
+        case signedIn(User)
         case signedOut
     }
     
@@ -51,8 +51,7 @@ class OctokitManager: NSObject {
             if let newTokenConfig = newTokenConfig {
                 Defaults[UserDefaultKeyConstants.githubAccessTokenKey] = newTokenConfig.accessToken
                 
-                userActionSubject.onNext(.signedIn)
-                loadMe()
+                loadMe(emitSignInAction: true)
             }else{
                 Defaults.remove(UserDefaultKeyConstants.githubAccessTokenKey)
                 
@@ -64,6 +63,10 @@ class OctokitManager: NSObject {
     
     var isSignedIn : Bool {
         return tokenConfiguration != nil
+    }
+    
+    var isSignedOut : Bool {
+        return !isSignedIn
     }
     
     override init() {
@@ -84,12 +87,16 @@ class OctokitManager: NSObject {
         }
     }
     
-    func loadMe(){
+    fileprivate func loadMe(emitSignInAction: Bool = false){
         if let tokenConfig = tokenConfiguration {
             _ = Octokit(tokenConfig).me() { response in
                 switch response {
                 case .success(let user):
                     self.user.value = user
+                    
+                    if emitSignInAction {
+                        self.userActionSubject.onNext(.signedIn(user))
+                    }
                 case .failure(let error):
                     logger.error(error)
                 }
