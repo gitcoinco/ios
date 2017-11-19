@@ -15,12 +15,23 @@ import SwiftyPlistManager
 
 class OctokitManager: NSObject {
     static let shared = OctokitManager()
+    
+    enum UserAction {
+        case signedIn
+        case signedOut
+    }
+    
+    /// userActionSubject will behave as a hot observable and emit actions
+    /// subscribe to it to know what actions a user has taken
+    let userActionSubject = PublishSubject<UserAction>()
 
     let oAuthConfig: OAuthConfiguration
-
-    let disposeBag = DisposeBag()
     
+    /// user will behave as a hot observable and emit the user object
+    /// when ever it changes
     var user = Variable<User?>(nil)
+
+    fileprivate let disposeBag = DisposeBag()
     
     var tokenConfiguration: TokenConfiguration? {
         get {
@@ -39,9 +50,13 @@ class OctokitManager: NSObject {
             // https://github.com/kishikawakatsumi/UICKeyChainStore?
             if let newTokenConfig = newTokenConfig {
                 Defaults[UserDefaultKeyConstants.githubAccessTokenKey] = newTokenConfig.accessToken
+                
+                userActionSubject.onNext(.signedIn)
                 loadMe()
             }else{
                 Defaults.remove(UserDefaultKeyConstants.githubAccessTokenKey)
+                
+                userActionSubject.onNext(.signedOut)
                 unloadMe()
             }
         }
@@ -75,12 +90,6 @@ class OctokitManager: NSObject {
                 switch response {
                 case .success(let user):
                     self.user.value = user
-                    
-                    //TODO: move this UI stuff to a view controller 
-//                    DispatchQueue.main.async {
-//                        SCLAlertView().showSuccess("Success", subTitle: "Hi \(user.name!), you are signed in!", closeButtonTitle: "OK")
-//                    }
-                    
                 case .failure(let error):
                     logger.error(error)
                 }

@@ -84,7 +84,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xh1-0G-voK" firstAttribute="bottom" secondItem="3ht-o2-obQ" secondAttribute="top" id="Ezh-Yx-PHO"/>
+                            <constraint firstItem="xh1-0G-voK" firstAttribute="bottom" secondItem="3ht-o2-obQ" secondAttribute="top" id="3to-Qb-VGs"/>
                             <constraint firstItem="xh1-0G-voK" firstAttribute="leading" secondItem="Uso-SY-dO6" secondAttribute="leading" id="JA3-v9-n02"/>
                             <constraint firstItem="xh1-0G-voK" firstAttribute="top" secondItem="Uso-SY-dO6" secondAttribute="top" id="e6O-r8-0QD"/>
                             <constraint firstAttribute="trailing" secondItem="xh1-0G-voK" secondAttribute="trailing" id="oGA-gT-CId"/>
@@ -97,23 +97,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="woT-wL-1in" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1389.5999999999999" y="1658.3208395802101"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="b0R-dB-rZ7">
-            <objects>
-                <viewController id="m4c-8D-94G" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="GGS-v9-m6J"/>
-                        <viewControllerLayoutGuide type="bottom" id="i55-KQ-HTC"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ahq-Zj-Iab">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qzO-0h-7Do" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <resources>

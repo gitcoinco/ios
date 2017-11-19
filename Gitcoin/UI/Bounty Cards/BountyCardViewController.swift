@@ -17,20 +17,30 @@ import SwiftSpinner
 import Crashlytics
 import Alamofire
 import AlamofireImage
+import RxSwift
+import RxCocoa
 
 class BountyCardViewController: UIViewController {
+    let endOfBountiesSegueIdentifier = "endOfBounties"
+    
     let frameAnimationSpringBounciness: CGFloat = 9
     let frameAnimationSpringSpeed: CGFloat = 16
     let kolodaCountOfVisibleCards = 2
     let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
     
     var data = [Bounty]()
+    
+    let disposeBag = DisposeBag()
 
     @IBOutlet weak var kolodaView: BountyKolodaView!
+    
+    @IBOutlet weak var negativeCardActionButton: UIButton!
+    @IBOutlet weak var positiveCardActionButton: UIButton!
     
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
         kolodaView.delegate = self
@@ -39,44 +49,20 @@ class BountyCardViewController: UIViewController {
         
         self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         
+        observeUI()
+        
+        observeUserActions()
+        
         loadData()
-    }
-    
-    //MARK: IBActions
-    
-    //TODO: how to persist the state of bounties that the user isnt interested in
-    @IBAction func leftButtonTapped() {
-        kolodaView?.swipe(.left)
-    }
-    
-    //TODO: Shall we make an api call to connect this user to the bounty creator?
-    // then what will we do with this "liked" bounty? hide it? save it somewhere?
-    @IBAction func rightButtonTapped() {
-        kolodaView?.swipe(.right)
-    }
-
-    //TODO: reset state of app here? or perhaps just recent state?
-    @IBAction func undoButtonTapped() {
-        kolodaView?.revertAction()
     }
 }
 
 //MARK: KolodaViewDelegate
 extension BountyCardViewController: KolodaViewDelegate {
     
-    func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
-        
-        //TODO: Need copy and action
-        
-        // https://github.com/vikmeup/SCLAlertView-Swift
-        SCLAlertView().showSuccess("No More Bounties", subTitle: "TBD: Text about how your going to get a push notification when new bounties are available!", closeButtonTitle: "Start Over")
-        
-        kolodaView.resetCurrentCardIndex()
-        
-        Answers.logCustomEvent(withName: "End of Bounties")
-    }
-    
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
+        
+        if isEndOfBountiesCard(index) { return }
         
         let bounty = data[index]
     
@@ -93,7 +79,39 @@ extension BountyCardViewController: KolodaViewDelegate {
         }
     }
     
+    // Don't allow to drag the last "end of bounties" view
+    func koloda(_ koloda: KolodaView, shouldDragCardAt index: Int ) -> Bool {
+        
+        if isEndOfBountiesCard(index) { return  false }
+        
+        return true
+    }
+    
+    // Don't allow any actions on the end of bounties view
+    func koloda(_ koloda: KolodaView, allowedDirectionsForIndex index: Int) -> [SwipeResultDirection] {
+        
+        if isEndOfBountiesCard(index) { return  [] }
+        
+        return [.left, .right]
+    }
+    
     func koloda(_ koloda: KolodaView, didShowCardAt index: Int) {
+        
+        if isEndOfBountiesCard(index) {
+            
+            negativeCardActionButton.isHidden = true
+            positiveCardActionButton.isHidden = true
+            
+            Answers.logContentView(withName: "View",
+                                   contentType: "End of Bounties",
+                                   contentId: "")
+            
+            return
+        }
+        
+        negativeCardActionButton.isHidden = false
+        positiveCardActionButton.isHidden = false
+        
         let bounty = data[index]
         
         Answers.logContentView(withName: "View",
@@ -104,6 +122,9 @@ extension BountyCardViewController: KolodaViewDelegate {
     
     /// When an action has been taken on a bounty card, pass the information to the gitcoinAPI
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
+        
+        if isEndOfBountiesCard(index) { return }
+        
         let bounty = data[index]
         let user = OctokitManager.shared.user.value
         
@@ -123,6 +144,7 @@ extension BountyCardViewController: KolodaViewDelegate {
                 switch event {
                 case .success(_):
                     // set the lastViewedBountyId after a successful action has been taken
+                    // this will ensure the user only sees the bounties once
                     Defaults[UserDefaultKeyConstants.lastViewedBountyId] = bounty.id
                     
                     logger.verbose("set lastViewedBountyId=\(Defaults[UserDefaultKeyConstants.lastViewedBountyId] ?? -1)")
@@ -160,57 +182,73 @@ extension BountyCardViewController: KolodaViewDataSource {
     }
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
-        return data.count
+        return data.count + 1 // + 1 is the final out of bounties card view
     }
     
     /// instantiate a custom BountyCardView and set its bounty value
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        guard let bountyCardView = Bundle.main.loadNibNamed("BountyCardView", owner: self, options: nil)?[0] as? BountyCardView
-            else { return UIView() }
-        
-       let bounty = data[index]
-        
-        bountyCardView.titleLabel.text = bounty.title
-        
-        if let avatarUrl = bounty.avatarUrl {
-            
-            Alamofire.request(avatarUrl).responseImage { response in
-                
-                if let image = response.result.value {
-                    let circularImage = image.af_imageRoundedIntoCircle()
-                    
-                    bountyCardView.avatarImageView.image = circularImage
-                }
+
+        if isEndOfBountiesCard(index) {
+            guard let bountyCardView = Bundle.main.loadNibNamed("EndOfBountiesCardView", owner: self, options: nil)?[0] as? EndOfBountiesCardView
+                else {
+                    return UIView()
             }
-        }
-        
-        bountyCardView.typeLabel.text = bounty.bountyType
             
-        bountyCardView.projectLengthLabel.text = bounty.projectLength
-        
-        bountyCardView.expiresOnLabel.text = bounty.expiresIn
-        
-        bountyCardView.experienceLabel.text = bounty.experienceLevel
-        
-        bountyCardView.fundedByButton.setTitle(bounty.ownerGithubUsername, for: .normal)
-        
-        _ = bountyCardView.fundedByButton.rx.tap.bind {
-            UIApplication.shared.open(bounty.ownerGithubUrl, options: [:], completionHandler: { _ in
-                
-            })
+            return bountyCardView
         }
         
-        bountyCardView.fundingTokenAmountLabel.text = bounty.tokenDisplayValue
-        
-        bountyCardView.fundingUSDAmountLabel.text = bounty.usdtDisplayValue
-        
-        bountyCardView.postedOnLabel.text = bounty.createdAgo
-        
-        return bountyCardView
+        return bountyCardView(for: data[index])
     }
     
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
         return Bundle.main.loadNibNamed("BountyCardOverlayView", owner: self, options: nil)?[0] as? OverlayView
+    }
+    
+    // TODO: move this to BountyCardView view class
+    fileprivate func bountyCardView(for bounty:Bounty) -> UIView {
+    
+        guard let bountyCardView = Bundle.main.loadNibNamed("BountyCardView", owner: self, options: nil)?[0] as? BountyCardView
+        else {
+            return UIView()
+        }
+    
+        bountyCardView.titleLabel.text = bounty.title
+    
+        if let avatarUrl = bounty.avatarUrl {
+    
+        Alamofire.request(avatarUrl).responseImage { response in
+    
+                if let image = response.result.value {
+                    let circularImage = image.af_imageRoundedIntoCircle()
+    
+                    bountyCardView.avatarImageView.image = circularImage
+                }
+            }
+        }
+    
+        bountyCardView.typeLabel.text = bounty.bountyType
+    
+        bountyCardView.projectLengthLabel.text = bounty.projectLength
+    
+        bountyCardView.expiresOnLabel.text = bounty.expiresIn
+    
+        bountyCardView.experienceLabel.text = bounty.experienceLevel
+    
+        bountyCardView.fundedByButton.setTitle(bounty.ownerGithubUsername, for: .normal)
+    
+        _ = bountyCardView.fundedByButton.rx.tap.bind {
+            UIApplication.shared.open(bounty.ownerGithubUrl, options: [:], completionHandler: { _ in
+    
+            })
+        }
+    
+        bountyCardView.fundingTokenAmountLabel.text = bounty.tokenDisplayValue
+    
+        bountyCardView.fundingUSDAmountLabel.text = bounty.usdtDisplayValue
+    
+        bountyCardView.postedOnLabel.text = bounty.createdAgo
+    
+        return bountyCardView
     }
 }
 
@@ -281,5 +319,46 @@ extension BountyCardViewController {
                     alertView.showError("Something went wrong", subTitle: error.localizedDescription)
                 }
         }
+    }
+    
+    /// Subscribe to user actions
+    func observeUserActions(){
+        
+        let subscription = OctokitManager.shared
+            .userActionSubject
+            .subscribeOn(MainScheduler.instance)
+            .subscribe(onNext: { userAction in
+                
+                // Reset the last view bounty when logging out
+                switch userAction {
+                case .signedIn:
+                    logger.verbose("User signed in")
+                case .signedOut:
+                    logger.verbose("User signed out")
+                    Defaults.remove(UserDefaultKeyConstants.lastViewedBountyId)
+                }
+            })
+        
+        disposeBag.insert(subscription)
+    }
+    
+    func observeUI(){
+        let negativeCardActionButtonSubscription = negativeCardActionButton.rx.tap.bind {
+            self.kolodaView?.swipe(.left)
+        }
+        
+        disposeBag.insert(negativeCardActionButtonSubscription)
+        
+        let positiveCardActionButtonSubscription = positiveCardActionButton.rx.tap.bind {
+            self.kolodaView?.swipe(.right)
+        }
+        
+        disposeBag.insert(positiveCardActionButtonSubscription)
+    }
+    
+    /// Helper method to determine if the given index is the last index of
+    ///   our bounty data array. This last index represents the "End of Bounties" View
+    func isEndOfBountiesCard(_ index: Int) -> Bool {
+        return index >= data.count
     }
 }

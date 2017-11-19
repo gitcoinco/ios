@@ -63,8 +63,6 @@ extension GitcoinAPIServiceContract: TargetType {
     var baseURL: URL {
         let gitcoinApiBaseUrl = SwiftyPlistManager.shared.fetchValue(for: "gitcoinApiBaseUrl", fromPlistWithName: "GitcoinAPIConfiguration") as? String ?? "https://gitcoin.co/api/v0.1/"
         
-        logger.debug("SETTING API url = \(gitcoinApiBaseUrl)")
-        
         return URL(string: gitcoinApiBaseUrl)!
     }
     var path: String {

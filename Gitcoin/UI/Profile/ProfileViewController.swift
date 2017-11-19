@@ -48,7 +48,7 @@ class ProfileViewController: UIViewController {
         
         let doneButtonSubscription = doneButton.rx.tap.bind {
             self.dismiss(animated: true, completion: {
-                Answers.logCustomEvent(withName: "Profile Done")
+                Answers.logCustomEvent(withName: "Profile Done Button Tapped")
             })
         }
         

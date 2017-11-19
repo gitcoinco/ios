@@ -28,7 +28,7 @@ class InfoViewController: UIViewController {
         
         let doneButtonSubscription = doneButton.rx.tap.bind {
             self.dismiss(animated: true, completion: {
-                Answers.logCustomEvent(withName: "Info Done")
+                Answers.logCustomEvent(withName: "Info Done Button Tapped")
             })
         }
         
