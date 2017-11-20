@@ -19,6 +19,8 @@ struct Bounty: Mappable {
     let valueTrue: Float?
     let tokenName: String?
     
+    let keywords: String?
+    
     var tokenDisplayValue: String {
         if let valueTrue = valueTrue, let tokenName = tokenName {
             return "\(valueTrue) \(tokenName)"
@@ -100,5 +102,7 @@ struct Bounty: Mappable {
         }else{
             expiresOn = Date()
         }
+        
+        keywords = map.optionalFrom("metadata.issueKeywords")
     }
 }
