@@ -55,6 +55,10 @@ class BountyCardViewController: UIViewController {
         observeUI()
         
         observeUserActions()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         loadData()
     }

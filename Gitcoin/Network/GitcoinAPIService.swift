@@ -32,13 +32,13 @@ class GitcoinAPIService {
             }
         }
         
-        if let gitcoinApiLogging = SwiftyPlistManager.shared.fetchValue(for: "gitcoinApiUsername", fromPlistWithName: "GitcoinAPIConfiguration") as? Bool,
-            gitcoinApiLogging {
-            
+//        if let gitcoinApiLogging = SwiftyPlistManager.shared.fetchValue(for: "gitcoinApiUsername", fromPlistWithName: "GitcoinAPIConfiguration") as? Bool,
+//            gitcoinApiLogging {
+        
             logger.debug("gitcoinAPI logging on.")
             
             plugins.append(NetworkLoggerPlugin())
-        }
+//        }
         
         self.provider = MoyaProvider<GitcoinAPIServiceContract>(plugins: plugins)
     }
@@ -98,9 +98,10 @@ extension GitcoinAPIServiceContract: TargetType {
                 params["pk__gt"] = String(lastViewedBountyId)
             }
             
-//            if let userKeywords = userKeywords {
-//                 params["raw_data"] = userKeywords.joined(separator: ",")
-//            }
+            // Filter data by user keywords/skills
+            if let userKeywords = userKeywords, userKeywords.count > 0  {
+                 params["raw_data"] = userKeywords.joined(separator: ",")
+            }
 
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         default:
