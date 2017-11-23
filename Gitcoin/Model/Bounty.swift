@@ -21,14 +21,6 @@ struct Bounty: Mappable {
     
     let keywords: String?
     
-    var tokenDisplayValue: String {
-        if let valueTrue = valueTrue, let tokenName = tokenName {
-            return "\(valueTrue) \(tokenName)"
-        }
-        
-        return "-"
-    }
-    
     let valueInUsdt: Float?
     
     var usdtDisplayValue: String {
@@ -74,6 +66,8 @@ struct Bounty: Mappable {
         return String(self.id)
     }
     
+    let descriptionText: String?
+    
     init(map: Mapper) throws {
         try id = map.from("pk")
         try title = map.from("title")
@@ -104,5 +98,7 @@ struct Bounty: Mappable {
         }
         
         keywords = map.optionalFrom("metadata.issueKeywords")
+        
+        descriptionText = map.optionalFrom("issue_description_text")
     }
 }

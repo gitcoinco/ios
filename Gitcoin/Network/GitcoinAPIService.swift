@@ -32,13 +32,13 @@ class GitcoinAPIService {
             }
         }
         
-//        if let gitcoinApiLogging = SwiftyPlistManager.shared.fetchValue(for: "gitcoinApiUsername", fromPlistWithName: "GitcoinAPIConfiguration") as? Bool,
-//            gitcoinApiLogging {
+        if let gitcoinApiLogging = SwiftyPlistManager.shared.fetchValue(for: "gitcoinApiUsername", fromPlistWithName: "GitcoinAPIConfiguration") as? Bool,
+            gitcoinApiLogging {
         
             logger.debug("gitcoinAPI logging on.")
             
             plugins.append(NetworkLoggerPlugin())
-//        }
+        }
         
         self.provider = MoyaProvider<GitcoinAPIServiceContract>(plugins: plugins)
     }

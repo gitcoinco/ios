@@ -231,51 +231,8 @@ extension BountyCardViewController: KolodaViewDataSource {
         return Bundle.main.loadNibNamed("BountyCardOverlayView", owner: self, options: nil)?[0] as? OverlayView
     }
     
-    // TODO: move this to BountyCardView view class
     fileprivate func bountyCardView(for bounty:Bounty) -> UIView {
-    
-        guard let bountyCardView = Bundle.main.loadNibNamed("BountyCardView", owner: self, options: nil)?[0] as? BountyCardView
-        else {
-            return UIView()
-        }
-    
-        bountyCardView.titleLabel.text = bounty.title
-    
-        if let avatarUrl = bounty.avatarUrl {
-    
-        Alamofire.request(avatarUrl).responseImage { response in
-    
-                if let image = response.result.value {
-                    let circularImage = image.af_imageRoundedIntoCircle()
-    
-                    bountyCardView.avatarImageView.image = circularImage
-                }
-            }
-        }
-    
-        bountyCardView.typeLabel.text = bounty.bountyType
-    
-        bountyCardView.projectLengthLabel.text = bounty.projectLength
-    
-        bountyCardView.expiresOnLabel.text = bounty.expiresIn
-    
-        bountyCardView.experienceLabel.text = bounty.experienceLevel
-    
-        bountyCardView.fundedByButton.setTitle(bounty.ownerGithubUsername, for: .normal)
-    
-        _ = bountyCardView.fundedByButton.rx.tap.bind {
-            UIApplication.shared.open(bounty.ownerGithubUrl, options: [:], completionHandler: { _ in
-    
-            })
-        }
-    
-        bountyCardView.fundingTokenAmountLabel.text = bounty.tokenDisplayValue
-    
-        bountyCardView.fundingUSDAmountLabel.text = bounty.usdtDisplayValue
-    
-        bountyCardView.postedOnLabel.text = bounty.createdAgo
-    
-        return bountyCardView
+        return BountyCardView.fromNib(with: bounty)
     }
 }
 

@@ -38,6 +38,7 @@ PODS:
   - SwiftyBeaver (1.4.3)
   - SwiftyPlistManager (1.0.2)
   - SwiftyUserDefaults (3.0.0)
+  - TTTAttributedLabel (2.0.0)
   - WSTagsField (2.1.2)
 
 DEPENDENCIES:
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - SwiftyBeaver
   - SwiftyPlistManager
   - SwiftyUserDefaults
+  - TTTAttributedLabel
   - WSTagsField
 
 SPEC CHECKSUMS:
@@ -81,8 +83,9 @@ SPEC CHECKSUMS:
   SwiftyBeaver: e10b1668e0512229c36c34769b97eed3dfae2ca3
   SwiftyPlistManager: 5895924cccb7fe28deccbe14890e8aed78ae78ae
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   WSTagsField: 3abc2553b94cd5caeb7fe5ba5e4668772714bbe8
 
-PODFILE CHECKSUM: cc2a529e90242c50836b201e19f12e239d68e2a8
+PODFILE CHECKSUM: 8acf6ffddbbd5f1a0b14e7b346182c6e7980e9c1
 
 COCOAPODS: 1.3.1
