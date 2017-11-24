@@ -31,5 +31,4 @@ class BountyCardKolodaAnimator: KolodaViewAnimator {
         }
         card.pop_add(frameAnimation, forKey: "frameAnimation")
     }
-    
 }

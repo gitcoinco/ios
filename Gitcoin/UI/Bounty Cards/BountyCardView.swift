@@ -24,18 +24,18 @@ class BountyCardView: UIView {
     @IBOutlet weak var fundingUSDAmountLabel: UILabel!
     @IBOutlet weak var keywordContainer: UIView!
     @IBOutlet weak var postedOnLabel: UILabel!
-    @IBOutlet weak var descriptionText: TTTAttributedLabel!
+    @IBOutlet weak var descriptionText: UILabel!
     
     let tagsField = WSTagsField()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        descriptionText.lineBreakMode = .byTruncatingTail
-        descriptionText.verticalAlignment = .top
-        
-        descriptionText.lineHeightMultiple = 0.0
-        descriptionText.firstLineIndent = 0.0
+//        descriptionText.lineBreakMode = .byTruncatingTail
+//        descriptionText.verticalAlignment = .top
+//
+//        descriptionText.lineHeightMultiple = 0.0
+//        descriptionText.firstLineIndent = 0.0
     }
     
     class func fromNib(with bounty: Bounty) -> BountyCardView {
