@@ -10,8 +10,6 @@ import UIKit
 import RxSwift
 import Alamofire
 import AlamofireImage
-import WSTagsField
-import TTTAttributedLabel
 
 class BountyCardView: UIView {
 
@@ -26,16 +24,10 @@ class BountyCardView: UIView {
     @IBOutlet weak var postedOnLabel: UILabel!
     @IBOutlet weak var descriptionText: UILabel!
     
-    let tagsField = WSTagsField()
+    let tagsField = GitCoinWSTagField()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-//        descriptionText.lineBreakMode = .byTruncatingTail
-//        descriptionText.verticalAlignment = .top
-//
-//        descriptionText.lineHeightMultiple = 0.0
-//        descriptionText.firstLineIndent = 0.0
     }
     
     class func fromNib(with bounty: Bounty) -> BountyCardView {
@@ -43,12 +35,14 @@ class BountyCardView: UIView {
         
         bountyCardView.titleLabel.text = bounty.title
         
+        bountyCardView.setupTagField(for: bounty)
+        
         if let avatarUrl = bounty.avatarUrl {
             
             Alamofire.request(avatarUrl).responseImage { response in
                 
                 if let image = response.result.value {
-                    let circularImage = image.af_imageRounded(withCornerRadius: 15.0, divideRadiusByImageScale: true)
+                    let circularImage = image.af_imageRounded(withCornerRadius: 20.0, divideRadiusByImageScale: true)
                     
                     bountyCardView.avatarImageView.image = circularImage
                 }
@@ -58,7 +52,6 @@ class BountyCardView: UIView {
         bountyCardView.fundingTokenName.text = bounty.tokenName ?? ""
         
         bountyCardView.descriptionText.text = bounty.descriptionText ?? ""
-        
         
         if let valueTrue = bounty.valueTrue {
             bountyCardView.fundingTokenAmountLabel.text = String(describing: valueTrue)
@@ -70,30 +63,16 @@ class BountyCardView: UIView {
         
         bountyCardView.postedOnLabel.text = bounty.createdAgo
         
-        bountyCardView.setupTagField(with: bounty.keywords?.components(separatedBy: ","))
-        
         return bountyCardView
     }
     
-    fileprivate func setupTagField(with keywords: [String]?) {
+    fileprivate func setupTagField(for bounty: Bounty) {
         
-        guard let keywords = keywords else {
+        guard let keywords = bounty.keywordArray else {
             return
         }
-
-        tagsField.backgroundColor = .black
-        tagsField.padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        tagsField.spaceBetweenTags = 10.0
-        tagsField.font = .systemFont(ofSize: 12.0)
-        tagsField.tintColor = .green
-        tagsField.textColor = .black
-        tagsField.fieldTextColor = .blue
-        tagsField.selectedColor = .black
-        tagsField.selectedTextColor = .red
-
-        tagsField.readOnly = true
         
-        tagsField.backgroundColor = .white
+        tagsField.readOnly = true
         tagsField.translatesAutoresizingMaskIntoConstraints = false
         keywordContainer.addSubview(tagsField)
         

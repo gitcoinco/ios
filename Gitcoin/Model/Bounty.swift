@@ -21,16 +21,22 @@ struct Bounty: Mappable {
     
     let keywords: String?
     
-    let valueInUsdt: Float?
+    var keywordArray: [String]? {
+        return keywords?.components(separatedBy: ",")
+            .map({ $0.trimmingCharacters(in: .whitespacesAndNewlines) })
+            .filter({ $0.count > 0 })
+    }
     
+    let valueInUsdt: Float?
+
     var usdtDisplayValue: String {
         if let valueInUsdt = valueInUsdt {
             return "\(valueInUsdt) USD"
         }
         
-        return "-"
+        return "- USD"
     }
-    
+
     let bountyType: String?
     let projectLength: String?
     let organizationName: String?
@@ -46,9 +52,9 @@ struct Bounty: Mappable {
     
     var createdAgo: String {
         if let createdOn = createdOn {
-            return createdOn.toStringWithRelativeTime()
+            return createdOn.toStringWithRelativeTime().uppercased()
         }else{
-            return "A while ago"
+            return "A while ago".uppercased()
         }
     }
     
@@ -56,9 +62,9 @@ struct Bounty: Mappable {
     
     var expiresIn: String {
         if let expiresOn = expiresOn {
-            return expiresOn.toStringWithRelativeTime()
+            return expiresOn.toStringWithRelativeTime().uppercased()
         }else{
-            return "In a while"
+            return "In a while".uppercased()
         }
     }
     

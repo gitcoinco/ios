@@ -13,7 +13,6 @@ import Alamofire
 import AlamofireImage
 import Crashlytics
 import SwiftyUserDefaults
-import WSTagsField
 import Octokit
 
 class ProfileViewController: UIViewController {
@@ -32,7 +31,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var signInButton: UIButton!
     
-    let tagsField = WSTagsField()
+    let tagsField = GitCoinWSTagField()
     
     let disposeBag = DisposeBag()
     
@@ -149,15 +148,6 @@ class ProfileViewController: UIViewController {
     }
     
     fileprivate func setupTagField() {
-        tagsField.backgroundColor = .black
-        tagsField.padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        tagsField.spaceBetweenTags = 10.0
-        tagsField.font = .systemFont(ofSize: 12.0)
-        tagsField.tintColor = .green
-        tagsField.textColor = .black
-        tagsField.fieldTextColor = .blue
-        tagsField.selectedColor = .black
-        tagsField.selectedTextColor = .red
         tagsField.delimiter = ","
         
         // Events
@@ -183,8 +173,6 @@ class ProfileViewController: UIViewController {
         }
         
         tagsField.placeholder = "Enter a skill or keyword"
-        tagsField.backgroundColor = .white
-        //        tagsField.frame = CGRect(x: 0, y: 0, width: 300, height: 44)
         tagsField.translatesAutoresizingMaskIntoConstraints = false
         tagFieldViewContainer.addSubview(tagsField)
         

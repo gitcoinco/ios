@@ -36,6 +36,7 @@
 		20B942BC1FA932110015481C /* BountyCardOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B942BA1FA932110015481C /* BountyCardOverlayView.swift */; };
 		20B942BD1FA932110015481C /* BountyCardOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20B942BB1FA932110015481C /* BountyCardOverlayView.xib */; };
 		20B942C01FA932700015481C /* BountyKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B942BF1FA932700015481C /* BountyKolodaView.swift */; };
+		20D60D671FC8A35600A8C7C6 /* GitCoinWSTagField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D60D661FC8A35600A8C7C6 /* GitCoinWSTagField.swift */; };
 		9659E79AF67EA510C67AD2AA /* Pods_Gitcoin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12B2483E19BA87527CE4B9A4 /* Pods_Gitcoin.framework */; };
 		C7678B9FB50EF538DC43BC51 /* Pods_GitcoinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6A847AB6E25100FD032EA87 /* Pods_GitcoinTests.framework */; };
 		E05FEC46DE514AA89BC5BE1A /* Pods_GitcoinUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CFA2207C51AC486E2B512B7 /* Pods_GitcoinUITests.framework */; };
@@ -97,6 +98,7 @@
 		20B942BA1FA932110015481C /* BountyCardOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BountyCardOverlayView.swift; sourceTree = "<group>"; };
 		20B942BB1FA932110015481C /* BountyCardOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BountyCardOverlayView.xib; sourceTree = "<group>"; };
 		20B942BF1FA932700015481C /* BountyKolodaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyKolodaView.swift; sourceTree = "<group>"; };
+		20D60D661FC8A35600A8C7C6 /* GitCoinWSTagField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCoinWSTagField.swift; sourceTree = "<group>"; };
 		349DAD1AE1F9779BF95D48CE /* Pods-GitcoinUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitcoinUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitcoinUITests/Pods-GitcoinUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		63154C70D0D3D17CE67806F2 /* Pods-Gitcoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gitcoin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Gitcoin/Pods-Gitcoin.debug.xcconfig"; sourceTree = "<group>"; };
 		7A16EC471D73DFDD391CCC07 /* Pods-GitcoinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitcoinTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitcoinTests/Pods-GitcoinTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -288,8 +290,17 @@
 				201326521FBC7F34001EC1B5 /* Info */,
 				202952B41FBC715F00FEAB4F /* Profile */,
 				2008F2BE1FAF98C10030807F /* Menu */,
+				20D60D651FC8A33900A8C7C6 /* Views */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		20D60D651FC8A33900A8C7C6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				20D60D661FC8A35600A8C7C6 /* GitCoinWSTagField.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		42FD5E90C7098D8C7D1738D3 /* Pods */ = {
@@ -683,6 +694,7 @@
 				20B3CAD81FBDE1C9008FA651 /* EndOfBountiesCardView.swift in Sources */,
 				20960ECF1FB53E4D0033A786 /* UserKeywordResult.swift in Sources */,
 				2008F2C71FAFA6930030807F /* OctokitManager.swift in Sources */,
+				20D60D671FC8A35600A8C7C6 /* GitCoinWSTagField.swift in Sources */,
 				20559D661FB2771600170860 /* GlobalConstants.swift in Sources */,
 				200D9F6B1FA8BBB0006C7C06 /* BountyCardKolodaAnimator.swift in Sources */,
 				20B942C01FA932700015481C /* BountyKolodaView.swift in Sources */,

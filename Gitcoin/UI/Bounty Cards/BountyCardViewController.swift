@@ -253,7 +253,9 @@ extension BountyCardViewController {
                 switch event {
                 case .success(let repos):
                     self.data = repos
-                    self.kolodaView.reloadData()
+                    
+                    self.kolodaView.resetCurrentCardIndex()
+                    
                     SwiftSpinner.hide()
                 case .error(let e):
                     
