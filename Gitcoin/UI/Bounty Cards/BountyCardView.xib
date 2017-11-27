@@ -26,29 +26,29 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Hfa-zh-jZe">
                     <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                     <subviews>
-                        <view contentMode="scaleToFill" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Xhl-eb-95K" userLabel="Funding View">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
+                        <view contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Xhl-eb-95K" userLabel="Funding View">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="86.333333333333329"/>
                             <subviews>
-                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rar-QF-e92">
-                                    <rect key="frame" x="20" y="10" width="374" height="74"/>
+                                <view clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Rar-QF-e92">
+                                    <rect key="frame" x="20" y="10" width="374" height="76.333333333333329"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oQq-xp-rFR">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="74"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oQq-xp-rFR">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="76.333333333333329"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" text="500" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkW-3Q-kHj">
-                                                    <rect key="frame" x="160" y="0.0" width="54.333333333333343" height="36"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="251" text="500" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkW-3Q-kHj">
+                                                    <rect key="frame" x="160" y="0.0" width="54.333333333333343" height="38.333333333333336"/>
                                                     <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="30"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="ETH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWX-ZN-8Bj">
-                                                    <rect key="frame" x="173.33333333333334" y="36" width="27.333333333333343" height="18.333333333333329"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="ETH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWX-ZN-8Bj">
+                                                    <rect key="frame" x="173.33333333333334" y="38.333333333333329" width="27.333333333333343" height="18.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="270" horizontalCompressionResistancePriority="250" text="1,000 USD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Avd-vU-h0T">
-                                                    <rect key="frame" x="149" y="54.333333333333321" width="76" height="19.666666666666664"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="1,000 USD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Avd-vU-h0T">
+                                                    <rect key="frame" x="149" y="56.666666666666664" width="76" height="19.666666666666664"/>
                                                     <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -77,7 +77,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" verticalHuggingPriority="750" verticalCompressionResistancePriority="300" translatesAutoresizingMaskIntoConstraints="NO" id="ufX-fY-rr7" userLabel="Avatar + Title">
-                            <rect key="frame" x="0.0" y="94" width="414" height="100"/>
+                            <rect key="frame" x="0.0" y="96.333333333333314" width="414" height="100"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="I92-MN-kkD">
                                     <rect key="frame" x="10" y="0.0" width="394" height="100"/>
@@ -105,11 +105,11 @@
                                 <constraint firstAttribute="trailing" secondItem="I92-MN-kkD" secondAttribute="trailing" constant="10" id="na1-Lg-rfM"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" verticalHuggingPriority="500" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="S1U-UT-Sp5" userLabel="Keywords">
-                            <rect key="frame" x="0.0" y="204" width="414" height="50"/>
+                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="500" translatesAutoresizingMaskIntoConstraints="NO" id="S1U-UT-Sp5" userLabel="Keywords">
+                            <rect key="frame" x="0.0" y="206.33333333333334" width="414" height="55.000000000000028"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YRj-3b-2uv" userLabel="Keyword Container">
-                                    <rect key="frame" x="10" y="0.0" width="394" height="50"/>
+                                    <rect key="frame" x="10" y="0.0" width="394" height="55"/>
                                 </view>
                             </subviews>
                             <constraints>
@@ -121,7 +121,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Hbc-4f-q2a" userLabel="Posted On">
-                            <rect key="frame" x="0.0" y="264" width="414" height="22.666666666666686"/>
+                            <rect key="frame" x="0.0" y="271.33333333333331" width="414" height="22.666666666666686"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="SOa-oh-s1K">
                                     <rect key="frame" x="10" y="0.0" width="394" height="22.666666666666668"/>
@@ -154,11 +154,11 @@
                                 <constraint firstAttribute="trailing" secondItem="SOa-oh-s1K" secondAttribute="trailing" constant="10" id="icq-2Z-ZfE"/>
                             </constraints>
                         </view>
-                        <view clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="300" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="GvU-Qt-gJz" userLabel="Description">
-                            <rect key="frame" x="0.0" y="296.66666666666674" width="414" height="419.33333333333326"/>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="GvU-Qt-gJz" userLabel="Description">
+                            <rect key="frame" x="0.0" y="304" width="414" height="412"/>
                             <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" text="yolo" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1rD-ZA-SaL">
-                                    <rect key="frame" x="10" y="0.0" width="394" height="409.33333333333331"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" verticalCompressionResistancePriority="300" text="yolo" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1rD-ZA-SaL">
+                                    <rect key="frame" x="10" y="0.0" width="394" height="402"/>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.029564426369863013" colorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
