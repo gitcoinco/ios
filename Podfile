@@ -41,6 +41,8 @@ target 'Gitcoin' do
   
   pod 'TTTAttributedLabel'
   
+  pod 'Pushwoosh'
+  
   target 'GitcoinTests' do
     inherit! :search_paths
     # Pods for testing

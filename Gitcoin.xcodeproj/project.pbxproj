@@ -22,6 +22,8 @@
 		202952B61FBC718100FEAB4F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202952B51FBC718100FEAB4F /* ProfileViewController.swift */; };
 		202952B81FBC732500FEAB4F /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202952B71FBC732500FEAB4F /* Profile.storyboard */; };
 		20559D661FB2771600170860 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20559D651FB2771600170860 /* GlobalConstants.swift */; };
+		2079CDF71FD085C200A912C9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2079CDF61FD085C200A912C9 /* libz.tbd */; };
+		2079CDF91FD085CE00A912C9 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2079CDF81FD085CD00A912C9 /* libstdc++.tbd */; };
 		209430CC1FB29CAB006F0671 /* SafeConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 209430CB1FB29CAB006F0671 /* SafeConfiguration.plist */; };
 		209460741FA8AB8F00555F06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209460731FA8AB8F00555F06 /* AppDelegate.swift */; };
 		2094607E1FA8AB8F00555F06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2094607C1FA8AB8F00555F06 /* LaunchScreen.storyboard */; };
@@ -77,6 +79,9 @@
 		202952B51FBC718100FEAB4F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		202952B71FBC732500FEAB4F /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		20559D651FB2771600170860 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		2079CDF61FD085C200A912C9 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		2079CDF81FD085CD00A912C9 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		2079CDFA1FD0893800A912C9 /* Gitcoin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gitcoin.entitlements; sourceTree = "<group>"; };
 		209430CB1FB29CAB006F0671 /* SafeConfiguration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SafeConfiguration.plist; sourceTree = "<group>"; };
 		209430CD1FB29D59006F0671 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		209460701FA8AB8F00555F06 /* Gitcoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gitcoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +119,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2079CDF91FD085CE00A912C9 /* libstdc++.tbd in Frameworks */,
+				2079CDF71FD085C200A912C9 /* libz.tbd in Frameworks */,
 				9659E79AF67EA510C67AD2AA /* Pods_Gitcoin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,6 +238,7 @@
 		209460721FA8AB8F00555F06 /* Gitcoin */ = {
 			isa = PBXGroup;
 			children = (
+				2079CDFA1FD0893800A912C9 /* Gitcoin.entitlements */,
 				20B837431FABDC7E00680FC0 /* UI */,
 				20B8373C1FABD70900680FC0 /* Network */,
 				200DA7991FA93DD800FDCE67 /* Model */,
@@ -319,6 +327,8 @@
 		A205CFEEE0FB5058B9468DEB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2079CDF81FD085CD00A912C9 /* libstdc++.tbd */,
+				2079CDF61FD085C200A912C9 /* libz.tbd */,
 				12B2483E19BA87527CE4B9A4 /* Pods_Gitcoin.framework */,
 				E6A847AB6E25100FD032EA87 /* Pods_GitcoinTests.framework */,
 				9CFA2207C51AC486E2B512B7 /* Pods_GitcoinUITests.framework */,
@@ -405,6 +415,14 @@
 					2094606F1FA8AB8F00555F06 = {
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					209460831FA8AB8F00555F06 = {
 						CreatedOnToolsVersion = 9.0.1;
@@ -857,10 +875,12 @@
 			baseConfigurationReference = 63154C70D0D3D17CE67806F2 /* Pods-Gitcoin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Gitcoin/Gitcoin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6H25V2ES8G;
 				INFOPLIST_FILE = Gitcoin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gitcoin.Gitcoin;
+				PRODUCT_BUNDLE_IDENTIFIER = co.gitcoin.gitcoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -872,10 +892,12 @@
 			baseConfigurationReference = 9E538F3788C0D0832D3816E2 /* Pods-Gitcoin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Gitcoin/Gitcoin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6H25V2ES8G;
 				INFOPLIST_FILE = Gitcoin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gitcoin.Gitcoin;
+				PRODUCT_BUNDLE_IDENTIFIER = co.gitcoin.gitcoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
