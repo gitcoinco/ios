@@ -16,7 +16,6 @@
 		200DA7921FA9385A00FDCE67 /* BountyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200DA7911FA9385A00FDCE67 /* BountyCardView.swift */; };
 		200DA7941FA9388300FDCE67 /* BountyCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 200DA7931FA9388300FDCE67 /* BountyCardView.xib */; };
 		200DA7971FA93BAE00FDCE67 /* Futura.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 200DA7961FA93BAE00FDCE67 /* Futura.ttc */; };
-		200DA79B1FA9468900FDCE67 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 200DA79A1FA9468900FDCE67 /* Images.xcassets */; };
 		201326541FBC7F5D001EC1B5 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201326531FBC7F5D001EC1B5 /* InfoViewController.swift */; };
 		201326561FBC7FA1001EC1B5 /* Info.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 201326551FBC7FA1001EC1B5 /* Info.storyboard */; };
 		202952B61FBC718100FEAB4F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202952B51FBC718100FEAB4F /* ProfileViewController.swift */; };
@@ -25,6 +24,7 @@
 		2079CDF71FD085C200A912C9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2079CDF61FD085C200A912C9 /* libz.tbd */; };
 		2079CDF91FD085CE00A912C9 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2079CDF81FD085CD00A912C9 /* libstdc++.tbd */; };
 		209430CC1FB29CAB006F0671 /* SafeConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 209430CB1FB29CAB006F0671 /* SafeConfiguration.plist */; };
+		20943E031FD0921A00A5ED6F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20943E021FD0921900A5ED6F /* Images.xcassets */; };
 		209460741FA8AB8F00555F06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209460731FA8AB8F00555F06 /* AppDelegate.swift */; };
 		2094607E1FA8AB8F00555F06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2094607C1FA8AB8F00555F06 /* LaunchScreen.storyboard */; };
 		209460891FA8AB8F00555F06 /* GitcoinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209460881FA8AB8F00555F06 /* GitcoinTests.swift */; };
@@ -73,7 +73,6 @@
 		200DA7911FA9385A00FDCE67 /* BountyCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyCardView.swift; sourceTree = "<group>"; };
 		200DA7931FA9388300FDCE67 /* BountyCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BountyCardView.xib; sourceTree = "<group>"; };
 		200DA7961FA93BAE00FDCE67 /* Futura.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Futura.ttc; sourceTree = "<group>"; };
-		200DA79A1FA9468900FDCE67 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		201326531FBC7F5D001EC1B5 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		201326551FBC7FA1001EC1B5 /* Info.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Info.storyboard; sourceTree = "<group>"; };
 		202952B51FBC718100FEAB4F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +83,7 @@
 		2079CDFA1FD0893800A912C9 /* Gitcoin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gitcoin.entitlements; sourceTree = "<group>"; };
 		209430CB1FB29CAB006F0671 /* SafeConfiguration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SafeConfiguration.plist; sourceTree = "<group>"; };
 		209430CD1FB29D59006F0671 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		20943E021FD0921900A5ED6F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		209460701FA8AB8F00555F06 /* Gitcoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gitcoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209460731FA8AB8F00555F06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2094607D1FA8AB8F00555F06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -247,7 +247,7 @@
 				209460731FA8AB8F00555F06 /* AppDelegate.swift */,
 				2094607C1FA8AB8F00555F06 /* LaunchScreen.storyboard */,
 				2094607F1FA8AB8F00555F06 /* Info.plist */,
-				200DA79A1FA9468900FDCE67 /* Images.xcassets */,
+				20943E021FD0921900A5ED6F /* Images.xcassets */,
 				200DA7951FA93BA100FDCE67 /* Fonts */,
 				209430CB1FB29CAB006F0671 /* SafeConfiguration.plist */,
 				209430CD1FB29D59006F0671 /* README.md */,
@@ -465,7 +465,7 @@
 				200D9F691FA8BBB0006C7C06 /* Main.storyboard in Resources */,
 				20B942BD1FA932110015481C /* BountyCardOverlayView.xib in Resources */,
 				20B3CADA1FBDE1DF008FA651 /* EndOfBountiesCardView.xib in Resources */,
-				200DA79B1FA9468900FDCE67 /* Images.xcassets in Resources */,
+				20943E031FD0921A00A5ED6F /* Images.xcassets in Resources */,
 				20960ECD1FB5340E0033A786 /* SideMenu.storyboard in Resources */,
 				209430CC1FB29CAB006F0671 /* SafeConfiguration.plist in Resources */,
 				202952B81FBC732500FEAB4F /* Profile.storyboard in Resources */,
