@@ -29,8 +29,6 @@ target 'Gitcoin' do
 
   pod 'SwiftSpinner'
   
-  pod 'SwiftyPlistManager'
-  
   pod 'Fabric'
   
   pod 'Crashlytics'

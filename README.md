@@ -32,6 +32,7 @@ Thanks to  [Koloda](https://github.com/Yalantis/Koloda).
 # Setup
 1. Install cocoapods, and run pod install
 2. Create a SafeConfiguration.plist file and add the following keys as strings: gitHubOAuthToken, gitHubOAuthSecret
+3. See the SafeConfiguration struct in Global Constants for more variables
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">

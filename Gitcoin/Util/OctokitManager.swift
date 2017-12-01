@@ -11,7 +11,6 @@ import Octokit
 import RxSwift
 import SwiftyUserDefaults
 import SCLAlertView
-import SwiftyPlistManager
 
 class OctokitManager: NSObject {
     static let shared = OctokitManager()
@@ -70,11 +69,11 @@ class OctokitManager: NSObject {
     }
     
     override init() {
-        guard let gitHubOAuthToken = SwiftyPlistManager.shared.fetchValue(for: "gitHubOAuthToken", fromPlistWithName: "SafeConfiguration") as? String else {
+        guard let gitHubOAuthToken = SafeConfiguration.gitHubOAuthToken else {
             fatalError("\n The SafeConfiguration.plist file can't be found. Please generate it with the following keys: gitHubOAuthToken, gitHubOAuthSecret")
         }
         
-        guard let gitHubOAuthSecret = SwiftyPlistManager.shared.fetchValue(for: "gitHubOAuthSecret", fromPlistWithName: "SafeConfiguration") as? String else {
+        guard let gitHubOAuthSecret = SafeConfiguration.gitHubOAuthSecret else {
             fatalError("\n The SafeConfiguration.plist file can't be found. Please generate it with the following keys: gitHubOAuthToken, gitHubOAuthSecret")
         }
         

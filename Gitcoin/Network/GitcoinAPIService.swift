@@ -8,7 +8,6 @@
 
 import Moya
 import Octokit
-import SwiftyPlistManager
 
 class GitcoinAPIService {
     static let shared = GitcoinAPIService()
@@ -19,8 +18,8 @@ class GitcoinAPIService {
         
         var plugins: [PluginType] = []
         
-        if let gitcoinApiUsername = SwiftyPlistManager.shared.fetchValue(for: "gitcoinApiUsername", fromPlistWithName: "GitcoinAPIConfiguration") as? String,
-            let gitcoinApiPassword = SwiftyPlistManager.shared.fetchValue(for: "gitcoinApiPassword", fromPlistWithName: "GitcoinAPIConfiguration") as? String {
+        if let gitcoinApiUsername = SafeConfiguration.gitcoinApiUsername,
+            let gitcoinApiPassword = SafeConfiguration.gitcoinApiPassword {
            
             if !gitcoinApiUsername.isEmpty && !gitcoinApiPassword.isEmpty {
                 
@@ -32,8 +31,7 @@ class GitcoinAPIService {
             }
         }
         
-        if let gitcoinApiLogging = SwiftyPlistManager.shared.fetchValue(for: "gitcoinApiUsername", fromPlistWithName: "GitcoinAPIConfiguration") as? Bool,
-            gitcoinApiLogging {
+        if SafeConfiguration.enableGitcoinAPILogging {
         
             logger.debug("gitcoinAPI logging on.")
             
@@ -61,9 +59,7 @@ enum GitcoinAPIServiceContract {
 // MARK: - TargetType Protocol Implementation
 extension GitcoinAPIServiceContract: TargetType {
     var baseURL: URL {
-        let gitcoinApiBaseUrl = SwiftyPlistManager.shared.fetchValue(for: "gitcoinApiBaseUrl", fromPlistWithName: "GitcoinAPIConfiguration") as? String ?? "https://gitcoin.co/api/v0.1/"
-        
-        return URL(string: gitcoinApiBaseUrl)!
+        return URL(string: SafeConfiguration.gitcoinApiBaseUrl)!
     }
     var path: String {
         switch self {

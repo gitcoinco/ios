@@ -12,7 +12,6 @@ import SwiftyUserDefaults
 import SwiftyBeaver
 import Fabric
 import Crashlytics
-import SwiftyPlistManager
 import Pushwoosh
 import UserNotifications
 
@@ -37,11 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PushNotificationDelegate 
         setupLogger()
         
         Fabric.with([Crashlytics.self])
-        
-        //TODO: add GitcoinAPIConfiguration.plist and get working properly
-        // need to find a new plist library as this one caches the values underneath and is hard to work with
-        // SwiftyPlistManager was meant more for a dynamic persistance layer
-        SwiftyPlistManager.shared.start(plistNames: ["SafeConfiguration", "GitcoinAPIConfiguration"], logging: false)
         
         // set custom delegate for push handling, in our case AppDelegate
         PushNotificationManager.push().delegate = self

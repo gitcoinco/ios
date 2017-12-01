@@ -22,6 +22,73 @@ struct UserDefaultKeyConstants {
     static let userKeywords = DefaultsKey<[String]>("userKeywords")
 }
 
+struct SafeConfiguration {
+    private static var dictionaryValues: [String: Any]? {
+        get {
+            if let fileUrl = Bundle.main.url(forResource: "SafeConfiguration", withExtension: "plist"),
+                let data = try? Data(contentsOf: fileUrl) {
+                if let result = try? PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String: Any] {
+                    return result
+                }
+            }
+            
+            return nil
+        }
+    }
+    
+    static var gitHubOAuthToken: String? {
+        get {
+            if let gitHubOAuthToken = dictionaryValues?["gitHubOAuthToken"] as? String {
+                return gitHubOAuthToken
+            }
+            
+            return nil
+        }
+    }
+    
+    static var gitHubOAuthSecret: String? {
+        get {
+            if let val = dictionaryValues?["gitHubOAuthSecret"] as? String {
+                return val
+            }
+            
+            return nil
+        }
+    }
+    
+    static var gitcoinApiBaseUrl: String {
+        if let val = dictionaryValues?["gitcoinApiBaseUrl"] as? String {
+            return val
+        }
+        
+        return "https://gitcoin.co/api/v0.1/"
+    }
+    
+    static var gitcoinApiUsername: String? {
+        if let val = dictionaryValues?["gitcoinApiUsername"] as? String {
+            return val
+        }
+        
+        return nil
+    }
+    
+    static var gitcoinApiPassword: String? {
+        if let val = dictionaryValues?["gitcoinApiPassword"] as? String {
+            return val
+        }
+        
+        return nil
+    }
+    
+    static var enableGitcoinAPILogging: Bool {
+        if let val = dictionaryValues?["enableGitcoinAPILogging"] as? Bool {
+            return val
+        }
+        
+        return false
+    }
+}
+
 extension UIColor {
     struct gitCoin {
         static let celestialWhite = UIColor(red: 23.0/255.0, green: 244.0/255.0, blue: 238.0/255.0, alpha: 1.0)
