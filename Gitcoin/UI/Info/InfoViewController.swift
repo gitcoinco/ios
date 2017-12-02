@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import Crashlytics
+
 
 class InfoViewController: UIViewController {
     @IBOutlet weak var doneButton: UIButton!
@@ -21,14 +21,14 @@ class InfoViewController: UIViewController {
 
         observeUI()
         
-        Answers.logContentView(withName: "Info", contentType: "View", contentId: nil)
+        TrackingManager.shared.trackEvent(.didViewInfo)
     }
     
     func observeUI(){
         
         let doneButtonSubscription = doneButton.rx.tap.bind {
             self.dismiss(animated: true, completion: {
-                Answers.logCustomEvent(withName: "Info Done Button Tapped")
+                TrackingManager.shared.trackEvent(.didCloseInfo)
             })
         }
         

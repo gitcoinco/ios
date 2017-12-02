@@ -41,6 +41,8 @@ target 'Gitcoin' do
   
   pod 'Pushwoosh'
   
+  pod 'Mixpanel-swift'
+  
   target 'GitcoinTests' do
     inherit! :search_paths
     # Pods for testing

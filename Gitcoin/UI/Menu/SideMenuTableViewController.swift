@@ -11,7 +11,6 @@ import RxSwift
 import RxCocoa
 import Alamofire
 import AlamofireImage
-import Crashlytics
 import SwiftyUserDefaults
 import SCLAlertView
 
@@ -66,14 +65,10 @@ class SideMenuTableViewController: UITableViewController {
                 
                 OctokitManager.shared.signOut()
                 
-                Answers.logCustomEvent(withName: "Logout")
-                
                 return
             }
             
             let url = OctokitManager.shared.oAuthConfig.authenticate()
-            
-            Answers.logCustomEvent(withName: "Login")
             
             UIApplication.shared.open(url!, options: [:], completionHandler: { _ in
                 

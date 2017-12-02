@@ -11,7 +11,6 @@ import RxSwift
 import RxCocoa
 import Alamofire
 import AlamofireImage
-import Crashlytics
 import SwiftyUserDefaults
 import Octokit
 
@@ -52,14 +51,14 @@ class ProfileViewController: UIViewController {
         
         observeUserActions()
         
-        Answers.logContentView(withName: "Profile", contentType: "View", contentId: nil)
+        TrackingManager.shared.trackEvent(.didViewProfile)
     }
 
     func observeUI(){
         
         let doneButtonSubscription = doneButton.rx.tap.bind {
             self.dismiss(animated: true, completion: {
-                Answers.logCustomEvent(withName: "Profile Done Button Tapped")
+                TrackingManager.shared.trackEvent(.didCloseProfile)
             })
         }
         
@@ -68,9 +67,6 @@ class ProfileViewController: UIViewController {
         let signedOutButtonSubscription = signOutButton.rx.tap.bind {
             OctokitManager.shared.signOut()
             
-            //TODO: maybe move to octomanager?
-            Answers.logCustomEvent(withName: "Logout")
-            
             return
         }
         
@@ -78,8 +74,6 @@ class ProfileViewController: UIViewController {
         
         let signedInButtonSubscription = signInButton.rx.tap.bind {
             let url = OctokitManager.shared.oAuthConfig.authenticate()
-            
-            Answers.logCustomEvent(withName: "Login")
             
             UIApplication.shared.open(url!, options: [:], completionHandler: { _ in
                 
@@ -158,8 +152,9 @@ class ProfileViewController: UIViewController {
                 Defaults[UserDefaultKeyConstants.userKeywords].append(keyword)
                 
                 logger.verbose("Persisted tag \(keyword) to defaults")
+                
+                TrackingManager.shared.trackEvent(.didEditKeywords(user: OctokitManager.shared.user.value, action: "added", keyword: keyword))
             }
-            
         }
         
         tagsField.onDidRemoveTag = { _, tag in
@@ -169,6 +164,8 @@ class ProfileViewController: UIViewController {
                 Defaults[UserDefaultKeyConstants.userKeywords].remove(at: removeIndex)
                 
                 logger.verbose("Removed tag \(keyword)")
+                
+                TrackingManager.shared.trackEvent(.didEditKeywords(user: OctokitManager.shared.user.value, action: "removed", keyword: keyword))
             }
         }
         

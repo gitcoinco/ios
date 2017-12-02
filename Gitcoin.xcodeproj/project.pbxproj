@@ -23,6 +23,7 @@
 		20559D661FB2771600170860 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20559D651FB2771600170860 /* GlobalConstants.swift */; };
 		2079CDF71FD085C200A912C9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2079CDF61FD085C200A912C9 /* libz.tbd */; };
 		2079CDF91FD085CE00A912C9 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2079CDF81FD085CD00A912C9 /* libstdc++.tbd */; };
+		2088B0031FD32E01007F940C /* TrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2088B0021FD32E01007F940C /* TrackingManager.swift */; };
 		209430CC1FB29CAB006F0671 /* SafeConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 209430CB1FB29CAB006F0671 /* SafeConfiguration.plist */; };
 		20943E031FD0921A00A5ED6F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20943E021FD0921900A5ED6F /* Images.xcassets */; };
 		209460741FA8AB8F00555F06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209460731FA8AB8F00555F06 /* AppDelegate.swift */; };
@@ -84,6 +85,7 @@
 		2079CDF61FD085C200A912C9 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		2079CDF81FD085CD00A912C9 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		2079CDFA1FD0893800A912C9 /* Gitcoin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gitcoin.entitlements; sourceTree = "<group>"; };
+		2088B0021FD32E01007F940C /* TrackingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingManager.swift; sourceTree = "<group>"; };
 		209430CB1FB29CAB006F0671 /* SafeConfiguration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SafeConfiguration.plist; sourceTree = "<group>"; };
 		209430CD1FB29D59006F0671 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		20943E021FD0921900A5ED6F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			children = (
 				2008F2C61FAFA6930030807F /* OctokitManager.swift */,
 				20559D651FB2771600170860 /* GlobalConstants.swift */,
+				2088B0021FD32E01007F940C /* TrackingManager.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Koloda/Koloda.framework",
+				"${BUILT_PRODUCTS_DIR}/Mixpanel-swift/Mixpanel.framework",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya-ModelMapper/Moya_ModelMapper.framework",
@@ -623,6 +627,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Koloda.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mixpanel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_ModelMapper.framework",
@@ -724,6 +729,7 @@
 				20DF6AB11FD21410000ADA04 /* KeychainSwiftDistrib.swift in Sources */,
 				202952B61FBC718100FEAB4F /* ProfileViewController.swift in Sources */,
 				20B942BC1FA932110015481C /* BountyCardOverlayView.swift in Sources */,
+				2088B0031FD32E01007F940C /* TrackingManager.swift in Sources */,
 				20B8373E1FABD71E00680FC0 /* GitcoinAPIService.swift in Sources */,
 				200DA7921FA9385A00FDCE67 /* BountyCardView.swift in Sources */,
 				20B3CAD81FBDE1C9008FA651 /* EndOfBountiesCardView.swift in Sources */,

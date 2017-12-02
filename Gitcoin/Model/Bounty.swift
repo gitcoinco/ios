@@ -107,4 +107,8 @@ struct Bounty: Mappable {
         
         descriptionText = map.optionalFrom("issue_description_text")
     }
+    
+    func dictionaryForTracking() -> [String:Any]{
+        return ["id": self.idString, "title": self.title]
+    }
 }

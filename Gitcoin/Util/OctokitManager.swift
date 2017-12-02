@@ -97,7 +97,10 @@ class OctokitManager: NSObject {
                     
                     if emitSignInAction {
                         self.userActionSubject.onNext(.signedIn(user))
+                        TrackingManager.shared.trackEvent(.didSignIn(user: user))
                     }
+                    
+                    TrackingManager.shared.trackEvent(.didLoadAuthenticatedUser(user:user))
                 case .failure(let error):
                     logger.error(error)
                 }
@@ -112,6 +115,13 @@ class OctokitManager: NSObject {
     }
     
     func signOut(){
+        TrackingManager.shared.trackEvent(.didSignOut)
         self.tokenConfiguration = nil
+    }
+}
+
+extension User {
+    func dictionaryWithAllValues() -> [String : Any] {
+        return self.dictionaryWithValues(forKeys: ["id", "email", "login", "name", "location", "company"])
     }
 }

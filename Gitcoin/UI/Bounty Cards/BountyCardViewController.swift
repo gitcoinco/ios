@@ -14,7 +14,6 @@ import Moya_ModelMapper
 import SCLAlertView
 import SwiftyUserDefaults
 import SwiftSpinner
-import Crashlytics
 import Alamofire
 import AlamofireImage
 import RxSwift
@@ -75,11 +74,8 @@ extension BountyCardViewController: KolodaViewDelegate {
         if isEndOfBountiesCard(index) { return }
         
         let bounty = data[index]
-    
-        Answers.logContentView(withName: "Tap",
-                               contentType: "Bounty",
-                               contentId: bounty.idString,
-                               customAttributes: ["title": bounty.title])
+        
+        TrackingManager.shared.trackEvent(.didTapBounty(bounty: bounty))
         
         //TODO: What to do on tap??? native detail? someother action?
         if let gitHubUrl = bounty.githubUrl {
@@ -112,10 +108,8 @@ extension BountyCardViewController: KolodaViewDelegate {
             negativeCardActionButton.isHidden = true
             positiveCardActionButton.isHidden = true
             
-            Answers.logContentView(withName: "View",
-                                   contentType: "End of Bounties",
-                                   contentId: "")
-            
+            TrackingManager.shared.trackEvent(.didViewEndOfBounties)
+
             return
         }
         
@@ -124,10 +118,7 @@ extension BountyCardViewController: KolodaViewDelegate {
         
         let bounty = data[index]
         
-        Answers.logContentView(withName: "View",
-                               contentType: "Bounty",
-                               contentId: bounty.idString,
-                               customAttributes: ["title": bounty.title])
+        TrackingManager.shared.trackEvent(GitcoinEvent.didViewBounty(bounty: bounty))
     }
     
     /// When an action has been taken on a bounty card, pass the information to the gitcoinAPI
@@ -170,13 +161,7 @@ extension BountyCardViewController: KolodaViewDelegate {
         // The api is looking for + or -
         let mappedDirection = direction == SwipeResultDirection.left ? "-" : "+"
         
-        Answers.logContentView(withName: "Swipe",
-                               contentType: "Bounty",
-                               contentId: bounty.idString,
-                               customAttributes: ["title": bounty.title,
-                                                  "direction": mappedDirection,
-                                                  "user_email": user?.email ?? "",
-                                                  "github_username": user?.login ?? ""])
+        TrackingManager.shared.trackEvent(.didSwipeBounty(bounty: bounty, direction: mappedDirection, user: user))
 
         _ = GitcoinAPIService.shared.provider.rx.request(.fundingSave(bounty: bounty, user: user, direction: mappedDirection))
             .subscribe { event in
@@ -271,7 +256,7 @@ extension BountyCardViewController {
                     SwiftSpinner.hide()
                 case .error(let e):
                     
-                    Answers.logCustomEvent(withName: "Bounties API Request Error", customAttributes: ["error": e])
+                    TrackingManager.shared.trackEvent(.didError(title:"Bounties API Request Error", error: e))
                     
                     guard let error = e as? MoyaError else {
                         return

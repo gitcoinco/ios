@@ -14,6 +14,7 @@ import Fabric
 import Crashlytics
 import Pushwoosh
 import UserNotifications
+import Mixpanel
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, PushNotificationDelegate {
@@ -36,8 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PushNotificationDelegate 
         
         #if DEBUG
             logger.verbose("Launching app in DEBUG MODE")
+            Mixpanel.initialize(token: "9c41aa33ab527580f8d07e31f252b9ad") // <- craig's dev token
         #else
             logger.verbose("Launching app in RELEASE MODE")
+            Mixpanel.initialize(token: "ce3c7c698880b9c88f4201ead456a633") // <- gitcoin token
         #endif
         
         Fabric.with([Crashlytics.self])

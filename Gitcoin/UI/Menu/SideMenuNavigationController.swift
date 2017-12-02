@@ -9,7 +9,6 @@
 import UIKit
 import SideMenu
 import Octokit
-import Crashlytics
 
 class SideMenuNavigationController: UISideMenuNavigationController {
 
@@ -24,13 +23,9 @@ class SideMenuNavigationController: UISideMenuNavigationController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        Answers.logCustomEvent(withName: "Open Menu")
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
-        Answers.logCustomEvent(withName: "Closed Menu")
     }
 }
