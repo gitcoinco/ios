@@ -49,6 +49,8 @@
 	<true/>
 	<key>Pushwoosh_APPID</key>
 	<string>7065F-A3460</string>
+	<key>Pushwoosh_LOG_LEVEL</key>
+	<string>WARNING</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Futura.ttc</string>
