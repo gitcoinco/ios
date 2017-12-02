@@ -55,9 +55,11 @@ struct SafeConfiguration {
     }
     
     static var gitcoinApiBaseUrl: String {
-        if let val = dictionaryValues?["gitcoinApiBaseUrl"] as? String {
-            return val
-        }
+        #if DEBUG
+            if let val = dictionaryValues?["gitcoinApiBaseUrl"] as? String {
+                return val
+            }
+        #endif
         
         return "https://gitcoin.co/api/v0.1/"
     }
@@ -84,6 +86,23 @@ struct SafeConfiguration {
         }
         
         return false
+    }
+    
+    /// MVP: pretend mode prevents the api from sending "New Match Alert" emails
+    ///  when a user swipes right on a bounty
+    
+    static var enableGitcoinAPIPretendMode: Bool {
+        
+        // force to false if in RELEASE mode
+        #if DEBUG
+            if let val = dictionaryValues?["enableGitcoinAPIPretendMode"] as? Bool {
+                return val
+            }
+            
+            return true
+        #else
+            return false
+        #endif
     }
 }
 

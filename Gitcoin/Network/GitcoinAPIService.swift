@@ -98,6 +98,11 @@ extension GitcoinAPIServiceContract: TargetType {
             if let userKeywords = userKeywords, userKeywords.count > 0  {
                  params["raw_data"] = userKeywords.joined(separator: ",")
             }
+            
+            // When pretend=1 the api won't send emails to connect user to repo owners
+            if SafeConfiguration.enableGitcoinAPIPretendMode {
+                params["pretend"] = "1"
+            }
 
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         default:

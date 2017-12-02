@@ -32,8 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PushNotificationDelegate 
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
         setupLogger()
+        
+        #if DEBUG
+            logger.verbose("Launching app in DEBUG MODE")
+        #else
+            logger.verbose("Launching app in RELEASE MODE")
+        #endif
         
         Fabric.with([Crashlytics.self])
         
