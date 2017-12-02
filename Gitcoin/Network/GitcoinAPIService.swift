@@ -38,6 +38,19 @@ class GitcoinAPIService {
             plugins.append(NetworkLoggerPlugin())
         }
         
+        plugins.append(NetworkActivityPlugin(networkActivityClosure: { (type, target) in
+            switch type {
+            case .began:
+                DispatchQueue.main.async {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                }
+            case .ended:
+                DispatchQueue.main.async {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            }
+        }))
+        
         self.provider = MoyaProvider<GitcoinAPIServiceContract>(plugins: plugins)
     }
     
