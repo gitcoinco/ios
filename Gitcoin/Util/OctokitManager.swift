@@ -15,6 +15,8 @@ import SCLAlertView
 class OctokitManager: NSObject {
     static let shared = OctokitManager()
     
+    static let keychainTokenKey = "githubaccesstoken"
+    
     enum UserAction {
         case signedIn(User)
         case signedOut
@@ -34,7 +36,7 @@ class OctokitManager: NSObject {
     
     var tokenConfiguration: TokenConfiguration? {
         get {
-            let tokenKeyValue = Defaults[UserDefaultKeyConstants.githubAccessTokenKey]
+            let tokenKeyValue =  KeychainSwift().get(OctokitManager.keychainTokenKey)
             
             if let tokenKeyValue = tokenKeyValue {
                 return TokenConfiguration(tokenKeyValue)
@@ -44,15 +46,15 @@ class OctokitManager: NSObject {
         }
         set(newTokenConfig) {
             
-            //TODO: store these tokens somewhere safer
-            // https://github.com/soffes/SAMKeychain?
-            // https://github.com/kishikawakatsumi/UICKeyChainStore?
-            if let newTokenConfig = newTokenConfig {
-                Defaults[UserDefaultKeyConstants.githubAccessTokenKey] = newTokenConfig.accessToken
+            let keychain = KeychainSwift()
+            
+            if let newTokenConfig = newTokenConfig, let accessToken = newTokenConfig.accessToken {
+                
+                keychain.set(accessToken, forKey: OctokitManager.keychainTokenKey)
                 
                 loadMe(emitSignInAction: true)
             }else{
-                Defaults.remove(UserDefaultKeyConstants.githubAccessTokenKey)
+                keychain.delete(OctokitManager.keychainTokenKey)
                 
                 userActionSubject.onNext(.signedOut)
                 unloadMe()

@@ -70,13 +70,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PushNotificationDelegate 
 
     // this event is fired when the push is received in the app
     func onPushReceived(_ pushManager: PushNotificationManager!, withNotification pushNotification: [AnyHashable : Any]!, onStart: Bool) {
-        print("Push notification received: \(pushNotification)")
+        logger.verbose("Push notification received: \(pushNotification)")
         // shows a push is received. Implement passive reaction to a push, such as UI update or data download.
     }
     
     // this event is fired when user clicks on notification
     func onPushAccepted(_ pushManager: PushNotificationManager!, withNotification pushNotification: [AnyHashable : Any]!, onStart: Bool) {
-        print("Push notification accepted: \(pushNotification)")
+        logger.verbose("Push notification accepted: \(pushNotification)")
         // shows a user tapped the notification. Implement user interaction, such as showing push details
     }
     
