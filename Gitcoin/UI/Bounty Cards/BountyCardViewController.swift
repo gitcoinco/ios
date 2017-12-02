@@ -39,6 +39,7 @@ class BountyCardViewController: UIViewController {
     @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
     
+    @IBOutlet weak var noNetworkConectionViewHeightConstraint: NSLayoutConstraint!
     
     //MARK: Lifecycle
     override func viewDidLoad() {
@@ -55,6 +56,8 @@ class BountyCardViewController: UIViewController {
         observeUI()
         
         observeUserActions()
+        
+        observeNetwork()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -148,6 +151,15 @@ extension BountyCardViewController: KolodaViewDelegate {
             }
             
             alertView.showWarning("Please sign in to do that", subTitle: "Please goto the profile screen")
+            
+            return
+        }
+        
+        // If not connected to network
+        if !NetworkReachability.shared.isConnected.value {
+            koloda.revertAction()
+
+            SCLAlertView().showWarning("You are not online", subTitle: "Please find a network before continuing.")
             
             return
         }
@@ -364,6 +376,26 @@ extension BountyCardViewController {
         }
         
         disposeBag.insert(infoButtonSubscription)
+    }
+    
+    func observeNetwork(){
+        let networkSubscription = NetworkReachability.shared.isConnected
+            .asObservable()
+            .subscribeOn(MainScheduler.instance)
+            .subscribe(onNext: { isConnected in
+                let viewHeight = CGFloat(isConnected ? 0.0 : 44.0)
+                
+                if self.noNetworkConectionViewHeightConstraint.constant == viewHeight {
+                    return
+                }
+                
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.noNetworkConectionViewHeightConstraint.constant = viewHeight
+                    self.view.layoutIfNeeded()
+                })
+            })
+        
+        disposeBag.insert(networkSubscription)
     }
     
     /// Helper method to determine if the given index is the last index of

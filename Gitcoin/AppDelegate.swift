@@ -56,9 +56,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PushNotificationDelegate 
         // register for push notifications!
         PushNotificationManager.push().registerForPushNotifications()
         
+        NetworkReachability.shared.start()
+        
         return false
     }
     
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        NetworkReachability.shared.start()
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        NetworkReachability.shared.stop()
+    }
+
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         PushNotificationManager.push().handlePushRegistration(deviceToken as Data!)
     }
