@@ -11,6 +11,7 @@ import Octokit
 import RxSwift
 import SwiftyUserDefaults
 import SCLAlertView
+import Pushwoosh
 
 class OctokitManager: NSObject {
     static let shared = OctokitManager()
@@ -94,6 +95,10 @@ class OctokitManager: NSObject {
                 switch response {
                 case .success(let user):
                     self.user.value = user
+                    
+                    // Send some intel to PushWoosh
+                    PWInAppManager.shared().setUserId(user.email)
+                    PushNotificationManager.push().setTags(user.dictionaryWithAllValues())
                     
                     if emitSignInAction {
                         self.userActionSubject.onNext(.signedIn(user))
