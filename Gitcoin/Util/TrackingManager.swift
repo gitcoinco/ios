@@ -118,19 +118,19 @@ class TrackingManager {
             case .didViewInfo:
                 
                 Answers.logCustomEvent(withName: "didViewInfo")
-                Answers.logCustomEvent(withName: "didViewInfo")
+                Mixpanel.mainInstance().track(event: "didViewInfo")
                 PWInAppManager.shared().postEvent("didViewInfo")
                 
             case .didCloseInfo:
                 
                 Answers.logCustomEvent(withName: "didCloseInfo")
-                Answers.logCustomEvent(withName: "didCloseInfo")
+                Mixpanel.mainInstance().track(event: "didCloseInfo")
                 PWInAppManager.shared().postEvent("didCloseInfo")
                 
             case .didViewEndOfBounties:
                 
                 Answers.logCustomEvent(withName: "didViewEndOfBounties")
-                Answers.logCustomEvent(withName: "didViewEndOfBounties")
+                Mixpanel.mainInstance().track(event: "didViewEndOfBounties")
                 PWInAppManager.shared().postEvent("didViewEndOfBounties")
                 
             case .didError(let title, let error):
