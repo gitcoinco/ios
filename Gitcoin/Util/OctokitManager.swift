@@ -71,11 +71,11 @@ class OctokitManager: NSObject {
     }
     
     override init() {
-        guard let gitHubOAuthToken = SafeConfiguration.gitHubOAuthToken else {
+        guard let gitHubOAuthToken = Config.gitHubOAuthToken else {
             fatalError("\n The SafeConfiguration.plist file can't be found. Please generate it with the following keys: gitHubOAuthToken, gitHubOAuthSecret")
         }
         
-        guard let gitHubOAuthSecret = SafeConfiguration.gitHubOAuthSecret else {
+        guard let gitHubOAuthSecret = Config.gitHubOAuthSecret else {
             fatalError("\n The SafeConfiguration.plist file can't be found. Please generate it with the following keys: gitHubOAuthToken, gitHubOAuthSecret")
         }
         

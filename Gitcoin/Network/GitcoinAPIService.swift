@@ -18,8 +18,8 @@ class GitcoinAPIService {
         
         var plugins: [PluginType] = []
         
-        if let gitcoinApiUsername = SafeConfiguration.gitcoinApiUsername,
-            let gitcoinApiPassword = SafeConfiguration.gitcoinApiPassword {
+        if let gitcoinApiUsername = Config.gitcoinApiUsername,
+            let gitcoinApiPassword = Config.gitcoinApiPassword {
            
             if !gitcoinApiUsername.isEmpty && !gitcoinApiPassword.isEmpty {
                 
@@ -31,7 +31,7 @@ class GitcoinAPIService {
             }
         }
         
-        if SafeConfiguration.enableGitcoinAPILogging {
+        if Config.enableGitcoinAPILogging {
         
             logger.debug("gitcoinAPI logging on.")
             
@@ -72,7 +72,7 @@ enum GitcoinAPIServiceContract {
 // MARK: - TargetType Protocol Implementation
 extension GitcoinAPIServiceContract: TargetType {
     var baseURL: URL {
-        return URL(string: SafeConfiguration.gitcoinApiBaseUrl)!
+        return URL(string: Config.gitcoinApiBaseUrl)!
     }
     var path: String {
         switch self {
@@ -113,7 +113,7 @@ extension GitcoinAPIServiceContract: TargetType {
             }
             
             // When pretend=1 the api won't send emails to connect user to repo owners
-            if SafeConfiguration.enableGitcoinAPIPretendMode {
+            if Config.enableGitcoinAPIPretendMode {
                 params["pretend"] = "1"
             }
 

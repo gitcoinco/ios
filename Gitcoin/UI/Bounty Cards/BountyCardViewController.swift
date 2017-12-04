@@ -126,31 +126,36 @@ extension BountyCardViewController: KolodaViewDelegate {
         
         if isEndOfBountiesCard(index) { return }
         
-        // Force user to sign in if they want to interact with bounty
-        if OctokitManager.shared.isSignedOut {
-            
+        // If not connected to network
+        if !NetworkReachability.shared.isConnected.value {
             koloda.revertAction()
             
-            let appearance = SCLAlertView.SCLAppearance(
-                showCloseButton: false
-            )
-            
-            let alertView = SCLAlertView(appearance: appearance)
-            
-            alertView.addButton("Goto Profile") {
-                self.profileButton.sendActions(for: .touchUpInside)
-            }
-            
-            alertView.showWarning("Please sign in to do that", subTitle: "Please goto the profile screen")
+            SCLAlertView().showWarning("You are not online", subTitle: "Please find a network before continuing.")
             
             return
         }
         
-        // If not connected to network
-        if !NetworkReachability.shared.isConnected.value {
-            koloda.revertAction()
-
-            SCLAlertView().showWarning("You are not online", subTitle: "Please find a network before continuing.")
+        // When usera swipes right for the first time without being signed in
+        // pop alert.  Once show alert once via seenSwipeRightBountyAlert
+        if  OctokitManager.shared.isSignedOut &&
+            direction == SwipeResultDirection.right &&
+            !Defaults[UserDefaultKeyConstants.seenSwipeRightBountyAlert]{
+            
+            let appearance = SCLAlertView.SCLAppearance(
+                showCloseButton: false
+            )
+            let alertView = SCLAlertView(appearance: appearance)
+            
+            alertView.addButton("Sign in") {
+                self.profileButton.sendActions(for: .touchUpInside)
+                koloda.revertAction()
+            }
+            
+            alertView.addButton("Continue browsing") {
+                Defaults[UserDefaultKeyConstants.seenSwipeRightBountyAlert] = true
+            }
+            
+            alertView.showInfo("Signin to connect", subTitle: "with the repo owners when you swipe right!", closeButtonTitle: "Continue")
             
             return
         }
@@ -320,6 +325,7 @@ extension BountyCardViewController {
                 case .signedOut:
                     logger.verbose("User signed out")
                     Defaults.remove(UserDefaultKeyConstants.lastViewedBountyId)
+                    Defaults.remove(UserDefaultKeyConstants.seenSwipeRightBountyAlert)
                 }
             })
         
