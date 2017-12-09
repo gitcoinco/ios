@@ -7,29 +7,35 @@
 //
 
 import UIKit
+import Whisper
+import RxSwift
 
 class NavigationController: UINavigationController {
+    
+    let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        observeNetwork()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func observeNetwork(){
+        let networkSubscription = NetworkReachability.shared.isConnected
+            .asObservable()
+            .subscribeOn(MainScheduler.instance)
+            .subscribe(onNext: { isConnected in
+                
+                if !isConnected {
+                    let message = Message(title: "No Connection", backgroundColor: UIColor.gitCoin.regulusRed)
+                    
+                    Whisper.show(whisper: message, to: self, action: .present)
+                } else{
+                    Whisper.hide(whisperFrom: self)
+                }
+            })
+        
+        disposeBag.insert(networkSubscription)
     }
-    */
-
+    
 }

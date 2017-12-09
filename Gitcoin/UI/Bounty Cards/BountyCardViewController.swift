@@ -38,8 +38,6 @@ class BountyCardViewController: UIViewController {
     @IBOutlet weak var negativeCardActionButton: UIButton!
     @IBOutlet weak var positiveCardActionButton: UIButton!
     
-    @IBOutlet weak var noNetworkConectionViewHeightConstraint: NSLayoutConstraint!
-    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,13 +48,9 @@ class BountyCardViewController: UIViewController {
         kolodaView.dataSource = self
         kolodaView.animator = BountyCardKolodaAnimator(koloda: kolodaView)
         
-        self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
-        
         observeUI()
         
         observeUserActions()
-        
-        observeNetwork()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -347,26 +341,6 @@ extension BountyCardViewController {
         }
         
         disposeBag.insert(positiveCardActionButtonSubscription)
-    }
-    
-    func observeNetwork(){
-        let networkSubscription = NetworkReachability.shared.isConnected
-            .asObservable()
-            .subscribeOn(MainScheduler.instance)
-            .subscribe(onNext: { isConnected in
-                let viewHeight = CGFloat(isConnected ? 0.0 : 44.0)
-                
-                if self.noNetworkConectionViewHeightConstraint.constant == viewHeight {
-                    return
-                }
-                
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.noNetworkConectionViewHeightConstraint.constant = viewHeight
-                    self.view.layoutIfNeeded()
-                })
-            })
-        
-        disposeBag.insert(networkSubscription)
     }
     
     /// Helper method to determine if the given index is the last index of

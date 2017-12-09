@@ -43,6 +43,8 @@ target 'Gitcoin' do
   
   pod 'Mixpanel-swift'
   
+  pod 'Whisper', '= 5.1.0'
+  
   target 'GitcoinTests' do
     inherit! :search_paths
     # Pods for testing

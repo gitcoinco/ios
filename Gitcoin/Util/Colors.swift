@@ -18,5 +18,6 @@ extension UIColor {
         static let polarisBlue = UIColor(red: 62.0/255.0, green: 0.0/255.0, blue: 255.0/255.0, alpha: 1.0)
         static let vinusPurple = UIColor(red: 142.0/255.0, green: 42.0/255.0, blue: 190.0/255.0, alpha: 1.0)
         static let regulusRed = UIColor(red: 249.0/255.0, green: 42.0/255.0, blue: 108.0/255.0, alpha: 1.0)
+        static let green = UIColor(red: 15.0/255.0, green: 206.0/255.0, blue: 124.0/255.0, alpha: 1.0)
     }
 }
