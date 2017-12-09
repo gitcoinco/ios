@@ -33,10 +33,10 @@ class BountyCardViewController: UIViewController {
 
     @IBOutlet weak var kolodaView: BountyKolodaView!
     
+    @IBOutlet weak var profileBarButtonItem: UIBarButtonItem!
+    
     @IBOutlet weak var negativeCardActionButton: UIButton!
     @IBOutlet weak var positiveCardActionButton: UIButton!
-    @IBOutlet weak var profileButton: UIButton!
-    @IBOutlet weak var infoButton: UIButton!
     
     @IBOutlet weak var noNetworkConectionViewHeightConstraint: NSLayoutConstraint!
     
@@ -147,7 +147,9 @@ extension BountyCardViewController: KolodaViewDelegate {
             let alertView = SCLAlertView(appearance: appearance)
             
             alertView.addButton("Sign in") {
-                self.profileButton.sendActions(for: .touchUpInside)
+                
+                UIApplication.shared.sendAction(self.profileBarButtonItem.action!, to: self.profileBarButtonItem.target, from: self, for: nil)
+                
                 koloda.revertAction()
             }
             
@@ -155,7 +157,7 @@ extension BountyCardViewController: KolodaViewDelegate {
                 Defaults[UserDefaultKeyConstants.seenSwipeRightBountyAlert] = true
             }
             
-            alertView.showInfo("Signin to connect", subTitle: "with the repo owners when you swipe right!", closeButtonTitle: "Continue")
+            alertView.showInfo("Sign In with Github", subTitle: "to get match email intros to this repo owner.", closeButtonTitle: "Continue")
             
             return
         }
@@ -345,28 +347,6 @@ extension BountyCardViewController {
         }
         
         disposeBag.insert(positiveCardActionButtonSubscription)
-        
-        let profileButtonSubscription = profileButton.rx.tap.bind {
-            if let profileViewController = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController
-            {
-                self.present(profileViewController, animated: true, completion: {
-                    
-                })
-            }
-        }
-        
-        disposeBag.insert(profileButtonSubscription)
-        
-        let infoButtonSubscription = infoButton.rx.tap.bind {
-            if let infoViewController = UIStoryboard(name: "Info", bundle: nil).instantiateViewController(withIdentifier: "InfoViewController") as? InfoViewController
-            {
-                self.present(infoViewController, animated: true, completion: {
-                    
-                })
-            }
-        }
-        
-        disposeBag.insert(infoButtonSubscription)
     }
     
     func observeNetwork(){

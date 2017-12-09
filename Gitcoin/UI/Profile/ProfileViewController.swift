@@ -21,8 +21,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var avatarImage: UIImageView!
-
-    @IBOutlet weak var doneButton: UIButton!
     
     @IBOutlet weak var tagFieldViewContainer: UIView!
     @IBOutlet weak var signedOutStateView: UIView!
@@ -50,19 +48,21 @@ class ProfileViewController: UIViewController {
         observeUser()
         
         observeUserActions()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         TrackingManager.shared.trackEvent(.didViewProfile)
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        TrackingManager.shared.trackEvent(.didCloseProfile)
+    }
 
     func observeUI(){
-        
-        let doneButtonSubscription = doneButton.rx.tap.bind {
-            self.dismiss(animated: true, completion: {
-                TrackingManager.shared.trackEvent(.didCloseProfile)
-            })
-        }
-        
-        disposeBag.insert(doneButtonSubscription)
         
         let signedOutButtonSubscription = signOutButton.rx.tap.bind {
             OctokitManager.shared.signOut()

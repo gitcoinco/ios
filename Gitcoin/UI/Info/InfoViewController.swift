@@ -12,26 +12,15 @@ import RxCocoa
 
 
 class InfoViewController: UIViewController {
-    @IBOutlet weak var doneButton: UIButton!
-    
-    let disposeBag = DisposeBag()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        observeUI()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         TrackingManager.shared.trackEvent(.didViewInfo)
     }
     
-    func observeUI(){
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         
-        let doneButtonSubscription = doneButton.rx.tap.bind {
-            self.dismiss(animated: true, completion: {
-                TrackingManager.shared.trackEvent(.didCloseInfo)
-            })
-        }
-        
-        disposeBag.insert(doneButtonSubscription)
+        TrackingManager.shared.trackEvent(.didCloseInfo)
     }
 }
