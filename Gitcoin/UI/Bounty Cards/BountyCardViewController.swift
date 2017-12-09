@@ -130,7 +130,7 @@ extension BountyCardViewController: KolodaViewDelegate {
         if !NetworkReachability.shared.isConnected.value {
             koloda.revertAction()
             
-            SCLAlertView().showWarning("You are not online", subTitle: "Please find a network before continuing.")
+            SCLAlertView(appearance:  gitcoinAppearance()).showWarning("You are not online", subTitle: "Please find a network before continuing.", closeButtonTitle: "DONE")
             
             return
         }
@@ -141,23 +141,23 @@ extension BountyCardViewController: KolodaViewDelegate {
             direction == SwipeResultDirection.right &&
             !Defaults[UserDefaultKeyConstants.seenSwipeRightBountyAlert]{
             
-            let appearance = SCLAlertView.SCLAppearance(
+            let appearance = gitcoinAppearance(
                 showCloseButton: false
             )
             let alertView = SCLAlertView(appearance: appearance)
             
-            alertView.addButton("Sign in") {
+            alertView.addButton("SIGN IN") {
                 
                 UIApplication.shared.sendAction(self.profileBarButtonItem.action!, to: self.profileBarButtonItem.target, from: self, for: nil)
                 
                 koloda.revertAction()
             }
             
-            alertView.addButton("Continue browsing") {
+            alertView.addButton("CONTINUE BROWSING") {
                 Defaults[UserDefaultKeyConstants.seenSwipeRightBountyAlert] = true
             }
             
-            alertView.showInfo("Sign In with Github", subTitle: "to get match email intros to this repo owner.", closeButtonTitle: "Continue")
+            alertView.showInfo("Sign In with Github", subTitle: "to get match email intros to this repo owner.")
             
             return
         }
@@ -297,13 +297,13 @@ extension BountyCardViewController {
                     
                     SwiftSpinner.hide()
                     
-                    let appearance = SCLAlertView.SCLAppearance(
+                    let appearance = gitcoinAppearance(
                         showCloseButton: false
                     )
                     
                     let alertView = SCLAlertView(appearance: appearance)
 
-                    alertView.addButton("Try Again") {
+                    alertView.addButton("TRY AGAIN") {
                         self.loadData()
                     }
                     

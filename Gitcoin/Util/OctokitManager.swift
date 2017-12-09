@@ -10,7 +10,6 @@ import Foundation
 import Octokit
 import RxSwift
 import SwiftyUserDefaults
-import SCLAlertView
 import Pushwoosh
 
 class OctokitManager: NSObject {

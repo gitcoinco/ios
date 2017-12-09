@@ -54,6 +54,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Futura.ttc</string>
+		<string>Roboto-Regular.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

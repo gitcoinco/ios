@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SCLAlertView
 import SwiftyUserDefaults
 import SwiftyBeaver
 import Fabric
