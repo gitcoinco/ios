@@ -142,22 +142,6 @@
             </objects>
             <point key="canvasLocation" x="949.60000000000002" y="900.89955022488766"/>
         </scene>
-        <!--Profile-->
-        <scene sceneID="rdS-AK-RSa">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Profile" id="c2P-oV-xcJ" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dz1-wa-nsT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="632.79999999999995" y="1683.5082458770617"/>
-        </scene>
-        <!--Info-->
-        <scene sceneID="hZY-2k-KpQ">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Info" id="yrO-o3-gVh" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="q0N-8M-nFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1391" y="1659"/>
-        </scene>
     </scenes>
     <resources>
         <image name="ic_koloda" width="21" height="21"/>
