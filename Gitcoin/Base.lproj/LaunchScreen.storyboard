@@ -5,31 +5,32 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
-                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" userInteractionEnabled="NO" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launcher" translatesAutoresizingMaskIntoConstraints="NO" id="PiW-NA-Qn1">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="PiW-NA-Qn1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1Dc-Hv-8Z6"/>
-                            <constraint firstItem="PiW-NA-Qn1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Av5-fx-vCX"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PiW-NA-Qn1" secondAttribute="trailing" id="o4Y-Xt-63K"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PiW-NA-Qn1" secondAttribute="bottom" id="s67-oj-Fwc"/>
+                            <constraint firstItem="PiW-NA-Qn1" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="PoE-80-cb0"/>
+                            <constraint firstItem="PiW-NA-Qn1" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailing" id="XBu-8v-X24"/>
+                            <constraint firstItem="PiW-NA-Qn1" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="mye-SL-nDq"/>
+                            <constraint firstItem="PiW-NA-Qn1" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottom" id="o2Z-5z-vjW"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -37,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Launcher" width="640" height="1136"/>
+        <image name="Launcher" width="375" height="667"/>
     </resources>
 </document>
