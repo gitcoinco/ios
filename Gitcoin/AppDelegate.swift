@@ -60,6 +60,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PushNotificationDelegate 
         
         NetworkReachability.shared.start()
         
+        //setup custom navigation bar
+        let navigationBarAppearace = UINavigationBar.appearance()
+        let image = #imageLiteral(resourceName: "nav-bar-bg")
+        
+        navigationBarAppearace.setBackgroundImage(image.resizableImage(withCapInsets: UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: .stretch), for: .default)
+        
         return false
     }
     
