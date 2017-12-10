@@ -36,6 +36,8 @@ class BountyCardView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        observeUI()
     }
     
     class func fromNib(with bounty: Bounty, and _kolodaView: BountyKolodaView) -> BountyCardView {
@@ -67,8 +69,6 @@ class BountyCardView: UIView {
         bountyCardView.fundingUSDAmountLabel.text = bounty.usdtDisplayValue
         
         bountyCardView.postedOnLabel.text = bounty.createdAgo
-        
-        bountyCardView.observeUI()
         
         return bountyCardView
     }

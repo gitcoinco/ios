@@ -25,6 +25,9 @@ enum GitcoinEvent {
     case didViewInfo
     case didCloseInfo
     
+    case didTapJoinSlack
+    case didTapRefreshBounties
+    
     case didError(title: String, error: Error)
 }
 
@@ -132,7 +135,16 @@ class TrackingManager {
                 Answers.logCustomEvent(withName: "didViewEndOfBounties")
                 Mixpanel.mainInstance().track(event: "didViewEndOfBounties")
                 PWInAppManager.shared().postEvent("didViewEndOfBounties")
+            case .didTapJoinSlack:
                 
+                Answers.logCustomEvent(withName: "didTapJoinSlack")
+                Mixpanel.mainInstance().track(event: "didTapJoinSlack")
+                PWInAppManager.shared().postEvent("didTapJoinSlack")
+            case .didTapRefreshBounties:
+                
+                Answers.logCustomEvent(withName: "didTapRefreshBounties")
+                Mixpanel.mainInstance().track(event: "didTapRefreshBounties")
+                PWInAppManager.shared().postEvent("didTapRefreshBounties")
             case .didError(let title, let error):
                 
                 Answers.logCustomEvent(withName: title, customAttributes: ["error": error.localizedDescription])

@@ -57,7 +57,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="1,000 USD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Avd-vU-h0T">
-                                                    <rect key="frame" x="187" y="22.666666666666664" width="187" height="21"/>
+                                                    <rect key="frame" x="187" y="24" width="187" height="18"/>
                                                     <fontDescription key="fontDescription" name="FuturaStd-Book" family="Futura Std" pointSize="18"/>
                                                     <color key="textColor" name="Black54"/>
                                                     <nil key="highlightedColor"/>
@@ -284,12 +284,6 @@ Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et d
         <image name="user-portrait" width="80" height="80"/>
         <namedColor name="Black12">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.11999999731779099" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Black12">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.11999999729999999" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Black12">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.11999999729999999" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Black38">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.37999999523162842" colorSpace="custom" customColorSpace="sRGB"/>

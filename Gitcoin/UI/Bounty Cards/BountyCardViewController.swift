@@ -212,6 +212,13 @@ extension BountyCardViewController: KolodaViewDataSource {
                     return UIView()
             }
             
+            bountyCardView.refreshBountiesClosure = {
+                Defaults.remove(UserDefaultKeyConstants.lastViewedBountyId)
+                Defaults.remove(UserDefaultKeyConstants.seenSwipeRightBountyAlert)
+                
+                self.loadData()
+            }
+            
             return bountyCardView
         }
         

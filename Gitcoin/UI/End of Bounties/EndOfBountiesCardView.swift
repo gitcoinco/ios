@@ -7,15 +7,43 @@
 //
 
 import UIKit
+import RxSwift
 
 class EndOfBountiesCardView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    @IBOutlet weak var joinSlackButton: UIButton!
+    @IBOutlet weak var refreshBountiesButton: UIButton!
+    
+    let disposeBag = DisposeBag()
+    
+    var refreshBountiesClosure: (()->Void)?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        observeUI()
     }
-    */
-
+    
+    /// Subscribe to actions on various ui/buttons
+    func observeUI(){
+        let joinSlackButtonSubscription = joinSlackButton.rx.tap.bind {
+            
+            UIApplication.shared.open(URL(string: "https://gitcoin.co/slack")!, options: [:], completionHandler: { _ in
+                
+                TrackingManager.shared.trackEvent(.didTapJoinSlack)
+            })
+        }
+        
+        disposeBag.insert(joinSlackButtonSubscription)
+        
+        let refreshBountiesButtonSubscription = refreshBountiesButton.rx.tap.bind {
+            if let refreshBountiesClosure = self.refreshBountiesClosure {
+                TrackingManager.shared.trackEvent(.didTapRefreshBounties)
+                
+                refreshBountiesClosure()
+            }
+        }
+        
+        disposeBag.insert(refreshBountiesButtonSubscription)
+    }
 }
