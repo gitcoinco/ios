@@ -24,6 +24,7 @@
 		201326541FBC7F5D001EC1B5 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201326531FBC7F5D001EC1B5 /* InfoViewController.swift */; };
 		202952B61FBC718100FEAB4F /* ProfileContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202952B51FBC718100FEAB4F /* ProfileContainerViewController.swift */; };
 		20559D661FB2771600170860 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20559D651FB2771600170860 /* Globals.swift */; };
+		20619D2E1FDDEFC700856D96 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20619D2D1FDDEFC700856D96 /* UIView+.swift */; };
 		2079CDF71FD085C200A912C9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2079CDF61FD085C200A912C9 /* libz.tbd */; };
 		2079CDF91FD085CE00A912C9 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2079CDF81FD085CD00A912C9 /* libstdc++.tbd */; };
 		207DAC101FD4CA6600CFB753 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207DAC0F1FD4CA6600CFB753 /* Config.swift */; };
@@ -91,6 +92,7 @@
 		201326531FBC7F5D001EC1B5 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		202952B51FBC718100FEAB4F /* ProfileContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContainerViewController.swift; sourceTree = "<group>"; };
 		20559D651FB2771600170860 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		20619D2D1FDDEFC700856D96 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		2079CDF61FD085C200A912C9 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		2079CDF81FD085CD00A912C9 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		2079CDFA1FD0893800A912C9 /* Gitcoin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gitcoin.entitlements; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 			children = (
 				20D60D661FC8A35600A8C7C6 /* GitCoinWSTagField.swift */,
 				20FF58D91FDCCB790068B27C /* GradientBackgroundView.swift */,
+				20619D2D1FDDEFC700856D96 /* UIView+.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -764,6 +767,7 @@
 				200DA7921FA9385A00FDCE67 /* BountyCardView.swift in Sources */,
 				20B3CAD81FBDE1C9008FA651 /* EndOfBountiesCardView.swift in Sources */,
 				207DAC101FD4CA6600CFB753 /* Config.swift in Sources */,
+				20619D2E1FDDEFC700856D96 /* UIView+.swift in Sources */,
 				20960ECF1FB53E4D0033A786 /* UserKeywordResult.swift in Sources */,
 				200052F21FDC657400D1D8F8 /* NavigationController.swift in Sources */,
 				2008F2C71FAFA6930030807F /* OctokitManager.swift in Sources */,

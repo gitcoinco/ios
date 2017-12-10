@@ -7,29 +7,156 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import Alamofire
+import AlamofireImage
+import SwiftyUserDefaults
+import Octokit
 
 class ProfileSignedInViewController: UIViewController {
 
+    @IBOutlet weak var signOutButton: UIButton!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var avatarImage: UIImageView!
+    @IBOutlet weak var tagFieldViewContainer: UIView!
+
+    let tagsField = GitCoinWSTagField()
+    
+    let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        setupTagField()
+        observeUI()
+        observeUser()
+        observeUserActions()
     }
     
+    func observeUI(){
 
-    /*
-    // MARK: - Navigation
+        let signedOutButtonSubscription = signOutButton.rx.tap.bind {
+            OctokitManager.shared.signOut()
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+            return
+        }
+
+        disposeBag.insert(signedOutButtonSubscription)
     }
-    */
 
+    /// Observe User Object: This subscription listens for changes in the user instance
+    /// So this will be called anytime time OctokitManager.shared.user
+    /// is changed.  There by updating the ui base on the state of that
+    /// user object
+    func observeUser(){
+        
+        let subscription = OctokitManager.shared.user.asObservable()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] user in
+                
+                // User logged in
+                if let user = user {
+                    
+                    if let name = user.name {
+                        self?.nameLabel.text = name
+                    }
+
+                    if let avatarUrl = user.avatarURL {
+
+                        Alamofire.request(avatarUrl).responseImage { response in
+
+                            if let image = response.result.value {
+                                let circularImage = image.af_imageRoundedIntoCircle()
+
+                                self?.avatarImage.image = circularImage
+                            }
+                        }
+                    }
+                }
+            })
+        
+        disposeBag.insert(subscription)
+    }
+    
+    /// Subscribe to user actions
+    func observeUserActions(){
+
+        let subscription = OctokitManager.shared
+            .userActionSubject
+            .subscribeOn(MainScheduler.instance)
+            .subscribe(onNext: { userAction in
+
+                // Reset the last view bounty when logging out
+                switch userAction {
+                case .signedIn(let user):
+                    self.populateTagsFromApiKeywords(with: user)
+                case .signedOut:
+                    break
+                }
+            })
+
+        disposeBag.insert(subscription)
+    }
+
+    fileprivate func setupTagField() {
+        tagsField.delimiter = ""
+
+        // Events
+        tagsField.onDidAddTag = { _, tag in
+            let keyword = tag.text.lowercased()
+
+            if !Defaults[UserDefaultKeyConstants.userKeywords].contains(keyword) {
+                Defaults[UserDefaultKeyConstants.userKeywords].append(keyword)
+
+                logger.verbose("Persisted tag \(keyword) to defaults")
+
+                TrackingManager.shared.trackEvent(.didEditKeywords(user: OctokitManager.shared.user.value, action: "added", keyword: keyword))
+            }
+        }
+
+        tagsField.onDidRemoveTag = { _, tag in
+            let keyword = tag.text
+
+            if let removeIndex = Defaults[UserDefaultKeyConstants.userKeywords].index(where: { $0 == keyword }) {
+                Defaults[UserDefaultKeyConstants.userKeywords].remove(at: removeIndex)
+
+                logger.verbose("Removed tag \(keyword)")
+
+                TrackingManager.shared.trackEvent(.didEditKeywords(user: OctokitManager.shared.user.value, action: "removed", keyword: keyword))
+            }
+        }
+
+        tagsField.placeholder = "Enter a skill or keyword"
+        tagsField.translatesAutoresizingMaskIntoConstraints = false
+        tagFieldViewContainer.addSubview(tagsField)
+
+        NSLayoutConstraint.activate([
+            tagsField.topAnchor.constraint(equalTo: tagFieldViewContainer.topAnchor),
+            tagsField.leadingAnchor.constraint(equalTo: tagFieldViewContainer.leadingAnchor),
+            tagsField.trailingAnchor.constraint(equalTo: tagFieldViewContainer.trailingAnchor)
+        ])
+
+        tagsField.addTags(Defaults[UserDefaultKeyConstants.userKeywords])
+    }
+
+    func populateTagsFromApiKeywords(with user: User){
+        _ = GitcoinAPIService.shared.provider.rx
+            .request(.userKeywords(user: user))
+            .filterSuccessfulStatusCodes()
+            .map(to: UserKeywordResult.self)
+            .subscribeOn(MainScheduler.instance)
+            .subscribe(onSuccess: { [weak self] userKeywordResult in
+
+                if let keywords = userKeywordResult.keywords {
+                    for keyword in keywords {
+                        self?.tagsField.addTag(keyword.lowercased())
+                    }
+                }else{
+
+                }
+                }, onError: { error in
+
+            })
+    }
 }
