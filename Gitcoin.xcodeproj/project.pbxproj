@@ -22,7 +22,7 @@
 		2012F7F51FDCD75C004F3B88 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2012F7F41FDCD75C004F3B88 /* Roboto-Medium.ttf */; };
 		2012F7F71FDCD91B004F3B88 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2012F7F61FDCD91B004F3B88 /* Roboto-Bold.ttf */; };
 		201326541FBC7F5D001EC1B5 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201326531FBC7F5D001EC1B5 /* InfoViewController.swift */; };
-		202952B61FBC718100FEAB4F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202952B51FBC718100FEAB4F /* ProfileViewController.swift */; };
+		202952B61FBC718100FEAB4F /* ProfileContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202952B51FBC718100FEAB4F /* ProfileContainerViewController.swift */; };
 		20559D661FB2771600170860 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20559D651FB2771600170860 /* Globals.swift */; };
 		2079CDF71FD085C200A912C9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2079CDF61FD085C200A912C9 /* libz.tbd */; };
 		2079CDF91FD085CE00A912C9 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2079CDF81FD085CD00A912C9 /* libstdc++.tbd */; };
@@ -46,6 +46,8 @@
 		20DF6AB11FD21410000ADA04 /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF6AB01FD21410000ADA04 /* KeychainSwiftDistrib.swift */; };
 		20DF6AB31FD321B9000ADA04 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF6AB21FD321B9000ADA04 /* Reachability.swift */; };
 		20DF6AB51FD3226C000ADA04 /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF6AB41FD3226C000ADA04 /* NetworkReachability.swift */; };
+		20FF15091FDD899600D78A26 /* ProfileSignedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FF15081FDD899600D78A26 /* ProfileSignedInViewController.swift */; };
+		20FF150B1FDD89B000D78A26 /* ProfileSignedOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FF150A1FDD89B000D78A26 /* ProfileSignedOutViewController.swift */; };
 		20FF58DA1FDCCB790068B27C /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FF58D91FDCCB790068B27C /* GradientBackgroundView.swift */; };
 		9659E79AF67EA510C67AD2AA /* Pods_Gitcoin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12B2483E19BA87527CE4B9A4 /* Pods_Gitcoin.framework */; };
 		C7678B9FB50EF538DC43BC51 /* Pods_GitcoinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6A847AB6E25100FD032EA87 /* Pods_GitcoinTests.framework */; };
@@ -87,7 +89,7 @@
 		2012F7F41FDCD75C004F3B88 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		2012F7F61FDCD91B004F3B88 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		201326531FBC7F5D001EC1B5 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
-		202952B51FBC718100FEAB4F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		202952B51FBC718100FEAB4F /* ProfileContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContainerViewController.swift; sourceTree = "<group>"; };
 		20559D651FB2771600170860 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		2079CDF61FD085C200A912C9 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		2079CDF81FD085CD00A912C9 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
@@ -119,6 +121,8 @@
 		20DF6AB01FD21410000ADA04 /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
 		20DF6AB21FD321B9000ADA04 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		20DF6AB41FD3226C000ADA04 /* NetworkReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
+		20FF15081FDD899600D78A26 /* ProfileSignedInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSignedInViewController.swift; sourceTree = "<group>"; };
+		20FF150A1FDD89B000D78A26 /* ProfileSignedOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSignedOutViewController.swift; sourceTree = "<group>"; };
 		20FF58D91FDCCB790068B27C /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		349DAD1AE1F9779BF95D48CE /* Pods-GitcoinUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitcoinUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitcoinUITests/Pods-GitcoinUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		63154C70D0D3D17CE67806F2 /* Pods-Gitcoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gitcoin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Gitcoin/Pods-Gitcoin.debug.xcconfig"; sourceTree = "<group>"; };
@@ -235,7 +239,9 @@
 		202952B41FBC715F00FEAB4F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				202952B51FBC718100FEAB4F /* ProfileViewController.swift */,
+				202952B51FBC718100FEAB4F /* ProfileContainerViewController.swift */,
+				20FF15081FDD899600D78A26 /* ProfileSignedInViewController.swift */,
+				20FF150A1FDD89B000D78A26 /* ProfileSignedOutViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -751,7 +757,7 @@
 				200052FC1FDC78BC00D1D8F8 /* Fonts.swift in Sources */,
 				201326541FBC7F5D001EC1B5 /* InfoViewController.swift in Sources */,
 				20DF6AB11FD21410000ADA04 /* KeychainSwiftDistrib.swift in Sources */,
-				202952B61FBC718100FEAB4F /* ProfileViewController.swift in Sources */,
+				202952B61FBC718100FEAB4F /* ProfileContainerViewController.swift in Sources */,
 				20B942BC1FA932110015481C /* BountyCardOverlayView.swift in Sources */,
 				2088B0031FD32E01007F940C /* TrackingManager.swift in Sources */,
 				20B8373E1FABD71E00680FC0 /* GitcoinAPIService.swift in Sources */,
@@ -766,7 +772,9 @@
 				200D9F6B1FA8BBB0006C7C06 /* BountyCardKolodaAnimator.swift in Sources */,
 				20B942C01FA932700015481C /* BountyKolodaView.swift in Sources */,
 				20DF6AB51FD3226C000ADA04 /* NetworkReachability.swift in Sources */,
+				20FF15091FDD899600D78A26 /* ProfileSignedInViewController.swift in Sources */,
 				20FF58DA1FDCCB790068B27C /* GradientBackgroundView.swift in Sources */,
+				20FF150B1FDD89B000D78A26 /* ProfileSignedOutViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
