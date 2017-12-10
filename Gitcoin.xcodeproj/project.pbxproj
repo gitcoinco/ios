@@ -18,6 +18,9 @@
 		200DA7921FA9385A00FDCE67 /* BountyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200DA7911FA9385A00FDCE67 /* BountyCardView.swift */; };
 		200DA7941FA9388300FDCE67 /* BountyCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 200DA7931FA9388300FDCE67 /* BountyCardView.xib */; };
 		200DA7971FA93BAE00FDCE67 /* Futura.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 200DA7961FA93BAE00FDCE67 /* Futura.ttc */; };
+		2012F7EF1FDCD2F2004F3B88 /* FuturaStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2012F7EE1FDCD2F1004F3B88 /* FuturaStd-Book.otf */; };
+		2012F7F51FDCD75C004F3B88 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2012F7F41FDCD75C004F3B88 /* Roboto-Medium.ttf */; };
+		2012F7F71FDCD91B004F3B88 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2012F7F61FDCD91B004F3B88 /* Roboto-Bold.ttf */; };
 		201326541FBC7F5D001EC1B5 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201326531FBC7F5D001EC1B5 /* InfoViewController.swift */; };
 		202952B61FBC718100FEAB4F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202952B51FBC718100FEAB4F /* ProfileViewController.swift */; };
 		20559D661FB2771600170860 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20559D651FB2771600170860 /* Globals.swift */; };
@@ -26,7 +29,7 @@
 		207DAC101FD4CA6600CFB753 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207DAC0F1FD4CA6600CFB753 /* Config.swift */; };
 		2088B0031FD32E01007F940C /* TrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2088B0021FD32E01007F940C /* TrackingManager.swift */; };
 		209430CC1FB29CAB006F0671 /* SafeConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 209430CB1FB29CAB006F0671 /* SafeConfiguration.plist */; };
-		20943E031FD0921A00A5ED6F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20943E021FD0921900A5ED6F /* Images.xcassets */; };
+		20943E031FD0921A00A5ED6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20943E021FD0921900A5ED6F /* Assets.xcassets */; };
 		209460741FA8AB8F00555F06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209460731FA8AB8F00555F06 /* AppDelegate.swift */; };
 		2094607E1FA8AB8F00555F06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2094607C1FA8AB8F00555F06 /* LaunchScreen.storyboard */; };
 		209460891FA8AB8F00555F06 /* GitcoinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209460881FA8AB8F00555F06 /* GitcoinTests.swift */; };
@@ -43,6 +46,7 @@
 		20DF6AB11FD21410000ADA04 /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF6AB01FD21410000ADA04 /* KeychainSwiftDistrib.swift */; };
 		20DF6AB31FD321B9000ADA04 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF6AB21FD321B9000ADA04 /* Reachability.swift */; };
 		20DF6AB51FD3226C000ADA04 /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF6AB41FD3226C000ADA04 /* NetworkReachability.swift */; };
+		20FF58DA1FDCCB790068B27C /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FF58D91FDCCB790068B27C /* GradientBackgroundView.swift */; };
 		9659E79AF67EA510C67AD2AA /* Pods_Gitcoin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12B2483E19BA87527CE4B9A4 /* Pods_Gitcoin.framework */; };
 		C7678B9FB50EF538DC43BC51 /* Pods_GitcoinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6A847AB6E25100FD032EA87 /* Pods_GitcoinTests.framework */; };
 		E05FEC46DE514AA89BC5BE1A /* Pods_GitcoinUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CFA2207C51AC486E2B512B7 /* Pods_GitcoinUITests.framework */; };
@@ -79,6 +83,9 @@
 		200DA7911FA9385A00FDCE67 /* BountyCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyCardView.swift; sourceTree = "<group>"; };
 		200DA7931FA9388300FDCE67 /* BountyCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BountyCardView.xib; sourceTree = "<group>"; };
 		200DA7961FA93BAE00FDCE67 /* Futura.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Futura.ttc; sourceTree = "<group>"; };
+		2012F7EE1FDCD2F1004F3B88 /* FuturaStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FuturaStd-Book.otf"; sourceTree = "<group>"; };
+		2012F7F41FDCD75C004F3B88 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		2012F7F61FDCD91B004F3B88 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		201326531FBC7F5D001EC1B5 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		202952B51FBC718100FEAB4F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		20559D651FB2771600170860 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
@@ -89,7 +96,7 @@
 		2088B0021FD32E01007F940C /* TrackingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingManager.swift; sourceTree = "<group>"; };
 		209430CB1FB29CAB006F0671 /* SafeConfiguration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SafeConfiguration.plist; sourceTree = "<group>"; };
 		209430CD1FB29D59006F0671 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
-		20943E021FD0921900A5ED6F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		20943E021FD0921900A5ED6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		209460701FA8AB8F00555F06 /* Gitcoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gitcoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209460731FA8AB8F00555F06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2094607D1FA8AB8F00555F06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -112,6 +119,7 @@
 		20DF6AB01FD21410000ADA04 /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
 		20DF6AB21FD321B9000ADA04 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		20DF6AB41FD3226C000ADA04 /* NetworkReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
+		20FF58D91FDCCB790068B27C /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		349DAD1AE1F9779BF95D48CE /* Pods-GitcoinUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitcoinUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitcoinUITests/Pods-GitcoinUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		63154C70D0D3D17CE67806F2 /* Pods-Gitcoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gitcoin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Gitcoin/Pods-Gitcoin.debug.xcconfig"; sourceTree = "<group>"; };
 		7A16EC471D73DFDD391CCC07 /* Pods-GitcoinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitcoinTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitcoinTests/Pods-GitcoinTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -155,6 +163,8 @@
 		200052FD1FDC795500D1D8F8 /* Roboto */ = {
 			isa = PBXGroup;
 			children = (
+				2012F7F61FDCD91B004F3B88 /* Roboto-Bold.ttf */,
+				2012F7F41FDCD75C004F3B88 /* Roboto-Medium.ttf */,
 				200052FE1FDC796600D1D8F8 /* Roboto-Regular.ttf */,
 			);
 			path = Roboto;
@@ -163,6 +173,7 @@
 		200053001FDC797000D1D8F8 /* Futura */ = {
 			isa = PBXGroup;
 			children = (
+				2012F7EE1FDCD2F1004F3B88 /* FuturaStd-Book.otf */,
 				200DA7961FA93BAE00FDCE67 /* Futura.ttc */,
 			);
 			path = Futura;
@@ -265,7 +276,7 @@
 				209460731FA8AB8F00555F06 /* AppDelegate.swift */,
 				2094607C1FA8AB8F00555F06 /* LaunchScreen.storyboard */,
 				2094607F1FA8AB8F00555F06 /* Info.plist */,
-				20943E021FD0921900A5ED6F /* Images.xcassets */,
+				20943E021FD0921900A5ED6F /* Assets.xcassets */,
 				200DA7951FA93BA100FDCE67 /* Fonts */,
 				209430CB1FB29CAB006F0671 /* SafeConfiguration.plist */,
 				209430CD1FB29D59006F0671 /* README.md */,
@@ -326,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				20D60D661FC8A35600A8C7C6 /* GitCoinWSTagField.swift */,
+				20FF58D91FDCCB790068B27C /* GradientBackgroundView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -491,13 +503,16 @@
 			files = (
 				200DA7971FA93BAE00FDCE67 /* Futura.ttc in Resources */,
 				20B942BD1FA932110015481C /* BountyCardOverlayView.xib in Resources */,
+				2012F7F71FDCD91B004F3B88 /* Roboto-Bold.ttf in Resources */,
 				200052FF1FDC796B00D1D8F8 /* Roboto-Regular.ttf in Resources */,
 				20B3CADA1FBDE1DF008FA651 /* EndOfBountiesCardView.xib in Resources */,
-				20943E031FD0921A00A5ED6F /* Images.xcassets in Resources */,
+				20943E031FD0921A00A5ED6F /* Assets.xcassets in Resources */,
 				209430CC1FB29CAB006F0671 /* SafeConfiguration.plist in Resources */,
 				2094607E1FA8AB8F00555F06 /* LaunchScreen.storyboard in Resources */,
 				200DA7941FA9388300FDCE67 /* BountyCardView.xib in Resources */,
+				2012F7F51FDCD75C004F3B88 /* Roboto-Medium.ttf in Resources */,
 				200052F01FDC64C000D1D8F8 /* Main.storyboard in Resources */,
+				2012F7EF1FDCD2F2004F3B88 /* FuturaStd-Book.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,6 +766,7 @@
 				200D9F6B1FA8BBB0006C7C06 /* BountyCardKolodaAnimator.swift in Sources */,
 				20B942C01FA932700015481C /* BountyKolodaView.swift in Sources */,
 				20DF6AB51FD3226C000ADA04 /* NetworkReachability.swift in Sources */,
+				20FF58DA1FDCCB790068B27C /* GradientBackgroundView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

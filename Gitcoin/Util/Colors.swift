@@ -10,14 +10,14 @@ import UIKit
 
 extension UIColor {
     struct gitCoin {
-        static let celestialWhite = UIColor(red: 23.0/255.0, green: 244.0/255.0, blue: 238.0/255.0, alpha: 1.0)
-        static let starDustYellow = UIColor(red: 255.0/255.0, green: 206.0/255.0, blue: 8.0/255.0, alpha: 1.0)
-        static let cosmicTeal = UIColor(red: 37.0/255.0, green: 232.0/255.0, blue: 153.0/255.0, alpha: 1.0)
-        static let darkCosmicTeal = UIColor(red: 15.0/255.0, green: 206.0/255.0, blue: 124.0/255.0, alpha: 1.0)
-        static let milkyWayBlue = UIColor(red: 21.0/255.0, green: 0.0/255.0, blue: 62.0/255.0, alpha: 1.0)
-        static let polarisBlue = UIColor(red: 62.0/255.0, green: 0.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-        static let vinusPurple = UIColor(red: 142.0/255.0, green: 42.0/255.0, blue: 190.0/255.0, alpha: 1.0)
-        static let regulusRed = UIColor(red: 249.0/255.0, green: 42.0/255.0, blue: 108.0/255.0, alpha: 1.0)
-        static let green = UIColor(red: 15.0/255.0, green: 206.0/255.0, blue: 124.0/255.0, alpha: 1.0)
+        static let celestialWhite = UIColor(named: "CelestialWhite")!
+        static let starDustYellow = UIColor(named: "StarDustYellow")!
+        static let cosmicTeal = UIColor(named: "CosmicTeal")!
+        static let darkCosmicTeal = UIColor(named: "DarkCosmicTeal")!
+        static let milkyWayBlue = UIColor(named: "MilkyWayBlue")!
+        static let polarisBlue = UIColor(named: "PolarisBlue")!
+        static let vinusPurple = UIColor(named: "VinusPurple")!
+        static let regulusRed = UIColor(named: "RegulusRed")!
+        static let midnightBlue = UIColor(named: "MidnightBlue")!
     }
 }

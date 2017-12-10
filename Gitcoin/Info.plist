@@ -55,6 +55,9 @@
 	<array>
 		<string>Futura.ttc</string>
 		<string>Roboto-Regular.ttf</string>
+		<string>FuturaStd-Book.otf</string>
+		<string>Roboto-Medium.ttf</string>
+		<string>Roboto-Bold.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

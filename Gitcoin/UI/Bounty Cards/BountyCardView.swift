@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import Alamofire
 import AlamofireImage
+import RxCocoa
 
 class BountyCardView: UIView {
 
@@ -17,21 +18,30 @@ class BountyCardView: UIView {
     @IBOutlet weak var avatarImageView: UIImageView!
 
     @IBOutlet weak var fundingTokenAmountLabel: UILabel!
-    @IBOutlet weak var fundingTokenName: UILabel!
     
     @IBOutlet weak var fundingUSDAmountLabel: UILabel!
     @IBOutlet weak var keywordContainer: UIView!
     @IBOutlet weak var postedOnLabel: UILabel!
     @IBOutlet weak var descriptionText: UILabel!
     
+    @IBOutlet weak var negativeCardActionButton: UIButton!
+    
+    @IBOutlet weak var positiveCardActionButton: UIButton!
+    
     let tagsField = GitCoinWSTagField()
+    
+    let disposeBag = DisposeBag()
+    
+    var kolodaView: BountyKolodaView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    class func fromNib(with bounty: Bounty) -> BountyCardView {
+    class func fromNib(with bounty: Bounty, and _kolodaView: BountyKolodaView) -> BountyCardView {
         let bountyCardView = Bundle.main.loadNibNamed(String(describing: BountyCardView.self), owner: nil, options: nil)![0] as! BountyCardView
+        
+        bountyCardView.kolodaView = _kolodaView
         
         bountyCardView.titleLabel.text = bounty.title
         
@@ -42,26 +52,23 @@ class BountyCardView: UIView {
             Alamofire.request(avatarUrl).responseImage { response in
                 
                 if let image = response.result.value {
-                    let circularImage = image.af_imageRounded(withCornerRadius: 20.0, divideRadiusByImageScale: true)
+                    
+                    let circularImage = image.af_imageRoundedIntoCircle()
                     
                     bountyCardView.avatarImageView.image = circularImage
                 }
             }
         }
         
-        bountyCardView.fundingTokenName.text = bounty.tokenName ?? ""
-        
         bountyCardView.descriptionText.text = bounty.descriptionText ?? ""
         
-        if let valueTrue = bounty.valueTrue {
-            bountyCardView.fundingTokenAmountLabel.text = String(describing: valueTrue)
-        }else{
-            bountyCardView.fundingTokenAmountLabel.text = ""
-        }
+        bountyCardView.fundingTokenAmountLabel.text = bounty.tokenValueString
         
         bountyCardView.fundingUSDAmountLabel.text = bounty.usdtDisplayValue
         
         bountyCardView.postedOnLabel.text = bounty.createdAgo
+        
+        bountyCardView.observeUI()
         
         return bountyCardView
     }
@@ -84,5 +91,20 @@ class BountyCardView: UIView {
         ])
         
         tagsField.addTags(keywords)
+    }
+    
+    /// Subscribe to actions on various ui/buttons
+    func observeUI(){
+        let negativeCardActionButtonSubscription = negativeCardActionButton.rx.tap.bind {
+            self.kolodaView?.swipe(.left)
+        }
+        
+        disposeBag.insert(negativeCardActionButtonSubscription)
+        
+        let positiveCardActionButtonSubscription = positiveCardActionButton.rx.tap.bind {
+            self.kolodaView?.swipe(.right)
+        }
+        
+        disposeBag.insert(positiveCardActionButtonSubscription)
     }
 }

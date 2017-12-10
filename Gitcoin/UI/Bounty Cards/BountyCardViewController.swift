@@ -35,9 +35,6 @@ class BountyCardViewController: UIViewController {
     
     @IBOutlet weak var profileBarButtonItem: UIBarButtonItem!
     
-    @IBOutlet weak var negativeCardActionButton: UIButton!
-    @IBOutlet weak var positiveCardActionButton: UIButton!
-    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +44,6 @@ class BountyCardViewController: UIViewController {
         kolodaView.delegate = self
         kolodaView.dataSource = self
         kolodaView.animator = BountyCardKolodaAnimator(koloda: kolodaView)
-        
-        observeUI()
         
         observeUserActions()
     }
@@ -98,17 +93,11 @@ extension BountyCardViewController: KolodaViewDelegate {
     func koloda(_ koloda: KolodaView, didShowCardAt index: Int) {
         
         if isEndOfBountiesCard(index) {
-            
-            negativeCardActionButton.isHidden = true
-            positiveCardActionButton.isHidden = true
-            
+
             TrackingManager.shared.trackEvent(.didViewEndOfBounties)
 
             return
         }
-        
-        negativeCardActionButton.isHidden = false
-        positiveCardActionButton.isHidden = false
         
         let bounty = data[index]
         
@@ -168,6 +157,10 @@ extension BountyCardViewController: KolodaViewDelegate {
             .subscribe { event in
                 switch event {
                 case .success(_):
+                    
+                    // dont set lastViewedBountyId if not logged in
+                    // guard let _ = user else { return }
+                    
                     // set the lastViewedBountyId after a successful action has been taken
                     // this will ensure the user only sees the bounties once
                     Defaults[UserDefaultKeyConstants.lastViewedBountyId] = bounty.id
@@ -230,7 +223,7 @@ extension BountyCardViewController: KolodaViewDataSource {
     }
     
     fileprivate func bountyCardView(for bounty:Bounty) -> UIView {
-        return BountyCardView.fromNib(with: bounty)
+        return BountyCardView.fromNib(with: bounty, and: self.kolodaView)
     }
 }
 
@@ -326,21 +319,6 @@ extension BountyCardViewController {
             })
         
         disposeBag.insert(subscription)
-    }
-    
-    /// Subscribe to actions on various ui/buttons
-    func observeUI(){
-        let negativeCardActionButtonSubscription = negativeCardActionButton.rx.tap.bind {
-            self.kolodaView?.swipe(.left)
-        }
-        
-        disposeBag.insert(negativeCardActionButtonSubscription)
-        
-        let positiveCardActionButtonSubscription = positiveCardActionButton.rx.tap.bind {
-            self.kolodaView?.swipe(.right)
-        }
-        
-        disposeBag.insert(positiveCardActionButtonSubscription)
     }
     
     /// Helper method to determine if the given index is the last index of

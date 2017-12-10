@@ -22,11 +22,11 @@ class GitCoinWSTagField: WSTagsField {
     }
 
     fileprivate func internalInit(){
-        padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+//        padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         spaceBetweenTags = 10.0
-        font = UIFont.futuraFont()
-        tintColor = UIColor.gitCoin.darkCosmicTeal
-        textColor = .black
+        font = UIFont.robotoMediumFont(size: 12.0)
+        tintColor = UIColor.gitCoin.midnightBlue
+        textColor = .white
         fieldTextColor = .black
         selectedColor = UIColor.gitCoin.polarisBlue
         selectedTextColor = UIColor.gitCoin.celestialWhite
