@@ -9,11 +9,16 @@
 import UIKit
 import RxSwift
 import RxCocoa
-
+import youtube_ios_player_helper
 
 class InfoViewController: UIViewController {
+    
+    @IBOutlet weak var playerView: YTPlayerView!
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        playerView.load(withVideoId: "DJartWzDn0E")
         
         TrackingManager.shared.trackEvent(.didViewInfo)
     }

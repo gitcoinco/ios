@@ -185,7 +185,7 @@
                                 <view clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="GvU-Qt-gJz" userLabel="Description">
                                     <rect key="frame" x="0.0" y="483.66666666666669" width="414" height="156.33333333333331"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" verticalCompressionResistancePriority="300" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1rD-ZA-SaL">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" verticalCompressionResistancePriority="300" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1rD-ZA-SaL">
                                             <rect key="frame" x="10" y="0.0" width="394" height="146.33333333333334"/>
                                             <string key="text">Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
 

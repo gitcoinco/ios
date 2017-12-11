@@ -58,6 +58,7 @@
 		<string>FuturaStd-Book.otf</string>
 		<string>Roboto-Medium.ttf</string>
 		<string>Roboto-Bold.ttf</string>
+		<string>FuturaStd-MediumOblique.otf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

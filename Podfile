@@ -45,6 +45,8 @@ target 'Gitcoin' do
   
   pod 'Whisper', '= 5.1.0'
   
+  pod 'youtube-ios-player-helper', '~> 0.1'
+  
   target 'GitcoinTests' do
     inherit! :search_paths
     # Pods for testing

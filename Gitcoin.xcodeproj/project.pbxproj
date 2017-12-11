@@ -44,6 +44,7 @@
 		20B942BD1FA932110015481C /* BountyCardOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20B942BB1FA932110015481C /* BountyCardOverlayView.xib */; };
 		20B942C01FA932700015481C /* BountyKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B942BF1FA932700015481C /* BountyKolodaView.swift */; };
 		20D60D671FC8A35600A8C7C6 /* GitCoinWSTagField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D60D661FC8A35600A8C7C6 /* GitCoinWSTagField.swift */; };
+		20D851BC1FDE0029001FB01D /* FuturaStd-MediumOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 20D851BB1FDE0028001FB01D /* FuturaStd-MediumOblique.otf */; };
 		20DF6AB11FD21410000ADA04 /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF6AB01FD21410000ADA04 /* KeychainSwiftDistrib.swift */; };
 		20DF6AB31FD321B9000ADA04 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF6AB21FD321B9000ADA04 /* Reachability.swift */; };
 		20DF6AB51FD3226C000ADA04 /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF6AB41FD3226C000ADA04 /* NetworkReachability.swift */; };
@@ -120,6 +121,7 @@
 		20B942BB1FA932110015481C /* BountyCardOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BountyCardOverlayView.xib; sourceTree = "<group>"; };
 		20B942BF1FA932700015481C /* BountyKolodaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyKolodaView.swift; sourceTree = "<group>"; };
 		20D60D661FC8A35600A8C7C6 /* GitCoinWSTagField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCoinWSTagField.swift; sourceTree = "<group>"; };
+		20D851BB1FDE0028001FB01D /* FuturaStd-MediumOblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FuturaStd-MediumOblique.otf"; sourceTree = "<group>"; };
 		20DF6AB01FD21410000ADA04 /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
 		20DF6AB21FD321B9000ADA04 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		20DF6AB41FD3226C000ADA04 /* NetworkReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		200053001FDC797000D1D8F8 /* Futura */ = {
 			isa = PBXGroup;
 			children = (
+				20D851BB1FDE0028001FB01D /* FuturaStd-MediumOblique.otf */,
 				2012F7EE1FDCD2F1004F3B88 /* FuturaStd-Book.otf */,
 				200DA7961FA93BAE00FDCE67 /* Futura.ttc */,
 			);
@@ -511,6 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				200DA7971FA93BAE00FDCE67 /* Futura.ttc in Resources */,
+				20D851BC1FDE0029001FB01D /* FuturaStd-MediumOblique.otf in Resources */,
 				20B942BD1FA932110015481C /* BountyCardOverlayView.xib in Resources */,
 				2012F7F71FDCD91B004F3B88 /* Roboto-Bold.ttf in Resources */,
 				200052FF1FDC796B00D1D8F8 /* Roboto-Regular.ttf in Resources */,
@@ -651,6 +655,7 @@
 				"${BUILT_PRODUCTS_DIR}/WSTagsField/WSTagsField.framework",
 				"${BUILT_PRODUCTS_DIR}/Whisper/Whisper.framework",
 				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
+				"${BUILT_PRODUCTS_DIR}/youtube-ios-player-helper/youtube_ios_player_helper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -676,6 +681,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WSTagsField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Whisper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/youtube_ios_player_helper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
