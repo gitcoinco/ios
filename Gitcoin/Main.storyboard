@@ -722,6 +722,7 @@ Example: ruby, rails, html, css, javascript</string>
                     </view>
                     <connections>
                         <outlet property="playerView" destination="X0M-gG-a8Y" id="Yo0-Ko-hvU"/>
+                        <outlet property="versionLabel" destination="v6R-Dt-M7W" id="O6W-pb-yde"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DwK-ud-Kfc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -775,21 +776,6 @@ Example: ruby, rails, html, css, javascript</string>
         </namedColor>
         <namedColor name="Black38">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.37999999523162842" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Black87">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000479999995" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Black87">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000479999995" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Black87">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000479999995" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Black87">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Black87">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000479999995" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Black87">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000479999995" colorSpace="custom" customColorSpace="sRGB"/>

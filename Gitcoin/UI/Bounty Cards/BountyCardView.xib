@@ -97,7 +97,7 @@
                                                         <constraint firstAttribute="height" constant="100" id="o1d-7n-yZC"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xzE-D1-hTG" userLabel="Title">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xzE-D1-hTG" userLabel="Title">
                                                     <rect key="frame" x="115" y="0.0" width="259" height="100"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
