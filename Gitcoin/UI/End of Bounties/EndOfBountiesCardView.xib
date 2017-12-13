@@ -184,7 +184,7 @@ In the meantime, want to engage with the community?</string>
                                                 <constraint firstAttribute="height" constant="1" id="Eul-4i-Afh"/>
                                             </constraints>
                                         </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gc-logo" translatesAutoresizingMaskIntoConstraints="NO" id="nwv-rM-D1s">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gc-logo-gray" translatesAutoresizingMaskIntoConstraints="NO" id="nwv-rM-D1s">
                                             <rect key="frame" x="80.5" y="20" width="160" height="26"/>
                                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -259,7 +259,7 @@ In the meantime, want to engage with the community?</string>
     </objects>
     <resources>
         <image name="gc-join-slack-btn" width="179" height="42"/>
-        <image name="gc-logo" width="160" height="26"/>
+        <image name="gc-logo-gray" width="160" height="26"/>
         <image name="gc-refresh-bounties-btn" width="179" height="42"/>
         <namedColor name="Black12">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.11999999729999999" colorSpace="custom" customColorSpace="sRGB"/>
