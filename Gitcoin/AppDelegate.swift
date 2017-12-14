@@ -58,6 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PushNotificationDelegate 
         // register for push notifications!
         PushNotificationManager.push().registerForPushNotifications()
         
+        Crashlytics.sharedInstance().setUserIdentifier(PushNotificationManager.push().getHWID())
+        
         NetworkReachability.shared.start()
         
         //setup custom navigation bar
@@ -65,6 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PushNotificationDelegate 
         let image = #imageLiteral(resourceName: "nav-bar-bg")
         
         navigationBarAppearace.setBackgroundImage(image.resizableImage(withCapInsets: UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: .stretch), for: .default)
+        
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         
         return false
     }
@@ -101,6 +105,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PushNotificationDelegate 
     func onPushAccepted(_ pushManager: PushNotificationManager!, withNotification pushNotification: [AnyHashable : Any]!, onStart: Bool) {
         logger.verbose("Push notification accepted: \(pushNotification)")
         // shows a user tapped the notification. Implement user interaction, such as showing push details
+    }
+    
+    
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+
+        let lastViewedBountyId = Defaults[UserDefaultKeyConstants.lastViewedBountyId]
+        let userKeywords = Defaults[UserDefaultKeyConstants.userKeywords]
+        
+        _ = GitcoinAPIService.shared.provider.rx.request(.bounties(lastViewedBountyId: lastViewedBountyId, userKeywords: userKeywords))
+            .map(to: [Bounty].self)
+            .subscribe { event in
+                switch event {
+                case .success(let repos):
+                    TrackingManager.shared.trackEvent(GitcoinEvent.didBountyCountChange(count: repos.count))
+                    completionHandler(UIBackgroundFetchResult.newData)
+                case .error(_):
+                    
+                    completionHandler(UIBackgroundFetchResult.failed)
+                }
+        }
     }
     
     fileprivate func setupLogger(){
