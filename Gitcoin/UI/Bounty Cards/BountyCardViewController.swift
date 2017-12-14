@@ -27,9 +27,11 @@ class BountyCardViewController: UIViewController {
     let kolodaCountOfVisibleCards = 2
     let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
     
-    var data = [Bounty]()
+    var data:[Bounty]?
     
     let disposeBag = DisposeBag()
+    
+    let bountyCount = Variable(-1)
 
     @IBOutlet weak var kolodaView: BountyKolodaView!
     
@@ -46,6 +48,17 @@ class BountyCardViewController: UIViewController {
         kolodaView.animator = BountyCardKolodaAnimator(koloda: kolodaView)
         
         observeUserActions()
+        
+        //TODO: put on background via observe on
+        let bountyCountSubscription = bountyCount
+            .asObservable()
+            .subscribe(onNext: { count in
+                if count >= 0 {
+                    TrackingManager.shared.trackEvent(GitcoinEvent.didBountyCountChange(count: count))
+                }
+            })
+        
+        disposeBag.insert(bountyCountSubscription)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +72,8 @@ class BountyCardViewController: UIViewController {
 extension BountyCardViewController: KolodaViewDelegate {
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
+        
+        guard let data = data else { return }
         
         if isEndOfBountiesCard(index) { return }
         
@@ -92,6 +107,8 @@ extension BountyCardViewController: KolodaViewDelegate {
     
     func koloda(_ koloda: KolodaView, didShowCardAt index: Int) {
         
+        guard let data = data else { return }
+        
         if isEndOfBountiesCard(index) {
 
             TrackingManager.shared.trackEvent(.didViewEndOfBounties)
@@ -106,6 +123,8 @@ extension BountyCardViewController: KolodaViewDelegate {
     
     /// When an action has been taken on a bounty card, pass the information to the gitcoinAPI
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
+        
+        guard let data = data else { return }
         
         if isEndOfBountiesCard(index) { return }
         
@@ -147,6 +166,8 @@ extension BountyCardViewController: KolodaViewDelegate {
         
         let bounty = data[index]
         let user = OctokitManager.shared.user.value
+        
+        self.bountyCount.value = self.bountyCount.value - 1
         
         // The api is looking for + or -
         let mappedDirection = direction == SwipeResultDirection.left ? "-" : "+"
@@ -200,11 +221,15 @@ extension BountyCardViewController: KolodaViewDataSource {
     }
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
+        guard let data = data else { return 0 }
+        
         return data.count + 1 // + 1 is the final out of bounties card view
     }
     
     /// instantiate a custom BountyCardView and set its bounty value
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
+        
+        guard let data = data else { return UIView() }
 
         if isEndOfBountiesCard(index) {
             guard let bountyCardView = Bundle.main.loadNibNamed("EndOfBountiesCardView", owner: self, options: nil)?[0] as? EndOfBountiesCardView
@@ -255,6 +280,9 @@ extension BountyCardViewController {
                     self.kolodaView.resetCurrentCardIndex()
                     
                     SwiftSpinner.hide()
+                    
+                    self.bountyCount.value = self.data?.count ?? 0
+                
                 case .error(let e):
                     
                     TrackingManager.shared.trackEvent(.didError(title:"Bounties API Request Error", error: e))
@@ -331,6 +359,6 @@ extension BountyCardViewController {
     /// Helper method to determine if the given index is the last index of
     ///   our bounty data array. This last index represents the "End of Bounties" View
     func isEndOfBountiesCard(_ index: Int) -> Bool {
-        return index >= data.count
+        return index >= (data?.count ?? 0)
     }
 }

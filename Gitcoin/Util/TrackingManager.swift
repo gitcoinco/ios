@@ -19,14 +19,17 @@ enum GitcoinEvent {
     case didTapBounty(bounty: Bounty)
     case didSwipeBounty(bounty: Bounty, direction: String, user: User?)
     case didViewEndOfBounties
+    case didBountyCountChange(count: Int)
     case didViewProfile
     case didCloseProfile
-    case didEditKeywords(user: User?, action: String, keyword: String)
+    case didEditKeywords(user: User?, action: String, keyword: String, keywords: [Any]?)
     case didViewInfo
     case didCloseInfo
     
     case didTapJoinSlack
     case didTapRefreshBounties
+    
+    case didPlayWhatIsGitCoinVideo
     
     case didError(title: String, error: Error)
 }
@@ -42,6 +45,11 @@ class TrackingManager {
                 Answers.logLogin(withMethod: "github", success: 1, customAttributes: user.dictionaryWithAllValues())
                 
                 Mixpanel.mainInstance().track(event: "didLoadAuthenticatedUser", properties: user.dictionaryWithAllValues() as? Properties)
+                
+                PWInAppManager.shared().setUserId(user.email)
+                
+                PushNotificationManager.push().setTags(user.dictionaryWithAllValues())
+                
             case .didSignIn(let user):
                 
                 Answers.logCustomEvent(withName: "didSignIn", customAttributes: user.dictionaryWithAllValues())
@@ -54,6 +62,8 @@ class TrackingManager {
                 Answers.logCustomEvent(withName: "didCloseInfo")
                 Mixpanel.mainInstance().track(event: "didCloseInfo")
                 PWInAppManager.shared().postEvent("didCloseInfo")
+                
+                PWInAppManager.shared().setUserId(nil)
                 
             case .didViewBounty(let bounty):
                 
@@ -91,6 +101,10 @@ class TrackingManager {
                 Answers.logCustomEvent(withName: "didSwipeBounty", customAttributes: customAttributes)
                 Mixpanel.mainInstance().track(event: "didSwipeBounty", properties: customAttributes)
                 PWInAppManager.shared().postEvent("didSwipeBounty", withAttributes: customAttributes)
+            case .didBountyCountChange(let count):
+                PushNotificationManager.push().setTags(["bountyCount": count]) { _ in
+                    logger.verbose("did setTag: bountyCount=\(count) to PushWoosh")
+                }
             case .didViewProfile:
                 
                 Answers.logCustomEvent(withName: "didViewProfile")
@@ -101,7 +115,12 @@ class TrackingManager {
                 Answers.logCustomEvent(withName: "didCloseProfile")
                 Mixpanel.mainInstance().track(event: "didCloseProfile")
                 PWInAppManager.shared().postEvent("didCloseProfile")
-            case .didEditKeywords(let user, let action, let keyword):
+            case .didPlayWhatIsGitCoinVideo:
+                
+                Answers.logCustomEvent(withName: "didPlayWhatIsGitCoinVideo")
+                Mixpanel.mainInstance().track(event: "didPlayWhatIsGitCoinVideo")
+                PWInAppManager.shared().postEvent("didPlayWhatIsGitCoinVideo")
+            case .didEditKeywords(let user, let action, let keyword, let keywords):
                 
                 var customAttributes = ["action": action, "keyword": keyword]
             
@@ -117,6 +136,12 @@ class TrackingManager {
                 Answers.logCustomEvent(withName: "didEditKeywords", customAttributes: customAttributes)
                 Mixpanel.mainInstance().track(event: "didEditKeywords", properties: customAttributes)
                 PWInAppManager.shared().postEvent("didEditKeywords", withAttributes: customAttributes)
+                
+                if let keywords = keywords {
+                    PushNotificationManager.push().setTags(["keywords": keywords]) { _ in
+                        logger.verbose("did setTag: Keywords=\(keywords) to PushWoosh")
+                    }
+                }
                 
             case .didViewInfo:
                 
@@ -135,6 +160,11 @@ class TrackingManager {
                 Answers.logCustomEvent(withName: "didViewEndOfBounties")
                 Mixpanel.mainInstance().track(event: "didViewEndOfBounties")
                 PWInAppManager.shared().postEvent("didViewEndOfBounties")
+                
+                PushNotificationManager.push().setTags(["lastSeenEndOfBountiesDate": Date().timeIntervalSince1970]) { _ in
+                    logger.verbose("did setTag: Last See End of Bounties=\(Date()) to PushWoosh")
+                }
+                
             case .didTapJoinSlack:
                 
                 Answers.logCustomEvent(withName: "didTapJoinSlack")

@@ -111,7 +111,7 @@ class ProfileSignedInViewController: UIViewController {
 
                 logger.verbose("Persisted tag \(keyword) to defaults")
 
-                TrackingManager.shared.trackEvent(.didEditKeywords(user: OctokitManager.shared.user.value, action: "added", keyword: keyword))
+                TrackingManager.shared.trackEvent(.didEditKeywords(user: OctokitManager.shared.user.value, action: "added", keyword: keyword, keywords: Defaults[UserDefaultKeyConstants.userKeywords]))
             }
         }
 
@@ -123,7 +123,7 @@ class ProfileSignedInViewController: UIViewController {
 
                 logger.verbose("Removed tag \(keyword)")
 
-                TrackingManager.shared.trackEvent(.didEditKeywords(user: OctokitManager.shared.user.value, action: "removed", keyword: keyword))
+                TrackingManager.shared.trackEvent(.didEditKeywords(user: OctokitManager.shared.user.value, action: "removed", keyword: keyword, keywords: Defaults[UserDefaultKeyConstants.userKeywords]))
             }
         }
 

@@ -31,12 +31,15 @@ class InfoViewController: UIViewController {
         }
         
         self.versionLabel.text = versionText
+        
+        playerView.delegate = self
+
+        playerView.load(withVideoId: "DJartWzDn0E")
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        playerView.load(withVideoId: "DJartWzDn0E")
         
         TrackingManager.shared.trackEvent(.didViewInfo)
     }
@@ -45,5 +48,13 @@ class InfoViewController: UIViewController {
         super.viewDidDisappear(animated)
         
         TrackingManager.shared.trackEvent(.didCloseInfo)
+    }
+}
+
+extension InfoViewController: YTPlayerViewDelegate{
+    func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
+        if state == YTPlayerState.playing {
+            TrackingManager.shared.trackEvent(.didPlayWhatIsGitCoinVideo)
+        }
     }
 }

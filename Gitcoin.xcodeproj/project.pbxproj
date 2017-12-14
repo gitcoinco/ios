@@ -23,6 +23,8 @@
 		2012F7F71FDCD91B004F3B88 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2012F7F61FDCD91B004F3B88 /* Roboto-Bold.ttf */; };
 		201326541FBC7F5D001EC1B5 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201326531FBC7F5D001EC1B5 /* InfoViewController.swift */; };
 		202952B61FBC718100FEAB4F /* ProfileContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202952B51FBC718100FEAB4F /* ProfileContainerViewController.swift */; };
+		20303C9D1FE2D02600E132E8 /* PlayerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20303C9C1FE2D02600E132E8 /* PlayerContainerView.swift */; };
+		20303C9F1FE2D14500E132E8 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20303C9E1FE2D14500E132E8 /* Device.swift */; };
 		20559D661FB2771600170860 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20559D651FB2771600170860 /* Globals.swift */; };
 		20619D2E1FDDEFC700856D96 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20619D2D1FDDEFC700856D96 /* UIView+.swift */; };
 		2079CDF71FD085C200A912C9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2079CDF61FD085C200A912C9 /* libz.tbd */; };
@@ -92,6 +94,8 @@
 		2012F7F61FDCD91B004F3B88 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		201326531FBC7F5D001EC1B5 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		202952B51FBC718100FEAB4F /* ProfileContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContainerViewController.swift; sourceTree = "<group>"; };
+		20303C9C1FE2D02600E132E8 /* PlayerContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerContainerView.swift; sourceTree = "<group>"; };
+		20303C9E1FE2D14500E132E8 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		20559D651FB2771600170860 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		20619D2D1FDDEFC700856D96 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		2079CDF61FD085C200A912C9 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -237,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				201326531FBC7F5D001EC1B5 /* InfoViewController.swift */,
+				20303C9C1FE2D02600E132E8 /* PlayerContainerView.swift */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -357,6 +362,7 @@
 		20DF6AAF1FD2135E000ADA04 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				20303C9E1FE2D14500E132E8 /* Device.swift */,
 				20DF6AB21FD321B9000ADA04 /* Reachability.swift */,
 				20DF6AB01FD21410000ADA04 /* KeychainSwiftDistrib.swift */,
 			);
@@ -768,6 +774,7 @@
 				20DF6AB11FD21410000ADA04 /* KeychainSwiftDistrib.swift in Sources */,
 				202952B61FBC718100FEAB4F /* ProfileContainerViewController.swift in Sources */,
 				20B942BC1FA932110015481C /* BountyCardOverlayView.swift in Sources */,
+				20303C9F1FE2D14500E132E8 /* Device.swift in Sources */,
 				2088B0031FD32E01007F940C /* TrackingManager.swift in Sources */,
 				20B8373E1FABD71E00680FC0 /* GitcoinAPIService.swift in Sources */,
 				200DA7921FA9385A00FDCE67 /* BountyCardView.swift in Sources */,
@@ -781,6 +788,7 @@
 				20559D661FB2771600170860 /* Globals.swift in Sources */,
 				200D9F6B1FA8BBB0006C7C06 /* BountyCardKolodaAnimator.swift in Sources */,
 				20B942C01FA932700015481C /* BountyKolodaView.swift in Sources */,
+				20303C9D1FE2D02600E132E8 /* PlayerContainerView.swift in Sources */,
 				20DF6AB51FD3226C000ADA04 /* NetworkReachability.swift in Sources */,
 				20FF15091FDD899600D78A26 /* ProfileSignedInViewController.swift in Sources */,
 				20FF58DA1FDCCB790068B27C /* GradientBackgroundView.swift in Sources */,
