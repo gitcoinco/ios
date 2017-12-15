@@ -95,10 +95,6 @@ class OctokitManager: NSObject {
                 case .success(let user):
                     self.user.value = user
                     
-                    // Send some intel to PushWoosh
-                    PWInAppManager.shared().setUserId(user.email)
-                    PushNotificationManager.push().setTags(user.dictionaryWithAllValues())
-                    
                     if emitSignInAction {
                         self.userActionSubject.onNext(.signedIn(user))
                         TrackingManager.shared.trackEvent(.didSignIn(user: user))
