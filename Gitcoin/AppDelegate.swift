@@ -70,11 +70,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PushNotificationDelegate 
         
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
         return false
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         NetworkReachability.shared.start()
+        
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
