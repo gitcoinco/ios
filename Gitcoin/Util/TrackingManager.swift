@@ -34,6 +34,11 @@ enum GitcoinEvent {
     case didError(title: String, error: Error)
 }
 
+enum GitcoinState {
+    case isSignedIn
+    case isSignedOut
+}
+
 class TrackingManager {
     static let shared = TrackingManager()
     
@@ -180,6 +185,17 @@ class TrackingManager {
                 Answers.logCustomEvent(withName: title, customAttributes: ["error": error.localizedDescription])
                 Mixpanel.mainInstance().track(event: title, properties: ["error": error.localizedDescription])
                 PWInAppManager.shared().postEvent(title, withAttributes: ["error": error.localizedDescription])
+            }
+        }
+    }
+    
+    func trackState(_ state: GitcoinState) {
+        DispatchQueue.global(qos: .background).async {
+            switch state {
+            case .isSignedIn:
+                PushNotificationManager.push().setTags(["isSignedOut": false])
+            case .isSignedOut:
+                PushNotificationManager.push().setTags(["isSignedOut": true])
             }
         }
     }

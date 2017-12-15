@@ -85,6 +85,8 @@ class OctokitManager: NSObject {
         
         if isSignedIn {
             loadMe()
+        }else{
+            TrackingManager.shared.trackState(.isSignedOut)
         }
     }
     
@@ -94,6 +96,8 @@ class OctokitManager: NSObject {
                 switch response {
                 case .success(let user):
                     self.user.value = user
+                    
+                    TrackingManager.shared.trackState(.isSignedIn)
                     
                     if emitSignInAction {
                         self.userActionSubject.onNext(.signedIn(user))
@@ -117,6 +121,7 @@ class OctokitManager: NSObject {
     func signOut(){
         TrackingManager.shared.trackEvent(.didSignOut)
         self.tokenConfiguration = nil
+        TrackingManager.shared.trackState(.isSignedOut)
     }
 }
 
