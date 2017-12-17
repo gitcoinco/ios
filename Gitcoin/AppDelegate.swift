@@ -122,8 +122,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PushNotificationDelegate 
             .subscribe { event in
                 switch event {
                 case .success(let repos):
+                    
+                    TrackingManager.shared.trackEvent(GitcoinEvent.didBackgroundBountyFetch(hasBounties: repos.count > 0))
                     TrackingManager.shared.trackEvent(GitcoinEvent.didBountyCountChange(count: repos.count))
                     completionHandler(UIBackgroundFetchResult.newData)
+                    
                 case .error(_):
                     
                     completionHandler(UIBackgroundFetchResult.failed)

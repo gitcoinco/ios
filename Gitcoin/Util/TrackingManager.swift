@@ -19,15 +19,17 @@ enum GitcoinEvent {
     case didTapBounty(bounty: Bounty)
     case didSwipeBounty(bounty: Bounty, direction: String, user: User?)
     case didViewEndOfBounties
-    case didBountyCountChange(count: Int)
+    
     case didViewProfile
     case didCloseProfile
     case didEditKeywords(user: User?, action: String, keyword: String, keywords: [Any]?)
     case didViewInfo
     case didCloseInfo
-    
     case didTapJoinSlack
+    
     case didTapRefreshBounties
+    case didBountyCountChange(count: Int)
+    case didBackgroundBountyFetch(hasBounties: Bool)
     
     case didPlayWhatIsGitCoinVideo
     
@@ -106,25 +108,31 @@ class TrackingManager {
                 Answers.logCustomEvent(withName: "didSwipeBounty", customAttributes: customAttributes)
                 Mixpanel.mainInstance().track(event: "didSwipeBounty", properties: customAttributes)
                 PWInAppManager.shared().postEvent("didSwipeBounty", withAttributes: customAttributes)
+                
             case .didBountyCountChange(let count):
+                
                 PushNotificationManager.push().setTags(["bountyCount": count]) { _ in
                     logger.verbose("did setTag: bountyCount=\(count) to PushWoosh")
                 }
+                
             case .didViewProfile:
                 
                 Answers.logCustomEvent(withName: "didViewProfile")
                 Mixpanel.mainInstance().track(event: "didViewProfile")
                 PWInAppManager.shared().postEvent("didViewProfile")
+                
             case .didCloseProfile:
                 
                 Answers.logCustomEvent(withName: "didCloseProfile")
                 Mixpanel.mainInstance().track(event: "didCloseProfile")
                 PWInAppManager.shared().postEvent("didCloseProfile")
+                
             case .didPlayWhatIsGitCoinVideo:
                 
                 Answers.logCustomEvent(withName: "didPlayWhatIsGitCoinVideo")
                 Mixpanel.mainInstance().track(event: "didPlayWhatIsGitCoinVideo")
                 PWInAppManager.shared().postEvent("didPlayWhatIsGitCoinVideo")
+                
             case .didEditKeywords(let user, let action, let keyword, let keywords):
                 
                 var customAttributes = ["action": action, "keyword": keyword]
@@ -170,21 +178,39 @@ class TrackingManager {
                     logger.verbose("did setTag: Last See End of Bounties=\(Date()) to PushWoosh")
                 }
                 
+            case .didBackgroundBountyFetch(let hasBounties):
+                
+                Answers.logCustomEvent(withName: "didBackgroundBountyFetch", customAttributes: ["hasBounties": hasBounties])
+                
+                Mixpanel.mainInstance().track(event: "didBackgroundBountyFetch", properties: ["hasBounties": hasBounties])
+                
+                PWInAppManager.shared().postEvent("didBackgroundBountyFetch", withAttributes: ["hasBounties": hasBounties]) { _ in
+                    logger.verbose("did postEvent: didBackgroundBountyFetch hasBounties=\(hasBounties) to PushWoosh")
+                }
+                
+                if hasBounties {
+                    PWInAppManager.shared().postEvent("didFindBountiesInBackground") { _ in
+                        logger.verbose("did postEvent: didFindBountiesInBackground to PushWoosh")
+                    }
+                }
             case .didTapJoinSlack:
                 
                 Answers.logCustomEvent(withName: "didTapJoinSlack")
                 Mixpanel.mainInstance().track(event: "didTapJoinSlack")
                 PWInAppManager.shared().postEvent("didTapJoinSlack")
+                
             case .didTapRefreshBounties:
                 
                 Answers.logCustomEvent(withName: "didTapRefreshBounties")
                 Mixpanel.mainInstance().track(event: "didTapRefreshBounties")
                 PWInAppManager.shared().postEvent("didTapRefreshBounties")
+                
             case .didError(let title, let error):
                 
                 Answers.logCustomEvent(withName: title, customAttributes: ["error": error.localizedDescription])
                 Mixpanel.mainInstance().track(event: title, properties: ["error": error.localizedDescription])
                 PWInAppManager.shared().postEvent(title, withAttributes: ["error": error.localizedDescription])
+                
             }
         }
     }
