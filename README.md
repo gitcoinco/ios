@@ -8,10 +8,11 @@ This is an app that allows one to explore funded issues from their iPhone.
 
 # Demo
 
-Watch the gif below, or <a href="https://youtu.be/BhOA1EI4hJw">check out the video</a>.
+Watch the gif below, or <a href="https://TBD">check out the video</a>.
 
-<a href="https://youtu.be/BhOA1EI4hJw">
+<a href="https://TBD">
 <img src='img/demo.gif'/>
+TBD
 </a>
 
 # Gitcoin
@@ -23,11 +24,27 @@ Gitcoin pushes Open Source Forward. Learn more at [https://gitcoin.co](https://g
 Built as part of the [ETHWaterloo Hackathon 2017](https://ethwaterloo.com).
 
 
+# Credits
 
-# credits
+Thanks to  [Koloda](https://github.com/Yalantis/Koloda).
 
-Thanks to Richard Kim for [RKSwipeCards](https://github.com/cwRichardKim/RKSwipeCards).
 
+# Setup
+1. Install cocoapods, and run pod install
+2. Create a SafeConfiguration.plist file and add the following keys as strings: gitHubOAuthToken, gitHubOAuthSecret
+3. See the SafeConfiguration struct in Global Constants for more variables
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+<key>gitHubOAuthToken</key>
+<string>xxxxxxxx</string>
+<key>gitHubOAuthSecret</key>
+<string>xxxxxxx</string>
+</dict>
+</plist>
+```
 
 
 # Legal
