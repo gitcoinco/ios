@@ -115,6 +115,10 @@ class TrackingManager {
                     logger.verbose("did setTag: bountyCount=\(count) to PushWoosh")
                 }
                 
+                if count > 0 {
+                    PushNotificationManager.push().setTags(["lastSeenEndOfBountiesDate": Optional<Date>.none as Any])
+                }  
+                
             case .didViewProfile:
                 
                 Answers.logCustomEvent(withName: "didViewProfile")
