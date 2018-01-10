@@ -79,7 +79,7 @@ class OctokitManager: NSObject {
             fatalError("\n The SafeConfiguration.plist file can't be found. Please generate it with the following keys: gitHubOAuthToken, gitHubOAuthSecret")
         }
         
-        self.oAuthConfig = OAuthConfiguration(token: gitHubOAuthToken, secret: gitHubOAuthSecret, scopes: ["repo", "read:org"])
+        self.oAuthConfig = OAuthConfiguration(token: gitHubOAuthToken, secret: gitHubOAuthSecret, scopes: ["read:user", "read:org", "user:email"])
         
         super.init()
         
