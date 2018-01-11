@@ -20,17 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PushNotificationDelegate 
 
     var window: UIWindow?
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        
-        // Callback entry point during GitHub SSO
-        // See OctokitManager for the observation of this default value
-        OctokitManager.shared.oAuthConfig.handleOpenURL(url: url, completion: { (token) in
-            OctokitManager.shared.tokenConfiguration = token
-        })
-        
-        return false
-    }
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setupLogger()
         

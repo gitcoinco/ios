@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cmD-n4-XeX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cmD-n4-XeX">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -38,13 +38,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView hidden="YES" opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YsV-WE-IRj" userLabel="Signed In Container View">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <connections>
                                     <segue destination="Nq4-7f-x0h" kind="embed" id="BFq-1y-qZn"/>
                                 </connections>
                             </containerView>
                             <containerView hidden="YES" opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vkV-rs-9oi" userLabel="Signed Out Container View">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <connections>
                                     <segue destination="VU8-Ar-OkO" kind="embed" id="UoY-EO-Qu6"/>
                                 </connections>
@@ -56,7 +56,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-fade" translatesAutoresizingMaskIntoConstraints="NO" id="eX7-RS-OrA">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" name="CelestialWhite"/>
@@ -92,14 +92,14 @@
             <objects>
                 <viewController id="Nq4-7f-x0h" userLabel="PROFILE - SIGNED IN" customClass="ProfileSignedInViewController" customModule="Gitcoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8jL-VD-bn3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4i-DM-Pq6">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="H4d-zP-ncs">
-                                        <rect key="frame" x="30" y="15" width="260" height="533"/>
+                                        <rect key="frame" x="30" y="15" width="260" height="489"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYK-P9-jdA" userLabel="Portrait">
                                                 <rect key="frame" x="0.0" y="0.0" width="260" height="80"/>
@@ -172,10 +172,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1G3-B1-KTM" userLabel="Text">
-                                                <rect key="frame" x="0.0" y="275" width="260" height="82.5"/>
+                                                <rect key="frame" x="0.0" y="275" width="260" height="82"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="5S0-hf-RHU" userLabel="Description">
-                                                        <rect key="frame" x="0.0" y="0.0" width="260" height="82.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="260" height="82"/>
                                                         <string key="text">One at a time, enter each of your skills as a tag to help Gitcoin show you relevant bounties.
 
 Example: ruby, rails, html, css, javascript</string>
@@ -192,7 +192,7 @@ Example: ruby, rails, html, css, javascript</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ufy-YI-sLJ" userLabel="Buttons">
-                                                <rect key="frame" x="0.0" y="372.5" width="260" height="64"/>
+                                                <rect key="frame" x="0.0" y="372" width="260" height="64"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9m-U6-v1c">
                                                         <rect key="frame" x="40.5" y="0.0" width="179" height="64"/>
@@ -210,7 +210,7 @@ Example: ruby, rails, html, css, javascript</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h4W-Ix-vG4">
-                                                <rect key="frame" x="0.0" y="451.5" width="260" height="81.5"/>
+                                                <rect key="frame" x="0.0" y="451" width="260" height="38"/>
                                             </view>
                                         </subviews>
                                         <constraints>
@@ -266,7 +266,7 @@ Example: ruby, rails, html, css, javascript</string>
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.8752441406" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.87450980392156863" green="0.87450980392156863" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Jng-cF-Fd5" firstAttribute="top" secondItem="Miz-z1-bTq" secondAttribute="top" id="75r-oS-OFw"/>
                             <constraint firstItem="Miz-z1-bTq" firstAttribute="trailing" secondItem="Jng-cF-Fd5" secondAttribute="trailing" id="HDK-vX-CFt"/>
@@ -312,14 +312,14 @@ Example: ruby, rails, html, css, javascript</string>
             <objects>
                 <viewController id="VU8-Ar-OkO" userLabel="PROFILE - SIGNED OUT" customClass="ProfileSignedOutViewController" customModule="Gitcoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BuO-fi-BSy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3xj-FQ-N5m">
-                                <rect key="frame" x="0.0" y="20" width="320" height="528"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="484"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="i3b-uW-PJg">
-                                        <rect key="frame" x="30" y="15" width="260" height="513"/>
+                                        <rect key="frame" x="30" y="15" width="260" height="469"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aBH-iY-gV6" userLabel="Portrait">
                                                 <rect key="frame" x="0.0" y="0.0" width="260" height="80"/>
@@ -405,7 +405,7 @@ Example: ruby, rails, html, css, javascript</string>
                                                                 <state key="normal" image="gc-signin-github-btn"/>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VlY-o5-eR5">
-                                                                <rect key="frame" x="120.5" y="64" width="19" height="16.5"/>
+                                                                <rect key="frame" x="120" y="64" width="20.5" height="16.5"/>
                                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
                                                                 <color key="textColor" name="Black38"/>
                                                                 <nil key="highlightedColor"/>
@@ -432,7 +432,7 @@ Example: ruby, rails, html, css, javascript</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mJI-sm-Iiu">
-                                                <rect key="frame" x="0.0" y="406.5" width="260" height="106.5"/>
+                                                <rect key="frame" x="0.0" y="406.5" width="260" height="62.5"/>
                                             </view>
                                         </subviews>
                                         <constraints>
@@ -463,18 +463,53 @@ Example: ruby, rails, html, css, javascript</string>
                     </view>
                     <connections>
                         <outlet property="signInButton" destination="GLl-9X-Gzc" id="GS5-HG-nkR"/>
+                        <segue destination="LRr-uc-62K" kind="show" identifier="webviewSegue" id="d3X-8o-Y1M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yVX-nk-irT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1443.4782608695652" y="2375.54347826087"/>
         </scene>
+        <!--WebView Controller-->
+        <scene sceneID="iFU-ga-itH">
+            <objects>
+                <viewController id="LRr-uc-62K" userLabel="WebView Controller" customClass="WebViewController" customModule="Gitcoin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GF4-Gx-iGb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rwZ-fF-FWZ">
+                                <rect key="frame" x="0.0" y="20" width="320" height="484"/>
+                                <color key="backgroundColor" red="0.87450980389999999" green="0.87450980389999999" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.87450980392156863" green="0.87450980392156863" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="hvx-73-xeY" firstAttribute="trailing" secondItem="rwZ-fF-FWZ" secondAttribute="trailing" id="16f-yv-Om2"/>
+                            <constraint firstItem="hvx-73-xeY" firstAttribute="bottom" secondItem="rwZ-fF-FWZ" secondAttribute="bottom" id="9tZ-Jf-mN1"/>
+                            <constraint firstItem="rwZ-fF-FWZ" firstAttribute="top" secondItem="hvx-73-xeY" secondAttribute="top" id="nWC-BQ-Khg"/>
+                            <constraint firstItem="rwZ-fF-FWZ" firstAttribute="leading" secondItem="hvx-73-xeY" secondAttribute="leading" id="zQk-4d-D9c"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hvx-73-xeY"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="rwZ-fF-FWZ" id="qvE-To-WB7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yoa-6a-hFV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1442" y="3121"/>
+        </scene>
         <!--ABOUT GITCOIN-->
         <scene sceneID="8uL-Ha-OSd">
             <objects>
                 <viewController storyboardIdentifier="InfoViewController" title="ABOUT GITCOIN" extendedLayoutIncludesOpaqueBars="YES" modalTransitionStyle="flipHorizontal" id="QdD-pK-xq9" customClass="InfoViewController" customModule="Gitcoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="Rj1-Zp-hca">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg-fade" translatesAutoresizingMaskIntoConstraints="NO" id="wlG-nR-61G">
@@ -482,28 +517,28 @@ Example: ruby, rails, html, css, javascript</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d7U-ld-tiI">
-                                <rect key="frame" x="0.0" y="20" width="320" height="528"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HOM-UT-TW5">
-                                        <rect key="frame" x="20" y="20" width="280" height="488"/>
+                                        <rect key="frame" x="20" y="20" width="280" height="464"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="center" verticalHuggingPriority="251" image="gc-logo" translatesAutoresizingMaskIntoConstraints="NO" id="PxH-pI-bPK" userLabel="Logo">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="0.0"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" text="Version 1.0 Build 123" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="v6R-Dt-M7W" userLabel="Version">
-                                                <rect key="frame" x="0.0" y="7" width="280" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="5" width="280" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="FuturaStd-Book" family="Futura Std" pointSize="16"/>
                                                 <color key="textColor" name="Black38"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="170" translatesAutoresizingMaskIntoConstraints="NO" id="frK-QE-OyS" customClass="PlayerContainerView" customModule="Gitcoin" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="24" width="280" height="157"/>
+                                                <rect key="frame" x="0.0" y="21" width="280" height="0.0"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="1Ab-Gb-z9W">
-                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="157"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="0.0"/>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZuW-bR-Akf" userLabel="Video Player" customClass="YTPlayerView">
-                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="157"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="0.0"/>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
@@ -518,39 +553,39 @@ Example: ruby, rails, html, css, javascript</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="INW-O6-ufb">
-                                                <rect key="frame" x="0.0" y="201" width="280" height="225"/>
+                                                <rect key="frame" x="0.0" y="41" width="280" height="400"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ztE-om-WL6" userLabel="Info Text Stack View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="187"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="211"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ayf-fx-fz3">
-                                                                <rect key="frame" x="0.0" y="0.0" width="18.5" height="187"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="18" height="211"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="top" image="gc-network-icon" translatesAutoresizingMaskIntoConstraints="NO" id="mK3-uH-El9">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="18.5" height="62.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="18" height="70.5"/>
                                                                     </imageView>
                                                                     <imageView userInteractionEnabled="NO" contentMode="top" image="gc-rocket-icon" translatesAutoresizingMaskIntoConstraints="NO" id="xBM-xR-reZ">
-                                                                        <rect key="frame" x="0.0" y="62.5" width="18.5" height="62"/>
+                                                                        <rect key="frame" x="0.0" y="70.5" width="18" height="70"/>
                                                                     </imageView>
                                                                     <imageView userInteractionEnabled="NO" contentMode="top" image="gc-cash-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Xb3-Vc-lgP">
-                                                                        <rect key="frame" x="0.0" y="124.5" width="18.5" height="62.5"/>
+                                                                        <rect key="frame" x="0.0" y="140.5" width="18" height="70.5"/>
                                                                     </imageView>
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mgl-Hd-9pO">
-                                                                <rect key="frame" x="38.5" y="0.0" width="241.5" height="187"/>
+                                                                <rect key="frame" x="38" y="0.0" width="242" height="211"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="83M-3c-3Eh">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="241.5" height="49"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="242" height="57"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="1. Find a Project" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="2M5-hd-H0o">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="241.5" height="16"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="242" height="19"/>
                                                                                 <fontDescription key="fontDescription" name="FuturaStd-MediumOblique" family="Futura Std" pointSize="16"/>
                                                                                 <color key="textColor" name="Black87"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="Gitcoin's Issue Explorer is the easiest way to find paid work in open source." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="rOn-CA-ofk">
-                                                                                <rect key="frame" x="0.0" y="21" width="241.5" height="28"/>
+                                                                                <rect key="frame" x="0.0" y="24" width="242" height="33"/>
                                                                                 <fontDescription key="fontDescription" name="FuturaStd-Book" family="Futura Std" pointSize="14"/>
                                                                                 <color key="textColor" name="Black87"/>
                                                                                 <nil key="highlightedColor"/>
@@ -558,16 +593,16 @@ Example: ruby, rails, html, css, javascript</string>
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1MU-Cx-bwD">
-                                                                        <rect key="frame" x="0.0" y="69" width="241.5" height="49"/>
+                                                                        <rect key="frame" x="0.0" y="77" width="242" height="57"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="2. Code Something Great" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="Q1h-K5-a3c">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="241.5" height="16"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="242" height="19"/>
                                                                                 <fontDescription key="fontDescription" name="FuturaStd-MediumOblique" family="Futura Std" pointSize="16"/>
                                                                                 <color key="textColor" name="Black87"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Open Source is where the best &amp; the brightest sharpen their tools." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="LJA-oQ-OYZ">
-                                                                                <rect key="frame" x="0.0" y="21" width="241.5" height="28"/>
+                                                                                <rect key="frame" x="0.0" y="24" width="242" height="33"/>
                                                                                 <fontDescription key="fontDescription" name="FuturaStd-Book" family="Futura Std" pointSize="14"/>
                                                                                 <color key="textColor" name="Black87"/>
                                                                                 <nil key="highlightedColor"/>
@@ -575,16 +610,16 @@ Example: ruby, rails, html, css, javascript</string>
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="azG-ga-CAC">
-                                                                        <rect key="frame" x="0.0" y="138" width="241.5" height="49"/>
+                                                                        <rect key="frame" x="0.0" y="154" width="242" height="57"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="3. Get Paid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="WIe-HU-oWd">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="241.5" height="16"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="242" height="19"/>
                                                                                 <fontDescription key="fontDescription" name="FuturaStd-MediumOblique" family="Futura Std" pointSize="16"/>
                                                                                 <color key="textColor" name="Black87"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Payments are released automatically after code is accepted." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="N81-U3-Uhq">
-                                                                                <rect key="frame" x="0.0" y="21" width="241.5" height="28"/>
+                                                                                <rect key="frame" x="0.0" y="24" width="242" height="33"/>
                                                                                 <fontDescription key="fontDescription" name="FuturaStd-Book" family="Futura Std" pointSize="14"/>
                                                                                 <color key="textColor" name="Black87"/>
                                                                                 <nil key="highlightedColor"/>
@@ -603,7 +638,7 @@ Example: ruby, rails, html, css, javascript</string>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7V-sx-HS6">
-                                                <rect key="frame" x="0.0" y="446" width="280" height="42"/>
+                                                <rect key="frame" x="0.0" y="461" width="280" height="3"/>
                                                 <state key="normal" image="gc-get-started-btn"/>
                                                 <connections>
                                                     <segue destination="nQS-lz-qu9" kind="show" id="mv5-GF-OAf"/>
@@ -696,8 +731,8 @@ Example: ruby, rails, html, css, javascript</string>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BuB-xD-tDQ"/>
-        <segue reference="mv5-GF-OAf"/>
+        <segue reference="W3a-7W-81X"/>
+        <segue reference="eob-TE-8be"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

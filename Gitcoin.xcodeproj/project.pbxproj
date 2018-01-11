@@ -38,6 +38,7 @@
 		209460891FA8AB8F00555F06 /* GitcoinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209460881FA8AB8F00555F06 /* GitcoinTests.swift */; };
 		209460941FA8AB8F00555F06 /* GitcoinUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209460931FA8AB8F00555F06 /* GitcoinUITests.swift */; };
 		20960ECF1FB53E4D0033A786 /* UserKeywordResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20960ECE1FB53E4D0033A786 /* UserKeywordResult.swift */; };
+		20A5835F20080C55009CF3FF /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A5835E20080C55009CF3FF /* WebViewController.swift */; };
 		20B3CAD81FBDE1C9008FA651 /* EndOfBountiesCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B3CAD71FBDE1C9008FA651 /* EndOfBountiesCardView.swift */; };
 		20B3CADA1FBDE1DF008FA651 /* EndOfBountiesCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20B3CAD91FBDE1DF008FA651 /* EndOfBountiesCardView.xib */; };
 		20B8373E1FABD71E00680FC0 /* GitcoinAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B8373D1FABD71E00680FC0 /* GitcoinAPIService.swift */; };
@@ -117,6 +118,7 @@
 		209460931FA8AB8F00555F06 /* GitcoinUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitcoinUITests.swift; sourceTree = "<group>"; };
 		209460951FA8AB8F00555F06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20960ECE1FB53E4D0033A786 /* UserKeywordResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKeywordResult.swift; sourceTree = "<group>"; };
+		20A5835E20080C55009CF3FF /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		20B3CAD71FBDE1C9008FA651 /* EndOfBountiesCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndOfBountiesCardView.swift; sourceTree = "<group>"; };
 		20B3CAD91FBDE1DF008FA651 /* EndOfBountiesCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EndOfBountiesCardView.xib; sourceTree = "<group>"; };
 		20B8373D1FABD71E00680FC0 /* GitcoinAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitcoinAPIService.swift; sourceTree = "<group>"; };
@@ -318,6 +320,14 @@
 			path = GitcoinUITests;
 			sourceTree = "<group>";
 		};
+		20A5835D20080C30009CF3FF /* Webview */ = {
+			isa = PBXGroup;
+			children = (
+				20A5835E20080C55009CF3FF /* WebViewController.swift */,
+			);
+			path = Webview;
+			sourceTree = "<group>";
+		};
 		20B3CAD21FBDD8F9008FA651 /* End of Bounties */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,6 +354,7 @@
 				201326521FBC7F34001EC1B5 /* Info */,
 				202952B41FBC715F00FEAB4F /* Profile */,
 				20D60D651FC8A33900A8C7C6 /* Views */,
+				20A5835D20080C30009CF3FF /* Webview */,
 				200052F11FDC657400D1D8F8 /* NavigationController.swift */,
 			);
 			path = UI;
@@ -777,6 +788,7 @@
 				20303C9F1FE2D14500E132E8 /* Device.swift in Sources */,
 				2088B0031FD32E01007F940C /* TrackingManager.swift in Sources */,
 				20B8373E1FABD71E00680FC0 /* GitcoinAPIService.swift in Sources */,
+				20A5835F20080C55009CF3FF /* WebViewController.swift in Sources */,
 				200DA7921FA9385A00FDCE67 /* BountyCardView.swift in Sources */,
 				20B3CAD81FBDE1C9008FA651 /* EndOfBountiesCardView.swift in Sources */,
 				207DAC101FD4CA6600CFB753 /* Config.swift in Sources */,

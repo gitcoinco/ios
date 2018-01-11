@@ -22,16 +22,20 @@ class ProfileSignedOutViewController: UIViewController {
         observeUI()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "webviewSegue",
+            let destination = segue.destination as? WebViewController {
+            
+            destination.title = "SIGN IN"
+            
+            destination.currentURL = OctokitManager.shared.oAuthConfig.authenticate()
+        }
+    }
+    
     func observeUI(){
 
         let signInButtonSubscription = signInButton.rx.tap.bind {
-            let url = OctokitManager.shared.oAuthConfig.authenticate()
-            
-            UIApplication.shared.open(url!, options: [:], completionHandler: { _ in
-                
-            })
-
-            return
+            self.performSegue(withIdentifier: "webviewSegue", sender: nil)
         }
 
         disposeBag.insert(signInButtonSubscription)
