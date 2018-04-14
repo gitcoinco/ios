@@ -66,11 +66,22 @@ class BountyCardViewController: UIViewController {
         
         loadData()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "bountyDetailsSegue",
+            let destination = segue.destination as? BountyDetailsContainerViewController,
+            let bounty = sender as? Bounty{
+            
+                destination.bounty = bounty
+        }
+    }
 }
 
 //MARK: KolodaViewDelegate
 extension BountyCardViewController: KolodaViewDelegate {
     
+    // Bounty Card has beed tapped fires this event
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
         
         guard let data = data else { return }
@@ -81,12 +92,9 @@ extension BountyCardViewController: KolodaViewDelegate {
         
         TrackingManager.shared.trackEvent(.didTapBounty(bounty: bounty))
         
-        //TODO: What to do on tap??? native detail? someother action?
-        if let gitHubUrl = bounty.githubUrl {
-            UIApplication.shared.open(URL(string: gitHubUrl)!, options: [:], completionHandler: { _ in
-                
-            })
-        }
+        
+        performSegue(withIdentifier: "bountyDetailsSegue", sender: bounty)
+    
     }
     
     // Don't allow to drag the last "end of bounties" view

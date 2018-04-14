@@ -11,6 +11,8 @@ import Octokit
 import RxSwift
 import SwiftyUserDefaults
 import Pushwoosh
+import RequestKit
+
 
 class OctokitManager: NSObject {
     static let shared = OctokitManager()
@@ -31,6 +33,7 @@ class OctokitManager: NSObject {
     /// user will behave as a hot observable and emit the user object
     /// when ever it changes
     var user = Variable<User?>(nil)
+    var comments = Variable<[Issue]?>(nil)
 
     fileprivate let disposeBag = DisposeBag()
     
@@ -97,6 +100,20 @@ class OctokitManager: NSObject {
                 case .success(let user):
                     self.user.value = user
                     
+                    // so the useer email is grabbed on a different endpoint
+                    _ = Octokit(tokenConfig).loadEmail(){ response in
+                        switch response {
+                        case .success(let email):
+                            
+                            let user = self.user.value
+                            user?.email = email
+                            self.user.value = user
+                            
+                        case .failure(let error):
+                            logger.error(error)
+                        }
+                    }
+                    
                     TrackingManager.shared.trackState(.isSignedIn)
                     
                     if emitSignInAction {
@@ -111,6 +128,48 @@ class OctokitManager: NSObject {
             }
         }else{
             logger.warning("No tokenConfiguration found to get me()")
+        }
+    }
+    
+    func issueComments(issueId: Int?){
+        
+        if let tokenConfig = tokenConfiguration, let issueId = issueId {
+            
+            let (owner, repo, number) = ("gitcoinco", "web", issueId)
+            
+            _ = Octokit(tokenConfig).comments(owner: owner, repository: repo, number: number){ response in
+                switch response {
+                case .success(let comments):
+                    
+                    self.comments.value = comments
+                    
+                case .failure(let error):
+                    
+                    
+                    logger.error(error)
+                }
+            }
+        }
+    }
+    
+    func addComment(issueId: Int?, comment: String?){
+        
+        if let tokenConfig = tokenConfiguration, let issueId = issueId {
+            
+            //let (owner, repo, number) = ("gitcoinco", "web", issueId)
+            
+             let (owner, repo, number) = ("john-brunelle", "CITestProject", 1)
+            
+            _ = Octokit(tokenConfig).addComment(owner: owner, repository: repo, number: number, comment: comment){ response in
+                switch response {
+                case .success(let response):
+                    
+                  print(response)
+                    
+                case .failure(let error):
+                    logger.error(error)
+                }
+            }
         }
     }
     
@@ -130,3 +189,194 @@ extension User {
         return self.dictionaryWithValues(forKeys: ["id", "email", "login", "name", "location", "company"])
     }
 }
+
+extension Octokit{
+    
+    public func loadEmail(_ session: RequestKitURLSession = URLSession.shared, completion: @escaping (_ response: Response<String>) -> Void) -> URLSessionDataTaskProtocol? {
+        
+        let router = GitHubRouter.userEmail(configuration)
+        
+        return router.load(session, dateDecodingStrategy: .formatted(Time.rfc3339DateFormatter), expectedResultType: [Email].self) { (emails, error) in
+            
+            if let error = error {
+                print("error = \(error)")
+                completion(Response.failure(error))
+            } else {
+                
+                if let emails = emails {
+                    
+                    if let email = emails.first?.email{
+                        completion(Response.success(email))
+                    }
+                    else{
+                        completion(Response.success(""))
+                    }
+                }
+                else{
+                    completion(Response.success(""))
+                }
+            }
+            
+        }
+    }
+    
+    public func comments(_ session: RequestKitURLSession = URLSession.shared, owner: String, repository: String, number: Int, completion: @escaping (_ response: Response<[Issue]>) -> Void) -> URLSessionDataTaskProtocol? {
+
+        let router = GitHubRouter.readComments(configuration, owner, repository, number)
+        
+        return router.load(session, dateDecodingStrategy: .formatted(Time.rfc3339DateFormatter), expectedResultType: [Issue].self, completion: { (comments, error) in
+            if let error = error {
+                completion(Response.failure(error))
+            } else {
+                if let comments = comments {
+                    
+//                    var comments: [Issue] = []
+//
+//                    for issue in json{
+//                        comments.append( try! Issue(from: issue as! Decoder))
+//                    }
+                    
+                    completion(Response.success(comments))
+                }
+            }
+        })
+        
+        
+        
+//        return router.loadJSON(session, expectedResultType: [[String: AnyObject]].self) { json, error in
+//            if let error = error {
+//                completion(Response.failure(error))
+//            } else {
+//                if let json = json {
+//
+//                    var comments: [Issue] = []
+//
+//                    for issue in json{
+//                        comments.append( try! Issue(from: issue as! Decoder))
+//                    }
+//
+//                    completion(Response.success(comments))
+//                }
+//            }
+//        }
+    }
+
+    public func addComment(_ session: RequestKitURLSession = URLSession.shared, owner: String, repository: String, number: Int, comment: String? = nil, completion: @escaping (_ response: Response<Issue>) -> Void) -> URLSessionDataTaskProtocol? {
+        
+        let router = GitHubRouter.addComment(configuration, owner, repository, number, comment)
+
+        return router.postJSON(session, expectedResultType: [String: AnyObject].self) { json, error in
+            
+            if let error = error {
+                completion(Response.failure(error))
+                
+            } else {
+                if let json = json {
+                    //let issue = Issue(json)
+                    
+                    print(json)
+                    
+                    //completion(Response.success(issue))
+                }
+            }
+        }
+    }
+    
+    
+//    public func postIssue(_ session: RequestKitURLSession = URLSession.shared, owner: String, repository: String, title: String, body: String? = nil, assignee: String? = nil, completion: @escaping (_ response: Response<Issue>) -> Void) -> URLSessionDataTaskProtocol? {
+//        let router = IssueRouter.postIssue(configuration, owner, repository, title, body, assignee)
+//        return router.postJSON(session, expectedResultType: [String: AnyObject].self) { json, error in
+//            if let error = error {
+//                completion(Response.failure(error))
+//            } else {
+//                if let json = json {
+//                    let issue = Issue(json)
+//                    completion(Response.success(issue))
+//                }
+//            }
+//        }
+//    }
+    
+    
+}
+
+enum GitHubRouter: JSONPostRouter {
+   
+    case userEmail(Configuration)
+    case readComments(Configuration, String, String, Int)
+    case addComment(Configuration, String, String, Int, String?)
+
+    var method: HTTPMethod {
+        switch self {
+        case .addComment:
+            return .POST
+        default:
+            return .GET
+        }
+    }
+    
+    var encoding: HTTPEncoding {
+        switch self {
+        case .addComment:
+            return .json
+        default:
+            return .url
+        }
+    }
+    
+    var configuration: Configuration {
+        switch self {
+        case .readComments(let config, _, _, _): return config
+        case .addComment(let config, _, _, _, _): return config
+        case .userEmail(let config): return config
+        }
+    }
+    
+    var params: [String: Any] {
+        switch self {
+        case .readComments:
+            return [:]
+        case .userEmail:
+            return [:]
+        case .addComment(_, _, _, _, let body):
+            
+            
+            var params: [String: String] = [:]
+            if let body = body {
+                params["body"] = body
+            }
+            
+            return params
+        }
+    }
+    
+    var path: String {
+        switch self {
+        case .userEmail(_):
+            return "/user/emails"
+        case .readComments(_, let owner, let repository, let number):
+            return "repos/\(owner)/\(repository)/issues/\(number)/comments"
+        case .addComment(_, let owner, let repository, let number, _):
+            return "repos/\(owner)/\(repository)/issues/\(number)/comments/"
+        }
+    }
+}
+
+@objc class Email: NSObject, Codable {
+    
+    @objc var email: String?
+    var primary: Bool?
+    var verified: Bool?
+    @objc var visibility: String?
+
+    enum CodingKeys: String, CodingKey {
+        case email
+        case primary
+        case verified
+        case visibility
+    }
+}
+
+
+
+

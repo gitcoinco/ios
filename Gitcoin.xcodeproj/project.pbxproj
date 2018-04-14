@@ -54,6 +54,27 @@
 		20FF15091FDD899600D78A26 /* ProfileSignedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FF15081FDD899600D78A26 /* ProfileSignedInViewController.swift */; };
 		20FF150B1FDD89B000D78A26 /* ProfileSignedOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FF150A1FDD89B000D78A26 /* ProfileSignedOutViewController.swift */; };
 		20FF58DA1FDCCB790068B27C /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FF58D91FDCCB790068B27C /* GradientBackgroundView.swift */; };
+		467C84AF20802AF8003B69BB /* ProfileClaimedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C84AD20802AF8003B69BB /* ProfileClaimedCell.swift */; };
+		467C84B020802AF8003B69BB /* ProfileClaimedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467C84AE20802AF8003B69BB /* ProfileClaimedCell.xib */; };
+		467C84D320814B79003B69BB /* BountyCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C84D120814B79003B69BB /* BountyCommentCell.swift */; };
+		467C84D420814B79003B69BB /* BountyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467C84D220814B79003B69BB /* BountyCommentCell.xib */; };
+		46B8042D204C453B0042446D /* BountyDetailsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B8042C204C453B0042446D /* BountyDetailsContainerViewController.swift */; };
+		46B8042F204C50440042446D /* BetterSegmentedControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46B8042E204C50440042446D /* BetterSegmentedControl.framework */; };
+		46B80430204C50440042446D /* BetterSegmentedControl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46B8042E204C50440042446D /* BetterSegmentedControl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		46BFCE6B20749D65005D5245 /* Observable+ignoreNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BFCE6A20749D65005D5245 /* Observable+ignoreNil.swift */; };
+		46BFEB4F204C5F0000F21608 /* BountyDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46BFEB4E204C5F0000F21608 /* BountyDetailViewController.storyboard */; };
+		46BFEB51204C5F3600F21608 /* BountyDetailViewControllerxx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BFEB50204C5F3600F21608 /* BountyDetailViewControllerxx.swift */; };
+		46BFEB53204C5FCC00F21608 /* BountyDiscussViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BFEB52204C5FCC00F21608 /* BountyDiscussViewController.swift */; };
+		46BFEB55204C5FDD00F21608 /* BountyDiscussViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46BFEB54204C5FDD00F21608 /* BountyDiscussViewController.storyboard */; };
+		46BFEB59204C69BC00F21608 /* BountyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BFEB58204C69BC00F21608 /* BountyDetailView.swift */; };
+		46BFEB5B204C6A0200F21608 /* BountyDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46BFEB5A204C6A0200F21608 /* BountyDetailView.xib */; };
+		46BFEB5D204C6E0800F21608 /* BountyDiscussView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BFEB5C204C6E0800F21608 /* BountyDiscussView.swift */; };
+		46BFEB5F204C6E5D00F21608 /* BountyDiscussView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46BFEB5E204C6E5D00F21608 /* BountyDiscussView.xib */; };
+		46BFEB61204C6FD800F21608 /* ProfileBountyContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BFEB60204C6FD800F21608 /* ProfileBountyContainerViewController.swift */; };
+		46BFEB63204C732E00F21608 /* ProfileClaimedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BFEB62204C732E00F21608 /* ProfileClaimedViewController.swift */; };
+		46BFEB65204C733F00F21608 /* ProfileClaimedViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46BFEB64204C733F00F21608 /* ProfileClaimedViewController.storyboard */; };
+		46BFEB67204C73AD00F21608 /* ProfileContainerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46BFEB66204C73AD00F21608 /* ProfileContainerViewController.storyboard */; };
+		46E8B30C2071493700952ADE /* BountyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E8B30B2071493700952ADE /* BountyDetailViewController.swift */; };
 		9659E79AF67EA510C67AD2AA /* Pods_Gitcoin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12B2483E19BA87527CE4B9A4 /* Pods_Gitcoin.framework */; };
 		C7678B9FB50EF538DC43BC51 /* Pods_GitcoinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6A847AB6E25100FD032EA87 /* Pods_GitcoinTests.framework */; };
 		E05FEC46DE514AA89BC5BE1A /* Pods_GitcoinUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CFA2207C51AC486E2B512B7 /* Pods_GitcoinUITests.framework */; };
@@ -75,6 +96,20 @@
 			remoteInfo = Gitcoin;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		46B80431204C50440042446D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				46B80430204C50440042446D /* BetterSegmentedControl.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		12B2483E19BA87527CE4B9A4 /* Pods_Gitcoin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gitcoin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,6 +170,27 @@
 		20FF150A1FDD89B000D78A26 /* ProfileSignedOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSignedOutViewController.swift; sourceTree = "<group>"; };
 		20FF58D91FDCCB790068B27C /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		349DAD1AE1F9779BF95D48CE /* Pods-GitcoinUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitcoinUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitcoinUITests/Pods-GitcoinUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4611A6882081BA6B00303AA2 /* Gitcoin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Gitcoin-Bridging-Header.h"; sourceTree = "<group>"; };
+		467C84AD20802AF8003B69BB /* ProfileClaimedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileClaimedCell.swift; sourceTree = "<group>"; };
+		467C84AE20802AF8003B69BB /* ProfileClaimedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileClaimedCell.xib; sourceTree = "<group>"; };
+		467C84D120814B79003B69BB /* BountyCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyCommentCell.swift; sourceTree = "<group>"; };
+		467C84D220814B79003B69BB /* BountyCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BountyCommentCell.xib; sourceTree = "<group>"; };
+		46B8042C204C453B0042446D /* BountyDetailsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyDetailsContainerViewController.swift; sourceTree = "<group>"; };
+		46B8042E204C50440042446D /* BetterSegmentedControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BetterSegmentedControl.framework; path = Frameworks/BetterSegmentedControl.framework; sourceTree = "<group>"; };
+		46BFCE6A20749D65005D5245 /* Observable+ignoreNil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+ignoreNil.swift"; sourceTree = "<group>"; };
+		46BFEB4E204C5F0000F21608 /* BountyDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BountyDetailViewController.storyboard; sourceTree = "<group>"; };
+		46BFEB50204C5F3600F21608 /* BountyDetailViewControllerxx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyDetailViewControllerxx.swift; sourceTree = "<group>"; };
+		46BFEB52204C5FCC00F21608 /* BountyDiscussViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyDiscussViewController.swift; sourceTree = "<group>"; };
+		46BFEB54204C5FDD00F21608 /* BountyDiscussViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BountyDiscussViewController.storyboard; sourceTree = "<group>"; };
+		46BFEB58204C69BC00F21608 /* BountyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyDetailView.swift; sourceTree = "<group>"; };
+		46BFEB5A204C6A0200F21608 /* BountyDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BountyDetailView.xib; sourceTree = "<group>"; };
+		46BFEB5C204C6E0800F21608 /* BountyDiscussView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyDiscussView.swift; sourceTree = "<group>"; };
+		46BFEB5E204C6E5D00F21608 /* BountyDiscussView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BountyDiscussView.xib; sourceTree = "<group>"; };
+		46BFEB60204C6FD800F21608 /* ProfileBountyContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBountyContainerViewController.swift; sourceTree = "<group>"; };
+		46BFEB62204C732E00F21608 /* ProfileClaimedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileClaimedViewController.swift; sourceTree = "<group>"; };
+		46BFEB64204C733F00F21608 /* ProfileClaimedViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileClaimedViewController.storyboard; sourceTree = "<group>"; };
+		46BFEB66204C73AD00F21608 /* ProfileContainerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileContainerViewController.storyboard; sourceTree = "<group>"; };
+		46E8B30B2071493700952ADE /* BountyDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BountyDetailViewController.swift; sourceTree = "<group>"; };
 		63154C70D0D3D17CE67806F2 /* Pods-Gitcoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gitcoin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Gitcoin/Pods-Gitcoin.debug.xcconfig"; sourceTree = "<group>"; };
 		7A16EC471D73DFDD391CCC07 /* Pods-GitcoinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitcoinTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitcoinTests/Pods-GitcoinTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9CFA2207C51AC486E2B512B7 /* Pods_GitcoinUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitcoinUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +207,7 @@
 			files = (
 				2079CDF91FD085CE00A912C9 /* libstdc++.tbd in Frameworks */,
 				2079CDF71FD085C200A912C9 /* libz.tbd in Frameworks */,
+				46B8042F204C50440042446D /* BetterSegmentedControl.framework in Frameworks */,
 				9659E79AF67EA510C67AD2AA /* Pods_Gitcoin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,9 +308,15 @@
 		202952B41FBC715F00FEAB4F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				46BFEB60204C6FD800F21608 /* ProfileBountyContainerViewController.swift */,
 				202952B51FBC718100FEAB4F /* ProfileContainerViewController.swift */,
 				20FF15081FDD899600D78A26 /* ProfileSignedInViewController.swift */,
 				20FF150A1FDD89B000D78A26 /* ProfileSignedOutViewController.swift */,
+				46BFEB62204C732E00F21608 /* ProfileClaimedViewController.swift */,
+				46BFEB64204C733F00F21608 /* ProfileClaimedViewController.storyboard */,
+				46BFEB66204C73AD00F21608 /* ProfileContainerViewController.storyboard */,
+				467C84AD20802AF8003B69BB /* ProfileClaimedCell.swift */,
+				467C84AE20802AF8003B69BB /* ProfileClaimedCell.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -298,6 +361,7 @@
 				200DA7951FA93BA100FDCE67 /* Fonts */,
 				209430CB1FB29CAB006F0671 /* SafeConfiguration.plist */,
 				209430CD1FB29D59006F0671 /* README.md */,
+				4611A6882081BA6B00303AA2 /* Gitcoin-Bridging-Header.h */,
 			);
 			path = Gitcoin;
 			sourceTree = "<group>";
@@ -349,6 +413,7 @@
 		20B837431FABDC7E00680FC0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				46B8042B204C44E70042446D /* Bounty Details */,
 				200DA7901FA9350F00FDCE67 /* Bounty Cards */,
 				20B3CAD21FBDD8F9008FA651 /* End of Bounties */,
 				201326521FBC7F34001EC1B5 /* Info */,
@@ -373,6 +438,7 @@
 		20DF6AAF1FD2135E000ADA04 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				46BFCE6920749D4A005D5245 /* Extensions */,
 				20303C9E1FE2D14500E132E8 /* Device.swift */,
 				20DF6AB21FD321B9000ADA04 /* Reachability.swift */,
 				20DF6AB01FD21410000ADA04 /* KeychainSwiftDistrib.swift */,
@@ -393,9 +459,37 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		46B8042B204C44E70042446D /* Bounty Details */ = {
+			isa = PBXGroup;
+			children = (
+				46B8042C204C453B0042446D /* BountyDetailsContainerViewController.swift */,
+				46BFEB4E204C5F0000F21608 /* BountyDetailViewController.storyboard */,
+				46BFEB50204C5F3600F21608 /* BountyDetailViewControllerxx.swift */,
+				46E8B30B2071493700952ADE /* BountyDetailViewController.swift */,
+				46BFEB52204C5FCC00F21608 /* BountyDiscussViewController.swift */,
+				46BFEB54204C5FDD00F21608 /* BountyDiscussViewController.storyboard */,
+				46BFEB58204C69BC00F21608 /* BountyDetailView.swift */,
+				46BFEB5A204C6A0200F21608 /* BountyDetailView.xib */,
+				46BFEB5C204C6E0800F21608 /* BountyDiscussView.swift */,
+				46BFEB5E204C6E5D00F21608 /* BountyDiscussView.xib */,
+				467C84D120814B79003B69BB /* BountyCommentCell.swift */,
+				467C84D220814B79003B69BB /* BountyCommentCell.xib */,
+			);
+			path = "Bounty Details";
+			sourceTree = "<group>";
+		};
+		46BFCE6920749D4A005D5245 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				46BFCE6A20749D65005D5245 /* Observable+ignoreNil.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A205CFEEE0FB5058B9468DEB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				46B8042E204C50440042446D /* BetterSegmentedControl.framework */,
 				2079CDF81FD085CD00A912C9 /* libstdc++.tbd */,
 				2079CDF61FD085C200A912C9 /* libz.tbd */,
 				12B2483E19BA87527CE4B9A4 /* Pods_Gitcoin.framework */,
@@ -419,6 +513,7 @@
 				B5DC8E62CE2ED896DE8FE04F /* [CP] Embed Pods Frameworks */,
 				9A4D4E235D18A32197970A5A /* [CP] Copy Pods Resources */,
 				20E9DB0B1FB3C0C40076843D /* Fabric */,
+				46B80431204C50440042446D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -483,7 +578,7 @@
 				TargetAttributes = {
 					2094606F1FA8AB8F00555F06 = {
 						CreatedOnToolsVersion = 9.0.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -530,14 +625,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				467C84D420814B79003B69BB /* BountyCommentCell.xib in Resources */,
 				200DA7971FA93BAE00FDCE67 /* Futura.ttc in Resources */,
 				20D851BC1FDE0029001FB01D /* FuturaStd-MediumOblique.otf in Resources */,
 				20B942BD1FA932110015481C /* BountyCardOverlayView.xib in Resources */,
+				467C84B020802AF8003B69BB /* ProfileClaimedCell.xib in Resources */,
+				46BFEB65204C733F00F21608 /* ProfileClaimedViewController.storyboard in Resources */,
 				2012F7F71FDCD91B004F3B88 /* Roboto-Bold.ttf in Resources */,
+				46BFEB5B204C6A0200F21608 /* BountyDetailView.xib in Resources */,
 				200052FF1FDC796B00D1D8F8 /* Roboto-Regular.ttf in Resources */,
+				46BFEB4F204C5F0000F21608 /* BountyDetailViewController.storyboard in Resources */,
 				20B3CADA1FBDE1DF008FA651 /* EndOfBountiesCardView.xib in Resources */,
+				46BFEB5F204C6E5D00F21608 /* BountyDiscussView.xib in Resources */,
 				20943E031FD0921A00A5ED6F /* Assets.xcassets in Resources */,
 				209430CC1FB29CAB006F0671 /* SafeConfiguration.plist in Resources */,
+				46BFEB67204C73AD00F21608 /* ProfileContainerViewController.storyboard in Resources */,
+				46BFEB55204C5FDD00F21608 /* BountyDiscussViewController.storyboard in Resources */,
 				2094607E1FA8AB8F00555F06 /* LaunchScreen.storyboard in Resources */,
 				200DA7941FA9388300FDCE67 /* BountyCardView.xib in Resources */,
 				2012F7F51FDCD75C004F3B88 /* Roboto-Medium.ttf in Resources */,
@@ -660,6 +763,8 @@
 				"${BUILT_PRODUCTS_DIR}/Moya-ModelMapper/Moya_ModelMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/NBNRequestKit/RequestKit.framework",
 				"${BUILT_PRODUCTS_DIR}/OctoKit.swift/Octokit.framework",
+				"${BUILT_PRODUCTS_DIR}/PHFComposeBarView/PHFComposeBarView.framework",
+				"${BUILT_PRODUCTS_DIR}/PHFDelegateChain/PHFDelegateChain.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -686,6 +791,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_ModelMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RequestKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Octokit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PHFComposeBarView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PHFDelegateChain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -776,11 +883,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				20B837421FABDC2D00680FC0 /* Bounty.swift in Sources */,
+				46BFEB61204C6FD800F21608 /* ProfileBountyContainerViewController.swift in Sources */,
 				20DF6AB31FD321B9000ADA04 /* Reachability.swift in Sources */,
 				209460741FA8AB8F00555F06 /* AppDelegate.swift in Sources */,
+				467C84D320814B79003B69BB /* BountyCommentCell.swift in Sources */,
 				200D9F671FA8BBB0006C7C06 /* BountyCardViewController.swift in Sources */,
 				200052FA1FDC78B300D1D8F8 /* Colors.swift in Sources */,
 				200052FC1FDC78BC00D1D8F8 /* Fonts.swift in Sources */,
+				467C84AF20802AF8003B69BB /* ProfileClaimedCell.swift in Sources */,
 				201326541FBC7F5D001EC1B5 /* InfoViewController.swift in Sources */,
 				20DF6AB11FD21410000ADA04 /* KeychainSwiftDistrib.swift in Sources */,
 				202952B61FBC718100FEAB4F /* ProfileContainerViewController.swift in Sources */,
@@ -788,6 +898,7 @@
 				20303C9F1FE2D14500E132E8 /* Device.swift in Sources */,
 				2088B0031FD32E01007F940C /* TrackingManager.swift in Sources */,
 				20B8373E1FABD71E00680FC0 /* GitcoinAPIService.swift in Sources */,
+				46BFEB63204C732E00F21608 /* ProfileClaimedViewController.swift in Sources */,
 				20A5835F20080C55009CF3FF /* WebViewController.swift in Sources */,
 				200DA7921FA9385A00FDCE67 /* BountyCardView.swift in Sources */,
 				20B3CAD81FBDE1C9008FA651 /* EndOfBountiesCardView.swift in Sources */,
@@ -797,13 +908,20 @@
 				200052F21FDC657400D1D8F8 /* NavigationController.swift in Sources */,
 				2008F2C71FAFA6930030807F /* OctokitManager.swift in Sources */,
 				20D60D671FC8A35600A8C7C6 /* GitCoinWSTagField.swift in Sources */,
+				46BFEB59204C69BC00F21608 /* BountyDetailView.swift in Sources */,
 				20559D661FB2771600170860 /* Globals.swift in Sources */,
+				46BFCE6B20749D65005D5245 /* Observable+ignoreNil.swift in Sources */,
 				200D9F6B1FA8BBB0006C7C06 /* BountyCardKolodaAnimator.swift in Sources */,
 				20B942C01FA932700015481C /* BountyKolodaView.swift in Sources */,
 				20303C9D1FE2D02600E132E8 /* PlayerContainerView.swift in Sources */,
+				46B8042D204C453B0042446D /* BountyDetailsContainerViewController.swift in Sources */,
+				46BFEB5D204C6E0800F21608 /* BountyDiscussView.swift in Sources */,
 				20DF6AB51FD3226C000ADA04 /* NetworkReachability.swift in Sources */,
+				46E8B30C2071493700952ADE /* BountyDetailViewController.swift in Sources */,
+				46BFEB51204C5F3600F21608 /* BountyDetailViewControllerxx.swift in Sources */,
 				20FF15091FDD899600D78A26 /* ProfileSignedInViewController.swift in Sources */,
 				20FF58DA1FDCCB790068B27C /* GradientBackgroundView.swift in Sources */,
+				46BFEB53204C5FCC00F21608 /* BountyDiscussViewController.swift in Sources */,
 				20FF150B1FDD89B000D78A26 /* ProfileSignedOutViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -964,13 +1082,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Gitcoin/Gitcoin.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6H25V2ES8G;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = Gitcoin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.gitcoin.gitcoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Gitcoin/Gitcoin-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -981,13 +1106,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Gitcoin/Gitcoin.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6H25V2ES8G;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = Gitcoin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.gitcoin.gitcoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Gitcoin/Gitcoin-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -49,7 +49,10 @@ struct Config {
             }
         #endif
         
-        return "https://gitcoin.co/api/v0.1/"
+        //return "https://gitcoin.co/"
+        return "https://stage.gitcoin.co/"
+       // return "https://gitcoin.co/api/v0.1/"
+        //return "https://origin.gitcoin.co/"
     }
     
     static var gitcoinApiUsername: String? {
@@ -57,7 +60,8 @@ struct Config {
             return val
         }
         
-        return nil
+        return "gitcoin"
+        //return nil
     }
     
     static var gitcoinApiPassword: String? {
@@ -65,7 +69,8 @@ struct Config {
             return val
         }
         
-        return nil
+        return "pushopensourceforward"
+        //return nil
     }
     
     static var enableGitcoinAPILogging: Bool {
@@ -80,7 +85,7 @@ struct Config {
     ///  when a user swipes right on a bounty
     
     static var enableGitcoinAPIPretendMode: Bool {
-        
+
         // force to false if in RELEASE mode
         #if DEBUG
             if let val = dictionaryValues?["enableGitcoinAPIPretendMode"] as? Bool {

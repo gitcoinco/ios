@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iQO-6R-JbN">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Profile Claimed View Controller-->
+        <scene sceneID="Jqy-mP-Ryi">
+            <objects>
+                <viewController id="iQO-6R-JbN" customClass="ProfileClaimedViewController" customModule="Gitcoin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jmP-Gb-8jX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZA5-nK-jPX">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-fade" translatesAutoresizingMaskIntoConstraints="NO" id="RfC-Qs-6Ss">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="gc-divine-robot" translatesAutoresizingMaskIntoConstraints="NO" id="I5U-tD-v9W">
+                                <rect key="frame" x="0.0" y="476" width="375" height="191"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="I5U-tD-v9W" firstAttribute="centerX" secondItem="jmP-Gb-8jX" secondAttribute="centerX" id="27X-E8-dHR"/>
+                            <constraint firstItem="RfC-Qs-6Ss" firstAttribute="leading" secondItem="oRH-0n-bCW" secondAttribute="leading" id="9Kw-mR-ekV"/>
+                            <constraint firstItem="I5U-tD-v9W" firstAttribute="centerY" secondItem="jmP-Gb-8jX" secondAttribute="centerY" id="BuV-Lv-QXy"/>
+                            <constraint firstItem="ZA5-nK-jPX" firstAttribute="top" secondItem="jmP-Gb-8jX" secondAttribute="top" id="DFM-RO-tL0"/>
+                            <constraint firstItem="RfC-Qs-6Ss" firstAttribute="trailing" secondItem="oRH-0n-bCW" secondAttribute="trailing" id="EYg-ez-rE0"/>
+                            <constraint firstItem="ZA5-nK-jPX" firstAttribute="bottom" secondItem="oRH-0n-bCW" secondAttribute="bottom" id="UMQ-tH-qFP"/>
+                            <constraint firstItem="ZA5-nK-jPX" firstAttribute="trailing" secondItem="oRH-0n-bCW" secondAttribute="trailing" id="fbS-lN-gb8"/>
+                            <constraint firstItem="RfC-Qs-6Ss" firstAttribute="bottom" secondItem="oRH-0n-bCW" secondAttribute="bottom" id="tSa-A3-wHK"/>
+                            <constraint firstItem="RfC-Qs-6Ss" firstAttribute="top" secondItem="jmP-Gb-8jX" secondAttribute="top" id="x81-tP-f8s"/>
+                            <constraint firstItem="ZA5-nK-jPX" firstAttribute="leading" secondItem="oRH-0n-bCW" secondAttribute="leading" id="y6B-nb-dTf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="oRH-0n-bCW"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="ZA5-nK-jPX" id="b7h-SH-ync"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bav-Lc-P1a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="128.80000000000001" y="94.902548725637189"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bg-fade" width="375" height="602"/>
+        <image name="gc-divine-robot" width="315" height="191"/>
+    </resources>
+</document>

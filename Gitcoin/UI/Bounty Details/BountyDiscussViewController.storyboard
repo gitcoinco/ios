@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vei-ms-5d3">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Bounty Discuss View Controller-->
+        <scene sceneID="iQP-fR-TUL">
+            <objects>
+                <viewController id="vei-ms-5d3" customClass="BountyDiscussViewController" customModule="Gitcoin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y8e-sz-YY6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pgH-u7-cEC">
+                                <rect key="frame" x="10" y="0.0" width="355" height="623"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-fade" translatesAutoresizingMaskIntoConstraints="NO" id="Iu3-fZ-0xS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gc-divine-robot" translatesAutoresizingMaskIntoConstraints="NO" id="wst-mH-Lvn">
+                                <rect key="frame" x="0.0" y="476" width="375" height="191"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="191" id="Lsm-cC-ZnQ"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V3D-oy-M70" customClass="PHFComposeBarView">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="W9y-Tl-9bg"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wst-mH-Lvn" firstAttribute="leading" secondItem="csJ-TO-YcA" secondAttribute="leading" id="8sf-Tm-jcM"/>
+                            <constraint firstItem="V3D-oy-M70" firstAttribute="leading" secondItem="csJ-TO-YcA" secondAttribute="leading" id="BOn-eb-sNS"/>
+                            <constraint firstItem="V3D-oy-M70" firstAttribute="top" secondItem="pgH-u7-cEC" secondAttribute="bottom" id="Co3-Sp-Vif"/>
+                            <constraint firstItem="csJ-TO-YcA" firstAttribute="bottom" secondItem="wst-mH-Lvn" secondAttribute="bottom" id="D2b-gZ-zYr"/>
+                            <constraint firstItem="Iu3-fZ-0xS" firstAttribute="trailing" secondItem="csJ-TO-YcA" secondAttribute="trailing" id="I8d-dH-JL7"/>
+                            <constraint firstItem="pgH-u7-cEC" firstAttribute="trailing" secondItem="csJ-TO-YcA" secondAttribute="trailing" constant="-10" id="Rg0-N8-tlU"/>
+                            <constraint firstItem="V3D-oy-M70" firstAttribute="trailing" secondItem="csJ-TO-YcA" secondAttribute="trailing" id="T2f-bh-JmD"/>
+                            <constraint firstItem="Iu3-fZ-0xS" firstAttribute="bottom" secondItem="csJ-TO-YcA" secondAttribute="bottom" id="U7y-Rx-wKg"/>
+                            <constraint firstItem="Iu3-fZ-0xS" firstAttribute="top" secondItem="Y8e-sz-YY6" secondAttribute="top" id="ZRu-4x-f47"/>
+                            <constraint firstItem="wst-mH-Lvn" firstAttribute="trailing" secondItem="csJ-TO-YcA" secondAttribute="trailing" id="cnN-VO-jBC"/>
+                            <constraint firstItem="V3D-oy-M70" firstAttribute="bottom" secondItem="csJ-TO-YcA" secondAttribute="bottom" id="hdT-kl-QIq"/>
+                            <constraint firstItem="Iu3-fZ-0xS" firstAttribute="leading" secondItem="csJ-TO-YcA" secondAttribute="leading" id="nr6-Kk-FtA"/>
+                            <constraint firstItem="pgH-u7-cEC" firstAttribute="top" secondItem="Y8e-sz-YY6" secondAttribute="top" id="yDb-PU-ab9"/>
+                            <constraint firstItem="pgH-u7-cEC" firstAttribute="leading" secondItem="csJ-TO-YcA" secondAttribute="leading" constant="10" id="ySn-Q5-VBL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="csJ-TO-YcA"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="pgH-u7-cEC" id="QnX-jP-1F2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aoi-D9-ydI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="196" y="141.67916041979012"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bg-fade" width="375" height="602"/>
+        <image name="gc-divine-robot" width="315" height="191"/>
+    </resources>
+</document>

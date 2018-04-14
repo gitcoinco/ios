@@ -38,7 +38,7 @@ class WebViewController: UIViewController {
         loadCurrentUrl()
     }
     
-    func refreshOptions(sender:UIRefreshControl){
+    @objc func refreshOptions(sender:UIRefreshControl){
         webView!.reload()
     }
     

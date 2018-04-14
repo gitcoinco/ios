@@ -17,9 +17,9 @@ target 'Gitcoin' do
   
   pod 'AlamofireImage', '~> 3.3'
   
-  pod 'SCLAlertView'
+  pod 'SCLAlertView' , '~> 0.8'
   
-  pod 'OctoKit.swift'
+  pod 'OctoKit.swift', '~> 0.8'
   
   pod 'SideMenu'
   
@@ -33,19 +33,24 @@ target 'Gitcoin' do
   
   pod 'Crashlytics'
   
-  pod 'AFDateHelper', '= 4.2.4'
+  #pod 'AFDateHelper', '= 4.2.4'
+  pod 'AFDateHelper'
   
-  pod 'WSTagsField'
+  pod 'WSTagsField', '~> 3.1.0'
   
   pod 'TTTAttributedLabel'
   
   pod 'Pushwoosh'
   
-  pod 'Mixpanel-swift'
+  #pod 'Mixpanel-swift', '= 2.1.8'
+  pod 'Mixpanel-swift', '= 2.3.3'
   
-  pod 'Whisper', '= 5.1.0'
+  #pod 'Whisper', '= 5.1.0'
+  pod 'Whisper', '= 6.0.2'
   
   pod 'youtube-ios-player-helper', '~> 0.1'
+  
+  pod 'PHFComposeBarView', '~> 2.0.1'
   
   target 'GitcoinTests' do
     inherit! :search_paths

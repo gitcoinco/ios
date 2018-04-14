@@ -89,6 +89,12 @@ struct Bounty: Mappable {
     
     let descriptionText: String?
     
+    let githubIssueNumber: Int?
+    
+    let githubOrgName: String?
+    
+    let githubRepoName: String?
+    
     init(map: Mapper) throws {
         try id = map.from("pk")
         try title = map.from("title")
@@ -119,8 +125,11 @@ struct Bounty: Mappable {
         }
         
         keywords = map.optionalFrom("metadata.issueKeywords")
-        
         descriptionText = map.optionalFrom("issue_description_text")
+        githubIssueNumber = map.optionalFrom("github_issue_number")
+        githubOrgName = map.optionalFrom("github_org_name")
+        githubRepoName = map.optionalFrom("github_repo_name")
+
     }
     
     func dictionaryForTracking() -> [String:Any]{
