@@ -63,7 +63,6 @@
 		46B80430204C50440042446D /* BetterSegmentedControl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46B8042E204C50440042446D /* BetterSegmentedControl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		46BFCE6B20749D65005D5245 /* Observable+ignoreNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BFCE6A20749D65005D5245 /* Observable+ignoreNil.swift */; };
 		46BFEB4F204C5F0000F21608 /* BountyDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46BFEB4E204C5F0000F21608 /* BountyDetailViewController.storyboard */; };
-		46BFEB51204C5F3600F21608 /* BountyDetailViewControllerxx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BFEB50204C5F3600F21608 /* BountyDetailViewControllerxx.swift */; };
 		46BFEB53204C5FCC00F21608 /* BountyDiscussViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BFEB52204C5FCC00F21608 /* BountyDiscussViewController.swift */; };
 		46BFEB55204C5FDD00F21608 /* BountyDiscussViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46BFEB54204C5FDD00F21608 /* BountyDiscussViewController.storyboard */; };
 		46BFEB59204C69BC00F21608 /* BountyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BFEB58204C69BC00F21608 /* BountyDetailView.swift */; };
@@ -179,7 +178,6 @@
 		46B8042E204C50440042446D /* BetterSegmentedControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BetterSegmentedControl.framework; path = Frameworks/BetterSegmentedControl.framework; sourceTree = "<group>"; };
 		46BFCE6A20749D65005D5245 /* Observable+ignoreNil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+ignoreNil.swift"; sourceTree = "<group>"; };
 		46BFEB4E204C5F0000F21608 /* BountyDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BountyDetailViewController.storyboard; sourceTree = "<group>"; };
-		46BFEB50204C5F3600F21608 /* BountyDetailViewControllerxx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyDetailViewControllerxx.swift; sourceTree = "<group>"; };
 		46BFEB52204C5FCC00F21608 /* BountyDiscussViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyDiscussViewController.swift; sourceTree = "<group>"; };
 		46BFEB54204C5FDD00F21608 /* BountyDiscussViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BountyDiscussViewController.storyboard; sourceTree = "<group>"; };
 		46BFEB58204C69BC00F21608 /* BountyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyDetailView.swift; sourceTree = "<group>"; };
@@ -464,7 +462,6 @@
 			children = (
 				46B8042C204C453B0042446D /* BountyDetailsContainerViewController.swift */,
 				46BFEB4E204C5F0000F21608 /* BountyDetailViewController.storyboard */,
-				46BFEB50204C5F3600F21608 /* BountyDetailViewControllerxx.swift */,
 				46E8B30B2071493700952ADE /* BountyDetailViewController.swift */,
 				46BFEB52204C5FCC00F21608 /* BountyDiscussViewController.swift */,
 				46BFEB54204C5FDD00F21608 /* BountyDiscussViewController.storyboard */,
@@ -918,7 +915,6 @@
 				46BFEB5D204C6E0800F21608 /* BountyDiscussView.swift in Sources */,
 				20DF6AB51FD3226C000ADA04 /* NetworkReachability.swift in Sources */,
 				46E8B30C2071493700952ADE /* BountyDetailViewController.swift in Sources */,
-				46BFEB51204C5F3600F21608 /* BountyDetailViewControllerxx.swift in Sources */,
 				20FF15091FDD899600D78A26 /* ProfileSignedInViewController.swift in Sources */,
 				20FF58DA1FDCCB790068B27C /* GradientBackgroundView.swift in Sources */,
 				46BFEB53204C5FCC00F21608 /* BountyDiscussViewController.swift in Sources */,

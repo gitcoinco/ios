@@ -32,7 +32,7 @@ class BountyDiscussViewController: UIViewController {
         
         //OctokitManager.shared.addComment(issueId: 760,  comment: "This is a test comment and can be deleted")
         
-        tableView.estimatedRowHeight = 80
+        tableView.estimatedRowHeight = 300.0
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.delegate = self
         tableView.dataSource = self
@@ -140,5 +140,8 @@ extension BountyDiscussViewController: UITableViewDelegate, UITableViewDataSourc
         return BountyCommentCell()
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
     
 }

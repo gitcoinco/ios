@@ -33,18 +33,40 @@ class BountyDetailViewController: UITableViewController {
             set(imageUrl: bounty.avatarUrl)
             set(title: bounty.title)
             set(keywords: bounty.keywordArray)
+            set(status: bounty.status)
         }
         
-        tableView.estimatedRowHeight = 200.0
+        tableView.estimatedRowHeight = 300.0
         tableView.rowHeight = UITableViewAutomaticDimension
     }
+    
 
     func setPosted(_ bounty: Bounty){
-        lblPosted.text = "\(bounty.createdAgo) - EXP. \(bounty.expiresIn)"
+        lblPosted.text = "POSTED: \(bounty.createdAgo) - EXP. \(bounty.expiresIn)"
     }
     
     func setFunderInfo(_ bounty: Bounty){
-        lblFunderInfo.text = bounty.ownerGithubUsername
+        
+        var tokenValueString = ""
+        
+        var bountyOwnerEmailString = ""
+        
+        var ownerGithubUsernameString = ""
+        
+        if let tokenValue = bounty.tokenValueString{
+            tokenValueString = tokenValue
+        }
+        
+        if let bountyOwnerEmail = bounty.bountyOwnerEmail{
+            bountyOwnerEmailString = bountyOwnerEmail
+        }
+        
+        if let ownerGithubUsername = bounty.ownerGithubUsername{
+            ownerGithubUsernameString = ownerGithubUsername
+        }
+        
+        
+        lblFunderInfo.text = "\(tokenValueString) \n \(bountyOwnerEmailString) \n \(ownerGithubUsernameString)"
     }
     
     func setIssueDesc(_ bounty: Bounty){
@@ -81,8 +103,6 @@ class BountyDetailViewController: UITableViewController {
             return
         }
         
-        print(keywords)
-        
         tagsField.readOnly = true
         tagsField.translatesAutoresizingMaskIntoConstraints = false
         keywordContainer.addSubview(tagsField)
@@ -99,13 +119,7 @@ class BountyDetailViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return 300
-        }
-        else {
-           return UITableViewAutomaticDimension
-        }
-        
+        return UITableViewAutomaticDimension
     }
     
 }

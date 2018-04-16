@@ -19,7 +19,10 @@ struct Bounty: Mappable {
     let valueTrue: Float?
     let tokenName: String?
     
+    let status: String?
     let keywords: String?
+    let bountyOwnerEmail: String?
+    
     
     var keywordArray: [String]? {
         return keywords?.components(separatedBy: ",")
@@ -55,7 +58,7 @@ struct Bounty: Mappable {
     let bountyType: String?
     let projectLength: String?
     let organizationName: String?
-    let ownerGithubUsername: String
+    let ownerGithubUsername: String?
     
     var ownerGithubUrl: URL {
         return URL(string: "https://github.com/\(self.ownerGithubUsername)")!
@@ -107,6 +110,8 @@ struct Bounty: Mappable {
         bountyType = map.optionalFrom("bounty_type")
         projectLength = map.optionalFrom("project_length")
         organizationName = map.optionalFrom("org_name")
+        status = map.optionalFrom("status")
+        bountyOwnerEmail = map.optionalFrom("bounty_owner_email")
         
         try ownerGithubUsername = map.from("bounty_owner_github_username")
         

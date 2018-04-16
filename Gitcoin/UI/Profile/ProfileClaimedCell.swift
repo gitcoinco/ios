@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class ProfileClaimedCell: UITableViewCell {
     
     @IBOutlet var lblTitle: UILabel!
-    @IBOutlet var lblShortDesc: UILabel!
+    @IBOutlet weak var avatarImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,8 +30,16 @@ class ProfileClaimedCell: UITableViewCell {
         lblTitle.text = title
     }
     
-    func set(desc: String) {
-        lblShortDesc.text = desc
+    func set(imageUrl: String?){
+        if let imageUrl = imageUrl{
+            Alamofire.request(imageUrl).responseImage { response in
+                if let image = response.result.value {
+                    let circularImage = image.af_imageRoundedIntoCircle()
+                    
+                    self.avatarImageView.image = circularImage
+                }
+            }
+        }
     }
     
 }

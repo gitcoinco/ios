@@ -31,6 +31,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.79897414641914921" green="0.86800156932926931" blue="0.78696152867287816" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="29.5" id="Eqe-Mo-4vD"/>
                             <constraint firstAttribute="bottom" secondItem="ySs-N7-Neh" secondAttribute="bottom" constant="5" id="H7g-Wl-aTe"/>
                             <constraint firstItem="ySs-N7-Neh" firstAttribute="leading" secondItem="JeE-cX-GFS" secondAttribute="leading" constant="10" id="PNc-bh-uuG"/>
                             <constraint firstItem="ySs-N7-Neh" firstAttribute="top" secondItem="JeE-cX-GFS" secondAttribute="top" constant="5" id="bcG-g1-w5c"/>
@@ -40,7 +41,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4i-0Q-LhN">
                         <rect key="frame" x="10" y="34.5" width="300" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="xQ4-Ai-RFV"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="xQ4-Ai-RFV"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>

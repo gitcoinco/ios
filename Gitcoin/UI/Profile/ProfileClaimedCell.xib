@@ -19,21 +19,34 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4L-TU-XH4">
-                        <rect key="frame" x="10" y="5" width="300" height="69.5"/>
+                        <rect key="frame" x="80" y="5" width="230" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="v1Y-BC-uKS"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rDj-a5-ZqH">
+                        <rect key="frame" x="5" y="5" width="70" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="70" id="nzR-QZ-Srm"/>
+                            <constraint firstAttribute="width" constant="70" id="y4V-6I-35B"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="D4L-TU-XH4" secondAttribute="trailing" constant="10" id="Cip-kI-IBP"/>
+                    <constraint firstItem="D4L-TU-XH4" firstAttribute="leading" secondItem="rDj-a5-ZqH" secondAttribute="trailing" constant="5" id="Gaz-si-OkK"/>
+                    <constraint firstItem="rDj-a5-ZqH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="Hra-am-CR7"/>
                     <constraint firstItem="D4L-TU-XH4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="ayg-eP-Ay4"/>
-                    <constraint firstItem="D4L-TU-XH4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="ucy-1W-5j7"/>
+                    <constraint firstItem="rDj-a5-ZqH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="q1f-aa-Mi3"/>
                     <constraint firstAttribute="bottom" secondItem="D4L-TU-XH4" secondAttribute="bottom" constant="5" id="xlx-RR-Kqv"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="avatarImageView" destination="rDj-a5-ZqH" id="LYc-i0-oLJ"/>
                 <outlet property="lblTitle" destination="D4L-TU-XH4" id="syn-1x-MKO"/>
             </connections>
         </tableViewCell>

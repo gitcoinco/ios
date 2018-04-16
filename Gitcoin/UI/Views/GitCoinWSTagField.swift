@@ -24,6 +24,7 @@ class GitCoinWSTagField: WSTagsField {
     fileprivate func internalInit(){
         contentInset = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 10.0, right: 10.0)
         spaceBetweenTags = 10.0
+        spaceBetweenLines = 10.0
         font = UIFont.robotoMediumFont(size: 12.0)
         tintColor = UIColor.gitCoin.midnightBlue
         textColor = .white

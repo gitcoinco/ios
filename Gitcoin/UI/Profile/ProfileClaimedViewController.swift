@@ -41,7 +41,8 @@ class ProfileClaimedViewController: UIViewController {
         
         loadClaimedList()
         
-        tableView.rowHeight = 80
+        tableView.estimatedRowHeight = 300.0
+        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "ProfileClaimedCell", bundle: Bundle.main), forCellReuseIdentifier: "ProfileClaimedCell")
@@ -109,12 +110,17 @@ extension ProfileClaimedViewController: UITableViewDataSource {
 
         if let bounties = self.data{
             let title =  bounties[indexPath.row].title
+            let avatarUrl =  bounties[indexPath.row].avatarUrl
             cell.set(title: title)
+            cell.set(imageUrl: avatarUrl)
             return cell
         }
         
         return ProfileClaimedCell()
     }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
 
 }
