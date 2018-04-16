@@ -4,6 +4,8 @@
 <dict>
 <key>gitHubOAuthToken</key>
 <string>xxxxxxxx</string>
+<key>enableGitcoinAPILogging</key>
+<true/>
 <key>gitHubOAuthSecret</key>
 <string>xxxxxxx</string>
 </dict>
