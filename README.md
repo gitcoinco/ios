@@ -21,7 +21,7 @@ Gitcoin pushes Open Source Forward. Learn more at [https://gitcoin.co](https://g
 
 # Setup
 1. [Install cocoapods](https://guides.cocoapods.org/using/getting-started.html), and run `pod install` from the repo
-2. `cp SafeConfiguration.plist.dist SafeConfiguration.plist`
+2. `cp Gitcoin/SafeConfiguration.plist.dist Gitcoin/SafeConfiguration.plist`
 3. Edit your `SafeConfiguration.plist` file and add the following keys as strings: `gitHubOAuthToken`, `gitHubOAuthSecret` ([see here to create these values](https://github.com/settings/developers))
 4. Build the app in xcode (make sure to open the `Gitcoin.xcworkspace` file, not the `Gitcoin.xcodeproj` file)
 
