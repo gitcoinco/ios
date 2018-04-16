@@ -107,7 +107,8 @@ extension ProfileClaimedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "ProfileClaimedCell", for: indexPath) as! ProfileClaimedCell
         cell.selectionStyle = .gray
-
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+        
         if let bounties = self.data{
             let title =  bounties[indexPath.row].title
             let avatarUrl =  bounties[indexPath.row].avatarUrl
