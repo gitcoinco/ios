@@ -19,55 +19,38 @@ TBD
 
 Gitcoin pushes Open Source Forward. Learn more at [https://gitcoin.co](https://gitcoin.co)
 
-# ETHWaterloo
-
-Built as part of the [ETHWaterloo Hackathon 2017](https://ethwaterloo.com).
-
-
-# Credits
-
-Thanks to  [Koloda](https://github.com/Yalantis/Koloda).
-
-
 # Setup
-1. Install cocoapods, and run pod install
-2. Create a SafeConfiguration.plist file and add the following keys as strings: gitHubOAuthToken, gitHubOAuthSecret
-3. See the SafeConfiguration struct in Global Constants for more variables
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-<key>gitHubOAuthToken</key>
-<string>xxxxxxxx</string>
-<key>gitHubOAuthSecret</key>
-<string>xxxxxxx</string>
-</dict>
-</plist>
-```
-
+1. [Install cocoapods](https://guides.cocoapods.org/using/getting-started.html), and run `pod install` from the repo
+2. `cp SafeConfiguration.plist.dist SafeConfiguration.plist`
+3. Edit your `SafeConfiguration.plist` file and add the following keys as strings: `gitHubOAuthToken`, `gitHubOAuthSecret` ([see here to create these values](https://github.com/settings/developers))
+4. Build the app in xcode
 
 # Legal
 
 '''
 
-    Copyright (C) 2017 Gitcoin Core 
+Copyright (C) 2017 Gitcoin Core 
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published
-    by the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-    GNU Affero General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU Affero General Public License for more details.
 
-    You should have received a copy of the GNU Affero General Public License
-    along with this program. If not, see <http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU Affero General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
 '''
+
+# Credits
+
+Thanks to @cheneveld for the initial app build and @john-brunelle for helping get this in the app store.
+
 
 
 
