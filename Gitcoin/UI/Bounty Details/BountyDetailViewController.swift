@@ -9,8 +9,10 @@
 import UIKit
 import Alamofire
 import AlamofireImage
+import SCLAlertView
+import InputBarAccessoryView
 
-class BountyDetailViewController: UITableViewController {
+class BountyDetailViewController: UITableViewController{
     
     @IBOutlet weak var lblPosted: UILabel!
     @IBOutlet weak var lblFunderInfo: UILabel!
@@ -36,10 +38,9 @@ class BountyDetailViewController: UITableViewController {
             set(status: bounty.status)
         }
         
-        tableView.estimatedRowHeight = 300.0
+        tableView.estimatedRowHeight = 500.0
         tableView.rowHeight = UITableViewAutomaticDimension
     }
-    
 
     func setPosted(_ bounty: Bounty){
         lblPosted.text = "POSTED: \(bounty.createdAgo) - EXP. \(bounty.expiresIn)"
@@ -47,26 +48,33 @@ class BountyDetailViewController: UITableViewController {
     
     func setFunderInfo(_ bounty: Bounty){
         
-        var tokenValueString = ""
-        
-        var bountyOwnerEmailString = ""
-        
         var ownerGithubUsernameString = ""
+        var bountyOwnerEmailString = ""
+        var tokenValueString = ""
+        var usdtDisplayValueString = ""
         
-        if let tokenValue = bounty.tokenValueString{
-            tokenValueString = tokenValue
+        lblFunderInfo.text = ""
+        
+        if let ownerGithubUsername = bounty.ownerGithubUsername, !ownerGithubUsername.isEmpty{
+            ownerGithubUsernameString = "\(ownerGithubUsername) \n"
+            lblFunderInfo.text?.append(ownerGithubUsernameString)
         }
         
-        if let bountyOwnerEmail = bounty.bountyOwnerEmail{
-            bountyOwnerEmailString = bountyOwnerEmail
+        if let bountyOwnerEmail = bounty.bountyOwnerEmail, !bountyOwnerEmail.isEmpty{
+            bountyOwnerEmailString = "\(bountyOwnerEmail) \n"
+            lblFunderInfo.text?.append(bountyOwnerEmailString)
         }
         
-        if let ownerGithubUsername = bounty.ownerGithubUsername{
-            ownerGithubUsernameString = ownerGithubUsername
+        if !bounty.usdtDisplayValue.isEmpty {
+            usdtDisplayValueString = "\(bounty.usdtDisplayValue) \n"
+            lblFunderInfo.text?.append(usdtDisplayValueString)
         }
         
-        
-        lblFunderInfo.text = "\(tokenValueString) \n \(bountyOwnerEmailString) \n \(ownerGithubUsernameString)"
+        if let tokenValue = bounty.tokenValueString, !tokenValue.isEmpty{
+            tokenValueString = "\(tokenValue) \n"
+            lblFunderInfo.text?.append(tokenValueString)
+        }
+
     }
     
     func setIssueDesc(_ bounty: Bounty){

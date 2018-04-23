@@ -49,8 +49,8 @@ struct Config {
             }
         #endif
         
-        //return "https://gitcoin.co/"
-        return "https://stage.gitcoin.co/"
+        return "https://gitcoin.co/"
+        //return "https://stage.gitcoin.co/"
        // return "https://gitcoin.co/api/v0.1/"
         //return "https://origin.gitcoin.co/"
     }
@@ -60,8 +60,8 @@ struct Config {
             return val
         }
         
-        return "gitcoin"
-        //return nil
+        //return "gitcoin"
+        return nil
     }
     
     static var gitcoinApiPassword: String? {
@@ -69,8 +69,8 @@ struct Config {
             return val
         }
         
-        return "pushopensourceforward"
-        //return nil
+        //return "pushopensourceforward"
+        return nil
     }
     
     static var enableGitcoinAPILogging: Bool {

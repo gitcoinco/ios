@@ -28,25 +28,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VpX-iJ-bf8">
-                                <rect key="frame" x="0.0" y="124" width="320" height="444"/>
+                                <rect key="frame" x="0.0" y="128" width="320" height="440"/>
                             </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z4y-Z5-Jtq">
+                                <rect key="frame" x="0.0" y="74" width="320" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="H4h-XP-f6s"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="z4y-Z5-Jtq" firstAttribute="trailing" secondItem="GlE-Tg-mFP" secondAttribute="trailing" id="CYs-Pg-U5d"/>
                             <constraint firstItem="VpX-iJ-bf8" firstAttribute="leading" secondItem="GlE-Tg-mFP" secondAttribute="leading" id="DGp-s1-rBf"/>
                             <constraint firstItem="VpX-iJ-bf8" firstAttribute="bottom" secondItem="GlE-Tg-mFP" secondAttribute="bottom" id="Meq-B3-eoM"/>
-                            <constraint firstItem="VpX-iJ-bf8" firstAttribute="top" secondItem="GlE-Tg-mFP" secondAttribute="top" constant="60" id="fb2-lI-lXp"/>
+                            <constraint firstItem="z4y-Z5-Jtq" firstAttribute="top" secondItem="GlE-Tg-mFP" secondAttribute="top" constant="10" id="Xkv-1R-FVG"/>
+                            <constraint firstItem="z4y-Z5-Jtq" firstAttribute="leading" secondItem="GlE-Tg-mFP" secondAttribute="leading" id="sWg-Co-Q4u"/>
                             <constraint firstItem="VpX-iJ-bf8" firstAttribute="trailing" secondItem="GlE-Tg-mFP" secondAttribute="trailing" id="vUe-ie-7LN"/>
+                            <constraint firstItem="VpX-iJ-bf8" firstAttribute="top" secondItem="z4y-Z5-Jtq" secondAttribute="bottom" constant="10" id="xDf-RH-zML"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GlE-Tg-mFP"/>
                     </view>
                     <connections>
                         <outlet property="containerView" destination="VpX-iJ-bf8" id="A5m-l4-Pea"/>
+                        <outlet property="controlXAxisConstraint" destination="sWg-Co-Q4u" id="9NS-Gl-PCH"/>
+                        <outlet property="segControlContainer" destination="z4y-Z5-Jtq" id="qpD-z4-luq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gbs-zE-byA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1628" y="2537"/>
+            <point key="canvasLocation" x="1627.5" y="2536.2676056338028"/>
         </scene>
         <!--BOUNTIES-->
         <scene sceneID="Tzl-PZ-ig6">
@@ -308,15 +320,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eub-ci-LaM">
-                                <rect key="frame" x="0.0" y="124" width="320" height="444"/>
+                                <rect key="frame" x="0.0" y="128" width="320" height="440"/>
                             </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uiz-aj-0Tx">
+                                <rect key="frame" x="0.0" y="74" width="320" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="2TF-er-vHV"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Eub-ci-LaM" firstAttribute="top" secondItem="uiz-aj-0Tx" secondAttribute="bottom" constant="10" id="3Ca-sb-PmT"/>
                             <constraint firstItem="Eub-ci-LaM" firstAttribute="trailing" secondItem="ckJ-FV-GZ0" secondAttribute="trailing" id="7zS-kc-YfF"/>
                             <constraint firstItem="Eub-ci-LaM" firstAttribute="bottom" secondItem="ckJ-FV-GZ0" secondAttribute="bottom" id="N6V-oR-niH"/>
                             <constraint firstItem="Eub-ci-LaM" firstAttribute="leading" secondItem="ckJ-FV-GZ0" secondAttribute="leading" id="Nda-l7-t4q"/>
-                            <constraint firstItem="Eub-ci-LaM" firstAttribute="top" secondItem="ckJ-FV-GZ0" secondAttribute="top" constant="60" id="hpL-2e-kOw"/>
+                            <constraint firstItem="uiz-aj-0Tx" firstAttribute="top" secondItem="ckJ-FV-GZ0" secondAttribute="top" constant="10" id="awy-xI-Xxu"/>
+                            <constraint firstItem="uiz-aj-0Tx" firstAttribute="trailing" secondItem="ckJ-FV-GZ0" secondAttribute="trailing" id="dWx-On-PmU"/>
+                            <constraint firstItem="uiz-aj-0Tx" firstAttribute="leading" secondItem="ckJ-FV-GZ0" secondAttribute="leading" id="kZl-lX-Fb0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ckJ-FV-GZ0"/>
                     </view>
@@ -330,6 +352,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="Eub-ci-LaM" id="qXw-bb-kr1"/>
+                        <outlet property="controlXAxisConstraint" destination="kZl-lX-Fb0" id="pzw-yE-inh"/>
+                        <outlet property="segControlContainer" destination="uiz-aj-0Tx" id="udW-6h-W14"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kTH-tm-bqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -356,7 +380,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="W3a-7W-81X"/>
-        <segue reference="uX3-PW-ub6"/>
+        <segue reference="EU2-ZQ-NVk"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

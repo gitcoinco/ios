@@ -57,7 +57,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="1,000 USD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Avd-vU-h0T">
-                                                    <rect key="frame" x="187" y="22.666666666666664" width="187" height="21"/>
+                                                    <rect key="frame" x="187" y="24" width="187" height="18"/>
                                                     <fontDescription key="fontDescription" name="FuturaStd-Book" family="Futura Std" pointSize="18"/>
                                                     <color key="textColor" name="Black54"/>
                                                     <nil key="highlightedColor"/>

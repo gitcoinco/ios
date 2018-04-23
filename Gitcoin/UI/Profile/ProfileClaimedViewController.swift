@@ -7,13 +7,27 @@
 //
 
 import UIKit
+import SCLAlertView
 
 class ProfileClaimedViewController: UIViewController {
     
     var data: [Bounty]?
     @IBOutlet var tableView: UITableView!
     
-    func loadClaimedList(){
+    lazy var refreshControl: UIRefreshControl = {
+        var control: UIRefreshControl = UIRefreshControl()
+        return control
+    }()
+    
+    lazy internal var activityIndicator: UIActivityIndicatorView! = {
+        return self.createActivityIndicator()
+    }()
+    
+    @objc func loadClaimedList(){
+        
+        if !refreshControl.isRefreshing && (data?.count == 0 || data == nil){
+            activityIndicator.startAnimating()
+        }
         
         let user = OctokitManager.shared.user.value
         
@@ -23,8 +37,14 @@ class ProfileClaimedViewController: UIViewController {
                 switch event {
                 case .success(let claimed):
                     
-                    print("claimed = \(claimed.count)")
                     logger.verbose("Bounties Claimed List: \(claimed)")
+                    
+                    self.refreshControl.endRefreshing()
+                    self.activityIndicator.stopAnimating()
+                    
+                    if claimed.count == 0{
+                        self.showNoDataAlert()
+                    }
                     
                     self.data = claimed
                     self.tableView.reloadData()
@@ -39,22 +59,35 @@ class ProfileClaimedViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        loadClaimedList()
-        
-        tableView.estimatedRowHeight = 300.0
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = 90
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "ProfileClaimedCell", bundle: Bundle.main), forCellReuseIdentifier: "ProfileClaimedCell")
+        tableView.tableFooterView = UIView(frame: .zero)
+        
+        tableView.addSubview(self.refreshControl)
+        refreshControl.addTarget(self, action: #selector(loadClaimedList), for: .valueChanged)
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadClaimedList()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    }
+    
+    func showNoDataAlert(){
+        let appearance = gitcoinAppearance(
+            showCloseButton: false
+        )
+        let alertView = SCLAlertView(appearance: appearance)
+        
+        alertView.addButton("CONTINUE") {}
+        
+        alertView.showInfo("Oh Snap, We could not find any claimed bounties for you", subTitle: "to show claimed bouties you must be signed in to Github and have claimed a bounty.")
     }
 }
 
@@ -64,20 +97,33 @@ extension ProfileClaimedViewController: UITableViewDelegate {
         
         if editingStyle == .delete {
             
-            let bounty = self.data?[indexPath.row]
+            let appearance = SCLAlertView.SCLAppearance(
+                showCloseButton: false
+            )
+            let alertView = SCLAlertView(appearance: appearance)
+            
+            
+            alertView.addButton("No") {print("don't delete")}
+            alertView.addButton("YES") {
+                let bounty = self.data?[indexPath.row]
 
-            _ = GitcoinAPIService.shared.provider.rx.request(.removeClaimed(bounty: bounty))
-                .subscribe { event in
-                    switch event {
-                    case .success(_):
-                        
-                        print("claimed deleted, bountty id = \(String(describing: bounty))")
-                        self.loadClaimedList()
-                       
-                    case .error(let error):
-                        logger.error(error)
-                    }
+                self.activityIndicator.startAnimating()
+                
+                _ = GitcoinAPIService.shared.provider.rx.request(.removeClaimed(bounty: bounty))
+                    .subscribe { event in
+                        switch event {
+                        case .success(_):
+
+                            print("claimed deleted, bountty id = \(String(describing: bounty))")
+                            self.loadClaimedList()
+
+                        case .error(let error):
+                            logger.error(error)
+                        }
+                }
             }
+            
+            alertView.showWarning("Delete Claimed Bounty", subTitle: "Do you really want to delete this bounty?")
         }
     }
     
@@ -106,22 +152,21 @@ extension ProfileClaimedViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "ProfileClaimedCell", for: indexPath) as! ProfileClaimedCell
-        cell.selectionStyle = .gray
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
         if let bounties = self.data{
             let title =  bounties[indexPath.row].title
             let avatarUrl =  bounties[indexPath.row].avatarUrl
+           
+            
             cell.set(title: title)
             cell.set(imageUrl: avatarUrl)
+            cell.set(details: bounties[indexPath.row])
+            
             return cell
         }
         
         return ProfileClaimedCell()
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
     }
 
 }

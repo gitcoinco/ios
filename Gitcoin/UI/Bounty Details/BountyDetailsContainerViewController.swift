@@ -13,6 +13,9 @@ class BountyDetailsContainerViewController: UIViewController {
     
     var bounty: Bounty?
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var segControlContainer: UIView!
+    @IBOutlet weak var controlXAxisConstraint: NSLayoutConstraint!
+    
     
     // MARK: - Bounty Detail and Discuss View Controllers
     
@@ -40,7 +43,7 @@ class BountyDetailsContainerViewController: UIViewController {
         }
 
         let control = BetterSegmentedControl(
-            frame: CGRect(x: 15.0, y: 70.0, width: view.bounds.width - 30, height: 44.0),
+            frame: CGRect(x: 0, y: 0, width: segControlContainer.bounds.width-20, height: segControlContainer.bounds.height),
             titles: ["Bounty Details", "Discuss with Funder"],
             index: 0,
             options: [.backgroundColor(.white),
@@ -52,15 +55,23 @@ class BountyDetailsContainerViewController: UIViewController {
                       .titleFont(UIFont(name: "FuturaStd-Book", size: 14.0)!),
                       .selectedTitleFont(UIFont(name: "FuturaStd-Book", size: 14.0)!)]
         )
+        
         control.addTarget(self, action: #selector(BountyDetailsContainerViewController.navigationSegmentedControlValueChanged(_:)), for: .valueChanged)
+        
+        let xConstraint = (view.bounds.width - control.bounds.width)/2.0
+        
+        print(xConstraint)
+        
+        controlXAxisConstraint.constant = xConstraint
 
         let customSubview = UIView(frame: CGRect(x: 0, y: 0, width: control.frame.width, height: control.frame.height))
         customSubview.backgroundColor = .clear
         customSubview.layer.borderColor = UIColor(red:13/255, green:0.0, blue:60/255, alpha:1.00).cgColor
         customSubview.layer.borderWidth = 1.0
         customSubview.layer.cornerRadius = 6.0
+        
         control.addSubview(customSubview)
-        view.addSubview(control)
+        segControlContainer.addSubview(control)
         
         add(asChildViewController: detailViewController)
     }

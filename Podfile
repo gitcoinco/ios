@@ -50,7 +50,7 @@ target 'Gitcoin' do
   
   pod 'youtube-ios-player-helper', '~> 0.1'
   
-  pod 'PHFComposeBarView', '~> 2.0.1'
+  pod 'ALTextInputBar'
   
   target 'GitcoinTests' do
     inherit! :search_paths

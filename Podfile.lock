@@ -3,6 +3,7 @@ PODS:
   - Alamofire (4.6.0)
   - AlamofireImage (3.3.0):
     - Alamofire (~> 4.5)
+  - ALTextInputBar (1.1.8)
   - Crashlytics (3.9.3):
     - Fabric (~> 1.7.2)
   - Fabric (1.7.2)
@@ -30,9 +31,6 @@ PODS:
   - NBNRequestKit (2.2.0)
   - OctoKit.swift (0.8.0):
     - NBNRequestKit (~> 2.0)
-  - PHFComposeBarView (2.0.2):
-    - PHFDelegateChain (~> 1.0)
-  - PHFDelegateChain (1.0.1)
   - pop (1.0.10)
   - Pushwoosh (5.5.3)
   - Result (3.2.4)
@@ -52,6 +50,7 @@ PODS:
 DEPENDENCIES:
   - AFDateHelper
   - AlamofireImage (~> 3.3)
+  - ALTextInputBar
   - Crashlytics
   - Fabric
   - Koloda (~> 4.3.1)
@@ -59,7 +58,6 @@ DEPENDENCIES:
   - Moya-ModelMapper/RxSwift
   - Moya/RxSwift
   - OctoKit.swift (~> 0.8)
-  - PHFComposeBarView (~> 2.0.1)
   - Pushwoosh
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
@@ -77,6 +75,7 @@ SPEC CHECKSUMS:
   AFDateHelper: 4ad66fb19503041fbba8a3018cb7ef9c71b2ff88
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
+  ALTextInputBar: 6c160c51958903c5f7b9d158e19f9c4113ae351b
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
   Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   Koloda: 0d39b2aa188ccd1fac48d752acaf9802e683c625
@@ -86,8 +85,6 @@ SPEC CHECKSUMS:
   Moya-ModelMapper: c59c0bbd042cf9d1d9b0acf38c5f930956bebed8
   NBNRequestKit: 30c39d8e23e94f935bfc2a25789c44e4a6e1bfdd
   OctoKit.swift: 2f51efbf888997fc625b91894777e76e9142d95b
-  PHFComposeBarView: 758c73ce54be681df97223bc61543dd8828ae0d3
-  PHFDelegateChain: 491f9cd8a3fb8761f390ff05f74a0e168d48d285
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   Pushwoosh: 6e5b9c2845fac05dec7f8955590c24733a57a59c
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
@@ -103,6 +100,6 @@ SPEC CHECKSUMS:
   WSTagsField: 53055749c03769b2b297f2a629ba23a26931e3ff
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 8e810bd3e2471e963b9dbfebcdeac402411831d8
+PODFILE CHECKSUM: e88d4339af834ba766b211c4968a25ed180806d0
 
 COCOAPODS: 1.4.0

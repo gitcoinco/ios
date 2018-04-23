@@ -82,7 +82,7 @@ class OctokitManager: NSObject {
             fatalError("\n The SafeConfiguration.plist file can't be found. Please generate it with the following keys: gitHubOAuthToken, gitHubOAuthSecret")
         }
         
-        self.oAuthConfig = OAuthConfiguration(token: gitHubOAuthToken, secret: gitHubOAuthSecret, scopes: ["read:user", "read:org", "user:email"])
+        self.oAuthConfig = OAuthConfiguration(token: gitHubOAuthToken, secret: gitHubOAuthSecret, scopes: ["read:user", "read:org", "user:email", "public_repo", "write:discussion", "read:discussion"])
         
         super.init()
         
@@ -131,11 +131,11 @@ class OctokitManager: NSObject {
         }
     }
     
-    func issueComments(issueId: Int?){
+    func issueComments(issueId: Int?, repoName: String?, orgName: String?){
         
-        if let tokenConfig = tokenConfiguration, let issueId = issueId {
+        if let tokenConfig = tokenConfiguration, let issueId = issueId, let repoName = repoName, let orgName = orgName {
             
-            let (owner, repo, number) = ("gitcoinco", "web", issueId)
+            let (owner, repo, number) = (orgName, repoName, issueId)
             
             _ = Octokit(tokenConfig).comments(owner: owner, repository: repo, number: number){ response in
                 switch response {
@@ -152,19 +152,36 @@ class OctokitManager: NSObject {
         }
     }
     
-    func addComment(issueId: Int?, comment: String?){
+    func addComment(issueId: Int?, repoName: String?, orgName: String?, comment: String?){
         
-        if let tokenConfig = tokenConfiguration, let issueId = issueId {
+        if let tokenConfig = tokenConfiguration, let issueId = issueId, let repoName = repoName, let orgName = orgName {
             
-            //let (owner, repo, number) = ("gitcoinco", "web", issueId)
-            
-             let (owner, repo, number) = ("john-brunelle", "CITestProject", 1)
+            let (owner, repo, number) = (orgName, repoName, issueId)
             
             _ = Octokit(tokenConfig).addComment(owner: owner, repository: repo, number: number, comment: comment){ response in
                 switch response {
                 case .success(let response):
                     
                   print(response)
+                    
+                case .failure(let error):
+                    logger.error(error)
+                }
+            }
+        }
+    }
+    
+    func deleteComment(commentId: Int?, repoName: String?, orgName: String?){
+        
+        if let tokenConfig = tokenConfiguration, let commentId = commentId, let repoName = repoName, let orgName = orgName {
+            
+            let (owner, repo, number) = (orgName, repoName, commentId)
+            
+            _ = Octokit(tokenConfig).deleteComment(owner: owner, repository: repo, number: number){ response in
+                switch response {
+                case .success(let response):
+                    
+                    print(response)
                     
                 case .failure(let error):
                     logger.error(error)
@@ -230,74 +247,46 @@ extension Octokit{
             } else {
                 if let comments = comments {
                     
-//                    var comments: [Issue] = []
-//
-//                    for issue in json{
-//                        comments.append( try! Issue(from: issue as! Decoder))
-//                    }
-                    
                     completion(Response.success(comments))
                 }
             }
         })
-        
-        
-        
-//        return router.loadJSON(session, expectedResultType: [[String: AnyObject]].self) { json, error in
-//            if let error = error {
-//                completion(Response.failure(error))
-//            } else {
-//                if let json = json {
-//
-//                    var comments: [Issue] = []
-//
-//                    for issue in json{
-//                        comments.append( try! Issue(from: issue as! Decoder))
-//                    }
-//
-//                    completion(Response.success(comments))
-//                }
-//            }
-//        }
     }
 
     public func addComment(_ session: RequestKitURLSession = URLSession.shared, owner: String, repository: String, number: Int, comment: String? = nil, completion: @escaping (_ response: Response<Issue>) -> Void) -> URLSessionDataTaskProtocol? {
         
         let router = GitHubRouter.addComment(configuration, owner, repository, number, comment)
 
-        return router.postJSON(session, expectedResultType: [String: AnyObject].self) { json, error in
+        return router.postJSON(session, expectedResultType: Issue.self) { comment, error in
             
             if let error = error {
                 completion(Response.failure(error))
                 
             } else {
-                if let json = json {
-                    //let issue = Issue(json)
-                    
-                    print(json)
-                    
-                    //completion(Response.success(issue))
+                if let comment = comment {
+ 
+                    completion(Response.success(comment))
                 }
             }
         }
     }
     
-    
-//    public func postIssue(_ session: RequestKitURLSession = URLSession.shared, owner: String, repository: String, title: String, body: String? = nil, assignee: String? = nil, completion: @escaping (_ response: Response<Issue>) -> Void) -> URLSessionDataTaskProtocol? {
-//        let router = IssueRouter.postIssue(configuration, owner, repository, title, body, assignee)
-//        return router.postJSON(session, expectedResultType: [String: AnyObject].self) { json, error in
-//            if let error = error {
-//                completion(Response.failure(error))
-//            } else {
-//                if let json = json {
-//                    let issue = Issue(json)
-//                    completion(Response.success(issue))
-//                }
-//            }
-//        }
-//    }
-    
-    
+    public func deleteComment(_ session: RequestKitURLSession = URLSession.shared, owner: String, repository: String, number: Int, comment: String? = nil, completion: @escaping (_ response: Response<String>) -> Void) -> URLSessionDataTaskProtocol? {
+        
+        let router = GitHubRouter.deleteComment(configuration, owner, repository, number)
+        
+        return router.load(completion: { (error) in
+            if let error = error {
+                completion(Response.failure(error))
+                
+            } else {
+            
+                completion(Response.success("successfully deleted comment"))
+                
+            }
+        })
+        
+    }
 }
 
 enum GitHubRouter: JSONPostRouter {
@@ -305,11 +294,14 @@ enum GitHubRouter: JSONPostRouter {
     case userEmail(Configuration)
     case readComments(Configuration, String, String, Int)
     case addComment(Configuration, String, String, Int, String?)
+    case deleteComment(Configuration, String, String, Int)
 
     var method: HTTPMethod {
         switch self {
         case .addComment:
             return .POST
+        case .deleteComment:
+            return .DELETE
         default:
             return .GET
         }
@@ -328,6 +320,7 @@ enum GitHubRouter: JSONPostRouter {
         switch self {
         case .readComments(let config, _, _, _): return config
         case .addComment(let config, _, _, _, _): return config
+        case .deleteComment(let config, _, _, _): return config
         case .userEmail(let config): return config
         }
     }
@@ -337,6 +330,8 @@ enum GitHubRouter: JSONPostRouter {
         case .readComments:
             return [:]
         case .userEmail:
+            return [:]
+        case .deleteComment:
             return [:]
         case .addComment(_, _, _, _, let body):
             
@@ -356,8 +351,10 @@ enum GitHubRouter: JSONPostRouter {
             return "/user/emails"
         case .readComments(_, let owner, let repository, let number):
             return "repos/\(owner)/\(repository)/issues/\(number)/comments"
+        case .deleteComment(_, let owner, let repository, let number):
+            return "repos/\(owner)/\(repository)/issues/comments/\(number)"
         case .addComment(_, let owner, let repository, let number, _):
-            return "repos/\(owner)/\(repository)/issues/\(number)/comments/"
+            return "repos/\(owner)/\(repository)/issues/\(number)/comments"
         }
     }
 }

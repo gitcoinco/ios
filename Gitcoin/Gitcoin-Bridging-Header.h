@@ -9,6 +9,4 @@
 #ifndef Gitcoin_Bridging_Header_h
 #define Gitcoin_Bridging_Header_h
 
-#import <PHFComposeBarView/PHFComposeBarView.h>
-
 #endif /* Gitcoin_Bridging_Header_h */

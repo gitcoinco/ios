@@ -13,6 +13,7 @@ import AlamofireImage
 class ProfileClaimedCell: UITableViewCell {
     
     @IBOutlet var lblTitle: UILabel!
+    @IBOutlet var lblDetails: UILabel!
     @IBOutlet weak var avatarImageView: UIImageView!
 
     override func awakeFromNib() {
@@ -28,6 +29,31 @@ class ProfileClaimedCell: UITableViewCell {
     
     func set(title: String) {
         lblTitle.text = title
+    }
+    
+    func set(details: Bounty?) {
+
+        var text = ""
+        
+        if let bounty =  details{
+            
+            var tokenValueString = ""
+            var usdtDisplayValueString = ""
+            
+            if let tokenValue = bounty.tokenValueString{
+                tokenValueString = tokenValue
+            }
+            
+            if UIScreen.main.bounds.size.height > CGFloat(568.0) && !bounty.usdtDisplayValue.isEmpty {
+                usdtDisplayValueString = "(\(bounty.usdtDisplayValue))"
+            }
+            
+            let expires = bounty.expiresIn
+            
+           text =  "\(tokenValueString) \(usdtDisplayValueString) // EXP: \(expires)"
+        }
+        
+        lblDetails.text = text
     }
     
     func set(imageUrl: String?){
