@@ -12,8 +12,10 @@ target 'Gitcoin' do
   pod 'RxSwift',    '~> 4.0'
   pod 'RxCocoa',    '~> 4.0'
   
-  pod 'Moya/RxSwift'
-  pod 'Moya-ModelMapper/RxSwift'
+  pod 'Moya/RxSwift', '~> 10.0.2'
+  pod 'Moya-ModelMapper/RxSwift', '~> 6.0.0'
+
+  pod 'ModelMapper', '~> 6.0.0'
   
   pod 'AlamofireImage', '~> 3.3'
   
