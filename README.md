@@ -11,7 +11,7 @@ This is an app that allows one to explore funded issues from their iPhone.
 <a href="https://www.youtube.com/watch?v=Wx8HCY8M5NY">check out the trailer video</a>:
 
 <a href="https://www.youtube.com/watch?v=Wx8HCY8M5NY">
-<img src='img/vdieo.png'/>
+<img src='img/video.png'/>
 </a>
 
 # Gitcoin
