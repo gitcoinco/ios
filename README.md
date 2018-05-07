@@ -6,6 +6,12 @@ This is an app that allows one to explore funded issues from their iPhone.
 
 [Star](https://github.com/gitcoinco/ios/stargazers) and [watch](https://github.com/gitcoinco/ios/watchers) this github repository to stay up to date, we're pushing new code several times per week!
 
+# Download it now
+
+<a href="https://gitcoin.co/itunes">
+<img src='img/app_store.png'/>
+</a>
+
 # Trailer
 
 <a href="https://www.youtube.com/watch?v=Wx8HCY8M5NY">check out the trailer video</a>:
@@ -23,6 +29,12 @@ Gitcoin pushes Open Source Forward. Learn more at [https://gitcoin.co](https://g
 2. `cp Gitcoin/SafeConfiguration.plist.dist Gitcoin/SafeConfiguration.plist`
 3. Edit your `SafeConfiguration.plist` file and add the following keys as strings: `gitHubOAuthToken`, `gitHubOAuthSecret` ([see here to create these values](https://github.com/settings/developers))
 4. Build the app in xcode (make sure to open the `Gitcoin.xcworkspace` file, not the `Gitcoin.xcodeproj` file)
+
+# Download it now
+
+<a href="https://gitcoin.co/itunes">
+<img src='img/app_store.png'/>
+</a>
 
 # Legal
 
