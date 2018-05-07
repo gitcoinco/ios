@@ -38,7 +38,7 @@ class WebViewController: UIViewController {
         loadCurrentUrl()
     }
     
-    func refreshOptions(sender:UIRefreshControl){
+    @objc func refreshOptions(sender:UIRefreshControl){
         webView!.reload()
     }
     
@@ -48,23 +48,6 @@ class WebViewController: UIViewController {
         if currentURL == nil {
             loadCurrentUrl()
         }
-    }
-    
-    func createActivityIndicator() -> UIActivityIndicatorView {
-        let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100.0, height: 100.0))
-        let screen = UIScreen.main.bounds
-        let heightOffset:CGFloat = 0.0
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
-        activityIndicator.color = .white
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.layer.cornerRadius = 05
-        activityIndicator.isOpaque = false
-        activityIndicator.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        
-        self.view.addSubview(activityIndicator)
-        activityIndicator.center = CGPoint(x: screen.width / 2, y: (screen.height / 2) + heightOffset)
-        
-        return activityIndicator
     }
     
     fileprivate func loadCurrentUrl(){

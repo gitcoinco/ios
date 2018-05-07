@@ -62,6 +62,12 @@ enum GitcoinAPIServiceContract {
     // Bounties index
     case bounties(lastViewedBountyId: Int?, userKeywords: [String]?)
     
+    // remove a bounty to the claimed list
+    case removeClaimed(bounty: Bounty?)
+    
+    // list of claimed bouties for user
+    case claimedList(username: String?)
+    
     // After bounty swipes (left, right) X or ❤ we send event to api
     case fundingSave(bounty: Bounty?, user: User?, direction: String?)
     
@@ -74,19 +80,29 @@ extension GitcoinAPIServiceContract: TargetType {
     var baseURL: URL {
         return URL(string: Config.gitcoinApiBaseUrl)!
     }
+    
     var path: String {
         switch self {
         case .bounties:
-            return "bounties"
+            return "api/v0.1/bounties"
+        case .removeClaimed(let bounty):
+            return "actions/bounty/\(bounty?.idString ?? "")/interest/remove/"
+        case .claimedList(_):
+            return "actions/api/v0.1/bounties"
         case .fundingSave(_, _, _):
-            return "funding/save"
+            return "api/v0.1/funding/save"
         case .userKeywords(let user):
-            return "profile/\(user.login ?? "")/keywords"
+            return "api/v0.1/profile/\(user.login ?? "")/keywords"
         }
     }
+    
     var method: Moya.Method {
         switch self {
         case .bounties:
+            return .get
+        case .removeClaimed:
+            return .post
+        case .claimedList:
             return .get
         case .fundingSave:
             return .post
@@ -97,9 +113,22 @@ extension GitcoinAPIServiceContract: TargetType {
     var task: Task {
         switch self {
         case let .fundingSave(bounty, user, direction):
-            let params = ["bounty_id": bounty?.idString ?? "", "email_address": user?.email ?? "", "direction":  direction ?? "", "github_username": user?.login ?? ""]
+            let params = ["token": OctokitManager.shared.tokenConfiguration?.accessToken ?? "","bounty_id": bounty?.idString ?? "", "email_address": user?.email ?? "", "direction":  direction ?? "", "github_username": user?.login ?? ""]
             
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        case .removeClaimed(_):
+            
+            let params = ["token": OctokitManager.shared.tokenConfiguration?.accessToken ?? ""]
+            
+            return .requestParameters(parameters: params, encoding:  URLEncoding.queryString)
+            
+        case let .claimedList(username):
+            
+            let params = ["started": username ?? ""]
+
+            return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
+            
         case let .bounties(lastViewedBountyId, userKeywords):
             var params = ["idx_status": "open", "order_by": "pk"]
             
@@ -127,6 +156,10 @@ extension GitcoinAPIServiceContract: TargetType {
     var sampleData: Data {
         switch self {
         case .bounties:
+            return "[]".utf8Encoded
+        case .removeClaimed:
+            return "[]".utf8Encoded
+        case .claimedList:
             return "[]".utf8Encoded
         case .fundingSave:
             return "[]".utf8Encoded

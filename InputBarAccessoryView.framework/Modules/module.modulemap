@@ -1,0 +1,4 @@
+framework module InputBarAccessoryView {
+    header "InputBarAccessoryView-Swift.h"
+    requires objc
+}

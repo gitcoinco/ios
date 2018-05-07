@@ -1,19 +1,20 @@
 PODS:
-  - AFDateHelper (4.2.4)
-  - Alamofire (4.5.1)
+  - AFDateHelper (4.2.7)
+  - Alamofire (4.6.0)
   - AlamofireImage (3.3.0):
     - Alamofire (~> 4.5)
+  - ALTextInputBar (1.1.8)
   - Crashlytics (3.9.3):
     - Fabric (~> 1.7.2)
   - Fabric (1.7.2)
   - Koloda (4.3.1):
     - pop (~> 1.0)
-  - Mixpanel-swift (2.2.2):
-    - Mixpanel-swift/Complete (= 2.2.2)
-  - Mixpanel-swift/Complete (2.2.2)
-  - ModelMapper (7.3.0)
-  - Moya (10.0.0):
-    - Moya/Core (= 10.0.0)
+  - Mixpanel-swift (2.3.3):
+    - Mixpanel-swift/Complete (= 2.3.3)
+  - Mixpanel-swift/Complete (2.3.3)
+  - ModelMapper (7.4.0)
+  - Moya (10.0.2):
+    - Moya/Core (= 10.0.2)
   - Moya-ModelMapper/Core (6.0.0):
     - ModelMapper
     - Moya (~> 10.0)
@@ -21,82 +22,84 @@ PODS:
     - Moya-ModelMapper/Core
     - Moya/RxSwift (~> 10.0)
     - RxSwift
-  - Moya/Core (10.0.0):
+  - Moya/Core (10.0.2):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
-  - Moya/RxSwift (10.0.0):
+  - Moya/RxSwift (10.0.2):
     - Moya/Core
     - RxSwift (~> 4.0)
-  - NBNRequestKit (2.0.2)
-  - OctoKit.swift (0.7.4):
+  - NBNRequestKit (2.2.0)
+  - OctoKit.swift (0.8.0):
     - NBNRequestKit (~> 2.0)
   - pop (1.0.10)
-  - Pushwoosh (5.4.0)
+  - Pushwoosh (5.5.3)
   - Result (3.2.4)
-  - RxCocoa (4.0.0):
+  - RxCocoa (4.1.1):
     - RxSwift (~> 4.0)
-  - RxSwift (4.0.0)
-  - SCLAlertView (0.7.0)
-  - SideMenu (3.1.4)
-  - SwiftSpinner (1.4.1)
-  - SwiftyBeaver (1.4.3)
+  - RxSwift (4.1.1)
+  - SCLAlertView (0.8)
+  - SideMenu (3.1.5)
+  - SwiftSpinner (1.5.0)
+  - SwiftyBeaver (1.5.1)
   - SwiftyUserDefaults (3.0.0)
   - TTTAttributedLabel (2.0.0)
-  - Whisper (5.1.0)
-  - WSTagsField (2.1.2)
+  - Whisper (6.0.2)
+  - WSTagsField (3.1.0)
   - youtube-ios-player-helper (0.1.6)
 
 DEPENDENCIES:
-  - AFDateHelper (= 4.2.4)
+  - AFDateHelper
   - AlamofireImage (~> 3.3)
+  - ALTextInputBar
   - Crashlytics
   - Fabric
   - Koloda (~> 4.3.1)
-  - Mixpanel-swift
+  - Mixpanel-swift (= 2.3.3)
   - Moya-ModelMapper/RxSwift
   - Moya/RxSwift
-  - OctoKit.swift
+  - OctoKit.swift (~> 0.8)
   - Pushwoosh
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
-  - SCLAlertView
+  - SCLAlertView (~> 0.8)
   - SideMenu
   - SwiftSpinner
   - SwiftyBeaver
   - SwiftyUserDefaults
   - TTTAttributedLabel
-  - Whisper (= 5.1.0)
-  - WSTagsField
+  - Whisper (= 6.0.2)
+  - WSTagsField (~> 3.1.0)
   - youtube-ios-player-helper (~> 0.1)
 
 SPEC CHECKSUMS:
-  AFDateHelper: fbbf706fc7ef3b12efb8c25493c8dc5b9d18f86a
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  AFDateHelper: 4ad66fb19503041fbba8a3018cb7ef9c71b2ff88
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
+  ALTextInputBar: 6c160c51958903c5f7b9d158e19f9c4113ae351b
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
   Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   Koloda: 0d39b2aa188ccd1fac48d752acaf9802e683c625
-  Mixpanel-swift: a5b97ff52d4e02ab74cddd918798dc2533da887c
-  ModelMapper: b70d373f224fc8cfc4da67b483db163a6cd05fe6
-  Moya: adb58b0f4e58430db43cc6e2f6ebab1836501186
+  Mixpanel-swift: 6758dfe92c1f1173a7319e5722ab454f7cd15879
+  ModelMapper: 467f49f6f187b4e6cde2599e7cc5968cefa3f19b
+  Moya: 2b0531a9fef318e0bc484030c3db1e6f279ccb66
   Moya-ModelMapper: c59c0bbd042cf9d1d9b0acf38c5f930956bebed8
-  NBNRequestKit: 70d514748747aca66e2e2ed17340f91d5ed6d1d4
-  OctoKit.swift: 0da8816eb3ea02d0eaebf10527bef5e26c571676
+  NBNRequestKit: 30c39d8e23e94f935bfc2a25789c44e4a6e1bfdd
+  OctoKit.swift: 2f51efbf888997fc625b91894777e76e9142d95b
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
-  Pushwoosh: 933203afdb61f495147643b75f6dbf9c401c5f9a
+  Pushwoosh: 6e5b9c2845fac05dec7f8955590c24733a57a59c
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
-  RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
-  SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
-  SideMenu: 99021e70b3f2eee65b5dd88e4274d09031b1221e
-  SwiftSpinner: bf7c13332ad008952a09358cadf24a186510ae31
-  SwiftyBeaver: e10b1668e0512229c36c34769b97eed3dfae2ca3
+  RxCocoa: fd0862fd2df95fa55562ad28ffd2522c25eb4a85
+  RxSwift: c6e3b1c7b325c7d121cd4327e9d98b7ed746b570
+  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
+  SideMenu: 47dbf9e4d878062d8994aed43f6e4bf6c1fea30b
+  SwiftSpinner: 4c058c7a1d6b444dd2e1d70988ead40783097133
+  SwiftyBeaver: 4f74563624b2c1e821c522c54142b5dd5ebb0f30
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
-  Whisper: 62e406a71a288476e605a4db06de8c6975bbb350
-  WSTagsField: 3abc2553b94cd5caeb7fe5ba5e4668772714bbe8
+  Whisper: 169760fc4bab0abf24d5529f9276f95c25cf1025
+  WSTagsField: 53055749c03769b2b297f2a629ba23a26931e3ff
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 8b952cd4ede90f7bd3c91bbb26e4db328c3f751f
+PODFILE CHECKSUM: e88d4339af834ba766b211c4968a25ed180806d0
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0

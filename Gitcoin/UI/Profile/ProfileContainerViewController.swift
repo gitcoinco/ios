@@ -68,12 +68,12 @@ class ProfileContainerViewController: UIViewController {
     fileprivate func showSignedInViews() {
         signedOutContainerView.isHidden = true
         signedInContainerView.isHidden = false
-        
+
         signedOutContainerView.alpha = 0
         UIView.animate(withDuration: 1.0) {
             self.signedOutContainerView.alpha = 1
         }
-        
+
         signedInContainerView.alpha = 1.0
         UIView.animate(withDuration: 1.0) {
             self.signedOutContainerView.alpha = 0
@@ -83,12 +83,12 @@ class ProfileContainerViewController: UIViewController {
     fileprivate func showSignedOutViews() {
         signedOutContainerView.isHidden = false
         signedInContainerView.isHidden = true
-        
+
         signedOutContainerView.alpha = 1.0
         UIView.animate(withDuration: 1.0) {
             self.signedOutContainerView.alpha = 0
         }
-        
+
         signedInContainerView.alpha = 0
         UIView.animate(withDuration: 1.0) {
             self.signedOutContainerView.alpha = 1.0

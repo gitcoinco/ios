@@ -12,14 +12,16 @@ target 'Gitcoin' do
   pod 'RxSwift',    '~> 4.0'
   pod 'RxCocoa',    '~> 4.0'
   
-  pod 'Moya/RxSwift'
-  pod 'Moya-ModelMapper/RxSwift'
+  pod 'Moya/RxSwift', '~> 10.0.2'
+  pod 'Moya-ModelMapper/RxSwift', '~> 6.0.0'
+
+  pod 'ModelMapper', '~> 6.0.0'
   
   pod 'AlamofireImage', '~> 3.3'
   
-  pod 'SCLAlertView'
+  pod 'SCLAlertView' , '~> 0.8'
   
-  pod 'OctoKit.swift'
+  pod 'OctoKit.swift', '~> 0.8'
   
   pod 'SideMenu'
   
@@ -33,19 +35,24 @@ target 'Gitcoin' do
   
   pod 'Crashlytics'
   
-  pod 'AFDateHelper', '= 4.2.4'
+  #pod 'AFDateHelper', '= 4.2.4'
+  pod 'AFDateHelper'
   
-  pod 'WSTagsField'
+  pod 'WSTagsField', '~> 3.1.0'
   
   pod 'TTTAttributedLabel'
   
   pod 'Pushwoosh'
   
-  pod 'Mixpanel-swift'
+  #pod 'Mixpanel-swift', '= 2.1.8'
+  pod 'Mixpanel-swift', '= 2.3.3'
   
-  pod 'Whisper', '= 5.1.0'
+  #pod 'Whisper', '= 5.1.0'
+  pod 'Whisper', '= 6.0.2'
   
   pod 'youtube-ios-player-helper', '~> 0.1'
+  
+  pod 'ALTextInputBar'
   
   target 'GitcoinTests' do
     inherit! :search_paths
