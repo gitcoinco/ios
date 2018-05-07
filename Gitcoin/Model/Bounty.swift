@@ -129,7 +129,7 @@ struct Bounty: Mappable {
             expiresOn = Date()
         }
         
-        keywords = map.optionalFrom("metadata.issueKeywords")
+        keywords = map.optionalFrom("keywords")
         descriptionText = map.optionalFrom("issue_description_text")
         githubIssueNumber = map.optionalFrom("github_issue_number")
         githubOrgName = map.optionalFrom("github_org_name")
