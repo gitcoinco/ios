@@ -6,13 +6,12 @@ This is an app that allows one to explore funded issues from their iPhone.
 
 [Star](https://github.com/gitcoinco/ios/stargazers) and [watch](https://github.com/gitcoinco/ios/watchers) this github repository to stay up to date, we're pushing new code several times per week!
 
-# Demo
+# Trailer
 
-Watch the gif below, or <a href="https://TBD">check out the video</a>.
+<a href="https://www.youtube.com/watch?v=Wx8HCY8M5NY">check out the trailer video</a>:
 
-<a href="https://TBD">
-<img src='img/demo.gif'/>
-TBD
+<a href="https://www.youtube.com/watch?v=Wx8HCY8M5NY">
+<img src='img/vdieo.png'/>
 </a>
 
 # Gitcoin
