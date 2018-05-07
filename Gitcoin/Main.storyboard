@@ -342,14 +342,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ckJ-FV-GZ0"/>
                     </view>
-                    <navigationItem key="navigationItem" id="xXw-2R-0MT">
-                        <barButtonItem key="rightBarButtonItem" image="gc-info-icon" style="plain" id="zs8-lH-eQ5">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="QdD-pK-xq9" kind="show" id="TJy-V0-E69"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="xXw-2R-0MT"/>
                     <connections>
                         <outlet property="containerView" destination="Eub-ci-LaM" id="qXw-bb-kr1"/>
                         <outlet property="controlXAxisConstraint" destination="kZl-lX-Fb0" id="pzw-yE-inh"/>
@@ -379,7 +372,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="W3a-7W-81X"/>
         <segue reference="EU2-ZQ-NVk"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

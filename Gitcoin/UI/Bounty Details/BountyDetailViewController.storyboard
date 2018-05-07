@@ -49,13 +49,15 @@
                                                         <constraint firstAttribute="height" constant="100" id="JQt-gf-NWR"/>
                                                     </constraints>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" verticalHuggingPriority="200" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="G8W-d9-zJn" userLabel="Keywords">
+                                                <view opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="200" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="G8W-d9-zJn" userLabel="Keywords">
                                                     <rect key="frame" x="10" y="120" width="355" height="74.5"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bWp-uR-yZV" userLabel="Keyword Container">
+                                                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bWp-uR-yZV" userLabel="Keyword Container">
                                                             <rect key="frame" x="0.0" y="0.0" width="355" height="74.5"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </view>
                                                     </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="bWp-uR-yZV" secondAttribute="trailing" id="0fF-el-h4i"/>
                                                         <constraint firstItem="bWp-uR-yZV" firstAttribute="top" secondItem="G8W-d9-zJn" secondAttribute="top" id="BzV-vB-bBQ"/>
@@ -215,6 +217,7 @@
                     <navigationItem key="navigationItem" id="r3u-ri-Dmy"/>
                     <connections>
                         <outlet property="avatarImageView" destination="SNy-wp-nYe" id="NGQ-Uo-tvN"/>
+                        <outlet property="headerContentView" destination="iXH-RO-SL1" id="rHn-gc-gxe"/>
                         <outlet property="keywordContainer" destination="bWp-uR-yZV" id="C5B-a3-WeU"/>
                         <outlet property="lblFunderInfo" destination="tg1-fr-17O" id="YWC-hn-VrZ"/>
                         <outlet property="lblIssueDesc" destination="Wdn-4u-q35" id="g5s-fM-WoB"/>
@@ -224,7 +227,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wWH-iW-o37" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gc-divine-robot" id="Jwf-nm-Qrz">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gc-divine-robot" id="GtU-YE-Sde">
                     <rect key="frame" x="0.0" y="0.0" width="315" height="191"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>

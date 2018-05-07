@@ -37,13 +37,13 @@ class BountyDetailsContainerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if let bounty = bounty{
             title = bounty.title
         }
-
+        
         let control = BetterSegmentedControl(
-            frame: CGRect(x: 0, y: 0, width: segControlContainer.bounds.width-20, height: segControlContainer.bounds.height),
+            frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width-20, height: segControlContainer.bounds.height),
             titles: ["Bounty Details", "Discuss with Funder"],
             index: 0,
             options: [.backgroundColor(.white),
@@ -58,10 +58,9 @@ class BountyDetailsContainerViewController: UIViewController {
         
         control.addTarget(self, action: #selector(BountyDetailsContainerViewController.navigationSegmentedControlValueChanged(_:)), for: .valueChanged)
         
-        let xConstraint = (view.bounds.width - control.bounds.width)/2.0
         
-        print(xConstraint)
         
+        let xConstraint = (UIScreen.main.bounds.size.width - control.bounds.width)/2.0
         controlXAxisConstraint.constant = xConstraint
 
         let customSubview = UIView(frame: CGRect(x: 0, y: 0, width: control.frame.width, height: control.frame.height))

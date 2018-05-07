@@ -8,6 +8,7 @@
 
 import UIKit
 import SCLAlertView
+import RxSwift
 
 class ProfileClaimedViewController: UIViewController {
     
@@ -23,6 +24,51 @@ class ProfileClaimedViewController: UIViewController {
         return self.createActivityIndicator()
     }()
     
+    var disposable: Disposable?
+    
+    override func viewDidLoad() {
+        
+        tableView.rowHeight = 90
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: "ProfileClaimedCell", bundle: Bundle.main), forCellReuseIdentifier: "ProfileClaimedCell")
+        tableView.tableFooterView = UIView(frame: .zero)
+        
+        tableView.addSubview(self.refreshControl)
+        refreshControl.addTarget(self, action: #selector(loadClaimedList), for: .valueChanged)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        activityIndicator.stopAnimating()
+        disposable?.dispose()
+        loadClaimedList()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        TrackingManager.shared.trackEvent(.didViewClaimedBounties)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        activityIndicator.stopAnimating()
+        disposable?.dispose()
+    }
+    
+    func showNoDataAlert(){
+        let appearance = gitcoinAppearance(
+            showCloseButton: false
+        )
+        let alertView = SCLAlertView(appearance: appearance)
+        
+        alertView.addButton("CONTINUE") {}
+        
+        alertView.showWarning("Oh Snap, We could not find any claimed bounties for you", subTitle: "to show claimed bouties you must be signed in to Github and have claimed a bounty.")
+    }
+    
     @objc func loadClaimedList(){
         
         if !refreshControl.isRefreshing && (data?.count == 0 || data == nil){
@@ -31,7 +77,7 @@ class ProfileClaimedViewController: UIViewController {
         
         let user = OctokitManager.shared.user.value
         
-        _ = GitcoinAPIService.shared.provider.rx.request(.claimedList(username: user?.login))
+        disposable = GitcoinAPIService.shared.provider.rx.request(.claimedList(username: user?.login))
             .map(to: [Bounty].self)
             .subscribe { event in
                 switch event {
@@ -52,69 +98,121 @@ class ProfileClaimedViewController: UIViewController {
                 case .error(let error):
                     logger.error(error)
                     print("error = \(error)")
+                    self.activityIndicator.stopAnimating()
+                    
                 }
+
         }
-        
     }
     
-    override func viewDidLoad() {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        tableView.rowHeight = 90
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UINib(nibName: "ProfileClaimedCell", bundle: Bundle.main), forCellReuseIdentifier: "ProfileClaimedCell")
-        tableView.tableFooterView = UIView(frame: .zero)
-        
-        tableView.addSubview(self.refreshControl)
-        refreshControl.addTarget(self, action: #selector(loadClaimedList), for: .valueChanged)
-        
+        if segue.identifier == "claimedDetailsSegue",
+            let destination = segue.destination as? BountyDetailsContainerViewController,
+            let bounty = sender as? Bounty{
+            
+            destination.bounty = bounty
+        }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        loadClaimedList()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    func showNoDataAlert(){
-        let appearance = gitcoinAppearance(
-            showCloseButton: false
-        )
-        let alertView = SCLAlertView(appearance: appearance)
-        
-        alertView.addButton("CONTINUE") {}
-        
-        alertView.showInfo("Oh Snap, We could not find any claimed bounties for you", subTitle: "to show claimed bouties you must be signed in to Github and have claimed a bounty.")
-    }
+//    fileprivate func whitespaceString(font: UIFont = UIFont.systemFont(ofSize: 15), width: CGFloat) -> String {
+//        let kPadding: CGFloat = 20
+//        let mutable = NSMutableString(string: "")
+//        let attribute = [NSAttributedStringKey.font: font]
+//        while mutable.size(withAttributes: attribute).width < width - (2 * kPadding) {
+//            mutable.append(" ")
+//        }
+//        return mutable as String
+//    }
 }
 
 // MARK: - Table view delegate
 extension ProfileClaimedViewController: UITableViewDelegate {
+    
+//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+//        return .delete
+//    }
+//
+//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//
+//        let kCellActionWidth = CGFloat(70.0)// The width you want of delete button
+//        let kCellHeight = tableView.frame.size.height // The height you want of delete button
+//        let whitespace = whitespaceString(width: kCellActionWidth) // add the padding
+//
+//
+//        let deleteAction = UITableViewRowAction(style: .`default`, title: whitespace) {_,_ in
+//            // do whatever the action you want
+//            let appearance = SCLAlertView.SCLAppearance(
+//                showCloseButton: false
+//            )
+//            let alertView = SCLAlertView(appearance: appearance)
+//
+//
+//            alertView.addButton("No") {print("don't delete")}
+//            alertView.addButton("YES") {
+//                let bounty = self.data?[indexPath.row]
+//
+//                self.activityIndicator.startAnimating()
+//
+//                _ = GitcoinAPIService.shared.provider.rx.request(.removeClaimed(bounty: bounty))
+//                    .subscribe { event in
+//                        switch event {
+//                        case .success(_):
+//
+//                            print("claimed deleted, bountty id = \(String(describing: bounty))")
+//                            self.loadClaimedList()
+//
+//                            if let bounty = bounty{
+//                                TrackingManager.shared.trackEvent(GitcoinEvent.didRemoveClaimedBounty(bounty: bounty))
+//                            }
+//
+//
+//                        case .error(let error):
+//                            logger.error(error)
+//                        }
+//                }
+//            }
+//
+//            alertView.showWarning("Delete Claimed Bounty", subTitle: "Do you really want to delete this bounty?")
+//        }
+//
+//        // create a color from patter image and set the color as a background color of action
+//        let view = UIView(frame: CGRect(x: tableView.frame.size.width-70, y: 0, width: 70, height: kCellHeight))
+//        view.backgroundColor = UIColor(red:235/255, green:242/255, blue:234/255, alpha:1.00) // background color of view
+//        let imageView = UIImageView(frame: CGRect(x: 15,
+//                                                  y: 20,
+//                                                  width: 40,
+//                                                  height: 40))
+//        imageView.image = UIImage(named: "leftIcon")! // required image
+//        view.addSubview(imageView)
+//        let image = view.image()
+//
+//        deleteAction.backgroundColor = UIColor.init(patternImage: image)
+//        return [deleteAction]
+//
+//    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
+
         if editingStyle == .delete {
-            
+
             let appearance = SCLAlertView.SCLAppearance(
                 showCloseButton: false
             )
             let alertView = SCLAlertView(appearance: appearance)
-            
-            
-            alertView.addButton("No") {print("don't delete")}
+
+
+            alertView.addButton("No") {}
             alertView.addButton("YES") {
                 let bounty = self.data?[indexPath.row]
 
                 self.activityIndicator.startAnimating()
-                
+
                 _ = GitcoinAPIService.shared.provider.rx.request(.removeClaimed(bounty: bounty))
                     .subscribe { event in
                         switch event {
                         case .success(_):
 
-                            print("claimed deleted, bountty id = \(String(describing: bounty))")
                             self.loadClaimedList()
 
                         case .error(let error):
@@ -122,13 +220,16 @@ extension ProfileClaimedViewController: UITableViewDelegate {
                         }
                 }
             }
-            
+
             alertView.showWarning("Delete Claimed Bounty", subTitle: "Do you really want to delete this bounty?")
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
+        let bounty = self.data?[indexPath.row]
+        
+        performSegue(withIdentifier: "claimedDetailsSegue", sender: bounty)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

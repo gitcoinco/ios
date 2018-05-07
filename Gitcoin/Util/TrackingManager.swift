@@ -27,6 +27,13 @@ enum GitcoinEvent {
     case didCloseInfo
     case didTapJoinSlack
     
+    case didViewClaimedBounties
+    case didRemoveClaimedBounty(bounty: Bounty)
+    case didViewBountyDetails(bounty: Bounty)
+    case didViewBountyDiscussion(bounty: Bounty)
+    case didPostComment(bounty: Bounty)
+    case didDeleteComment(bounty: Bounty)
+    
     case didTapRefreshBounties
     case didBountyCountChange(count: Int)
     case didBackgroundBountyFetch(hasBounties: Bool)
@@ -214,6 +221,43 @@ class TrackingManager {
                 Answers.logCustomEvent(withName: title, customAttributes: ["error": error.localizedDescription])
                 Mixpanel.mainInstance().track(event: title, properties: ["error": error.localizedDescription])
                 PWInAppManager.shared().postEvent(title, withAttributes: ["error": error.localizedDescription])
+                
+                
+            case .didViewClaimedBounties:
+                
+                Answers.logCustomEvent(withName: "didViewClaimedBounties")
+                Mixpanel.mainInstance().track(event: "didViewClaimedBounties")
+                PWInAppManager.shared().postEvent("didViewClaimedBounties")
+                
+            case .didRemoveClaimedBounty(let bounty):
+                
+                Answers.logCustomEvent(withName: "didRemoveClaimedBounty", customAttributes: bounty.dictionaryForTracking())
+                Mixpanel.mainInstance().track(event: "didRemoveClaimedBounty", properties: bounty.dictionaryForTracking() as? Properties)
+                PWInAppManager.shared().postEvent("didRemoveClaimedBounty", withAttributes: bounty.dictionaryForTracking())
+                
+            case .didViewBountyDetails(let bounty):
+                
+                Answers.logCustomEvent(withName: "didViewBountyDetails", customAttributes: bounty.dictionaryForTracking())
+                Mixpanel.mainInstance().track(event: "didViewBountyDetails", properties: bounty.dictionaryForTracking() as? Properties)
+                PWInAppManager.shared().postEvent("didViewBountyDetails", withAttributes: bounty.dictionaryForTracking())
+                
+            case .didViewBountyDiscussion(let bounty):
+                
+                Answers.logCustomEvent(withName: "didViewBountyDiscussion", customAttributes: bounty.dictionaryForTracking())
+                Mixpanel.mainInstance().track(event: "didViewBountyDiscussion", properties: bounty.dictionaryForTracking() as? Properties)
+                PWInAppManager.shared().postEvent("didViewBountyDiscussion", withAttributes: bounty.dictionaryForTracking())
+                
+            case .didPostComment(let bounty):
+                
+                Answers.logCustomEvent(withName: "didPostComment", customAttributes: bounty.dictionaryForTracking())
+                Mixpanel.mainInstance().track(event: "didPostComment", properties: bounty.dictionaryForTracking() as? Properties)
+                PWInAppManager.shared().postEvent("didPostComment", withAttributes: bounty.dictionaryForTracking())
+                
+            case .didDeleteComment(let bounty):
+                
+                Answers.logCustomEvent(withName: "didDeleteComment", customAttributes: bounty.dictionaryForTracking())
+                Mixpanel.mainInstance().track(event: "didDeleteComment", properties: bounty.dictionaryForTracking() as? Properties)
+                PWInAppManager.shared().postEvent("didDeleteComment", withAttributes: bounty.dictionaryForTracking())
                 
             }
         }

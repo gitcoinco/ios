@@ -126,7 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PushNotificationDelegate 
     fileprivate func setupLogger(){
         let console = ConsoleDestination()
         
-        console.minLevel = .verbose
+        console.minLevel = .error
     
         logger.addDestination(console)
     }

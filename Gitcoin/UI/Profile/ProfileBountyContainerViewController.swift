@@ -34,7 +34,7 @@ class ProfileBountyContainerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Profile"
+        title = "PROFILE"
         
         let control = BetterSegmentedControl(
             frame: CGRect(x: 0, y: 0, width: segControlContainer.bounds.width-20, height: segControlContainer.bounds.height),
@@ -53,9 +53,7 @@ class ProfileBountyContainerViewController: UIViewController {
         control.addTarget(self, action: #selector(BountyDetailsContainerViewController.navigationSegmentedControlValueChanged(_:)), for: .valueChanged)
         
         let xConstraint = (view.bounds.width - control.bounds.width)/2.0
-        
-        print(xConstraint)
-        
+
         controlXAxisConstraint.constant = xConstraint
         
         let customSubview = UIView(frame: CGRect(x: 0, y: 0, width: control.frame.width, height: control.frame.height))

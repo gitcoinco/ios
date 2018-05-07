@@ -161,7 +161,6 @@ class OctokitManager: NSObject {
             _ = Octokit(tokenConfig).addComment(owner: owner, repository: repo, number: number, comment: comment){ response in
                 switch response {
                 case .success(let response):
-                    
                   print(response)
                     
                 case .failure(let error):
@@ -180,7 +179,6 @@ class OctokitManager: NSObject {
             _ = Octokit(tokenConfig).deleteComment(owner: owner, repository: repo, number: number){ response in
                 switch response {
                 case .success(let response):
-                    
                     print(response)
                     
                 case .failure(let error):

@@ -25,8 +25,8 @@ class BountyDiscussViewController: UIViewController {
     
     var currentText = ""
     
-    @IBOutlet var textField: UITextField!
-    @IBOutlet var messageView: UIView!
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var messageView: UIView!
     
     lazy var bar: InputBarAccessoryView = { [weak self] in
         let bar = InputBarAccessoryView()
@@ -51,8 +51,7 @@ class BountyDiscussViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        
+
         observeIssue()
     
         tableView.estimatedRowHeight = 300.0
@@ -80,6 +79,11 @@ class BountyDiscussViewController: UIViewController {
     
         didPostComment = false
         loadIssueComments()
+        
+        if let bounty = bounty {
+            TrackingManager.shared.trackEvent(GitcoinEvent.didViewBountyDiscussion(bounty: bounty))
+        }
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -105,7 +109,7 @@ class BountyDiscussViewController: UIViewController {
     
     @objc func loadIssueComments(){
         if let bounty = bounty{
-            print("issue number = \(String(describing:  bounty.githubIssueNumber))")
+           
             OctokitManager.shared.issueComments(issueId: bounty.githubIssueNumber, repoName: bounty.githubRepoName, orgName: bounty.githubOrgName)
         }
     }
@@ -116,9 +120,7 @@ class BountyDiscussViewController: UIViewController {
             .observeOn(MainScheduler.instance)
             .ignoreNil()
             .subscribe(onNext: { [weak self] comments in
-                
-                print("comments.count = \(comments.count)")
-                
+
                 if comments.count > 0{
                    self?.messageView.isHidden = true
                 }
@@ -135,6 +137,10 @@ class BountyDiscussViewController: UIViewController {
                     SCLAlertView().showSuccess("Comment Successfully Posted", subTitle: "Tho it may take a little bit to actual show in this list.")
                     self?.currentText = ""
                     self?.bar.inputTextView.text = self?.currentText
+                    
+                    if let bounty = self?.bounty {
+                        TrackingManager.shared.trackEvent(GitcoinEvent.didPostComment(bounty: bounty))
+                    }
                 }
                 
                 self?.didPostComment = false
@@ -202,12 +208,12 @@ extension BountyDiscussViewController: UITableViewDelegate, UITableViewDataSourc
                     )
                     let alertView = SCLAlertView(appearance: appearance)
                     
-                    alertView.addButton("No") {print("don't delete")}
+                    alertView.addButton("No") {}
                     alertView.addButton("YES") {
-                        print("do delete for comment id = \(comment.id)")
-
                         if let bounty = self.bounty{
                             OctokitManager.shared.deleteComment(commentId: comment.id, repoName: bounty.githubRepoName, orgName: bounty.githubOrgName)
+                            
+                            TrackingManager.shared.trackEvent(GitcoinEvent.didDeleteComment(bounty: bounty))
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 self.loadIssueComments()
@@ -283,13 +289,13 @@ extension BountyDiscussViewController: UITableViewDelegate, UITableViewDataSourc
                     commentLogin == userLogin{
                 
                     cell.accessoryType = .disclosureIndicator
-                    cell.tintColor = .black
-                    cell.backgroundColor = UIColor(red: 204/255, green: 221/255, blue: 201/255, alpha: 1)
                     
+                    cell.set(isCommentOwner: true)
                     cell.set(user: "You", createdOn: createdAt)
                 }
                 else{
                     cell.accessoryType = .none
+                    cell.set(isCommentOwner: false)
                     cell.set(user: user, createdOn: createdAt)
                 }
                 
@@ -311,10 +317,9 @@ extension BountyDiscussViewController: UITableViewDelegate, UITableViewDataSourc
     
 }
 
+// MARK: - InputBarAccessoryViewDelegate
 extension BountyDiscussViewController: InputBarAccessoryViewDelegate {
-    
-    // MARK: - InputBarAccessoryViewDelegate
-    
+
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         
         view.endEditing(true)
