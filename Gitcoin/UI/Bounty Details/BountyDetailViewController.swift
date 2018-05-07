@@ -25,6 +25,8 @@ class BountyDetailViewController: UITableViewController{
     var bounty: Bounty?
     let tagsField = GitCoinWSTagField()
     
+    @IBOutlet weak var headerContentView: UIView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,6 +42,16 @@ class BountyDetailViewController: UITableViewController{
         
         tableView.estimatedRowHeight = 500.0
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let bounty = bounty{
+            TrackingManager.shared.trackEvent(GitcoinEvent.didViewBountyDetails(bounty: bounty))
+        }
+        
     }
 
     func setPosted(_ bounty: Bounty){
@@ -83,7 +95,7 @@ class BountyDetailViewController: UITableViewController{
     
     func set(status: String?){
         if let status = status{
-            self.lblStatus.text = status
+            self.lblStatus.text = status.capitalized
         }
     }
     

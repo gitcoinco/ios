@@ -54,13 +54,13 @@
 		20FF15091FDD899600D78A26 /* ProfileSignedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FF15081FDD899600D78A26 /* ProfileSignedInViewController.swift */; };
 		20FF150B1FDD89B000D78A26 /* ProfileSignedOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FF150A1FDD89B000D78A26 /* ProfileSignedOutViewController.swift */; };
 		20FF58DA1FDCCB790068B27C /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FF58D91FDCCB790068B27C /* GradientBackgroundView.swift */; };
+		4653762C2098269400F55985 /* InputBarAccessoryView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4653762B2098269400F55985 /* InputBarAccessoryView.framework */; };
+		4653762D2098269400F55985 /* InputBarAccessoryView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4653762B2098269400F55985 /* InputBarAccessoryView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		467C84AF20802AF8003B69BB /* ProfileClaimedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C84AD20802AF8003B69BB /* ProfileClaimedCell.swift */; };
 		467C84B020802AF8003B69BB /* ProfileClaimedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467C84AE20802AF8003B69BB /* ProfileClaimedCell.xib */; };
 		467C84D320814B79003B69BB /* BountyCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C84D120814B79003B69BB /* BountyCommentCell.swift */; };
 		467C84D420814B79003B69BB /* BountyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467C84D220814B79003B69BB /* BountyCommentCell.xib */; };
 		468904FD208C4C8900E58837 /* UIViewController+Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468904FC208C4C8900E58837 /* UIViewController+Spinner.swift */; };
-		46890502208D4E9800E58837 /* InputBarAccessoryView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46890501208D4E3E00E58837 /* InputBarAccessoryView.framework */; };
-		46890503208D4E9800E58837 /* InputBarAccessoryView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46890501208D4E3E00E58837 /* InputBarAccessoryView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		46B8042D204C453B0042446D /* BountyDetailsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B8042C204C453B0042446D /* BountyDetailsContainerViewController.swift */; };
 		46B8042F204C50440042446D /* BetterSegmentedControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46B8042E204C50440042446D /* BetterSegmentedControl.framework */; };
 		46B80430204C50440042446D /* BetterSegmentedControl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46B8042E204C50440042446D /* BetterSegmentedControl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -68,7 +68,6 @@
 		46BFEB4F204C5F0000F21608 /* BountyDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46BFEB4E204C5F0000F21608 /* BountyDetailViewController.storyboard */; };
 		46BFEB53204C5FCC00F21608 /* BountyDiscussViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BFEB52204C5FCC00F21608 /* BountyDiscussViewController.swift */; };
 		46BFEB55204C5FDD00F21608 /* BountyDiscussViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46BFEB54204C5FDD00F21608 /* BountyDiscussViewController.storyboard */; };
-		46BFEB5D204C6E0800F21608 /* BountyDiscussView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BFEB5C204C6E0800F21608 /* BountyDiscussView.swift */; };
 		46BFEB61204C6FD800F21608 /* ProfileBountyContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BFEB60204C6FD800F21608 /* ProfileBountyContainerViewController.swift */; };
 		46BFEB63204C732E00F21608 /* ProfileClaimedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BFEB62204C732E00F21608 /* ProfileClaimedViewController.swift */; };
 		46BFEB65204C733F00F21608 /* ProfileClaimedViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46BFEB64204C733F00F21608 /* ProfileClaimedViewController.storyboard */; };
@@ -104,7 +103,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				46B80430204C50440042446D /* BetterSegmentedControl.framework in Embed Frameworks */,
-				46890503208D4E9800E58837 /* InputBarAccessoryView.framework in Embed Frameworks */,
+				4653762D2098269400F55985 /* InputBarAccessoryView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,19 +170,18 @@
 		20FF58D91FDCCB790068B27C /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		349DAD1AE1F9779BF95D48CE /* Pods-GitcoinUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitcoinUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitcoinUITests/Pods-GitcoinUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4611A6882081BA6B00303AA2 /* Gitcoin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Gitcoin-Bridging-Header.h"; sourceTree = "<group>"; };
+		4653762B2098269400F55985 /* InputBarAccessoryView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = InputBarAccessoryView.framework; sourceTree = "<group>"; };
 		467C84AD20802AF8003B69BB /* ProfileClaimedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileClaimedCell.swift; sourceTree = "<group>"; };
 		467C84AE20802AF8003B69BB /* ProfileClaimedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileClaimedCell.xib; sourceTree = "<group>"; };
 		467C84D120814B79003B69BB /* BountyCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyCommentCell.swift; sourceTree = "<group>"; };
 		467C84D220814B79003B69BB /* BountyCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BountyCommentCell.xib; sourceTree = "<group>"; };
 		468904FC208C4C8900E58837 /* UIViewController+Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Spinner.swift"; sourceTree = "<group>"; };
-		46890501208D4E3E00E58837 /* InputBarAccessoryView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = InputBarAccessoryView.framework; sourceTree = "<group>"; };
 		46B8042C204C453B0042446D /* BountyDetailsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyDetailsContainerViewController.swift; sourceTree = "<group>"; };
 		46B8042E204C50440042446D /* BetterSegmentedControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BetterSegmentedControl.framework; path = Frameworks/BetterSegmentedControl.framework; sourceTree = "<group>"; };
 		46BFCE6A20749D65005D5245 /* Observable+ignoreNil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+ignoreNil.swift"; sourceTree = "<group>"; };
 		46BFEB4E204C5F0000F21608 /* BountyDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BountyDetailViewController.storyboard; sourceTree = "<group>"; };
 		46BFEB52204C5FCC00F21608 /* BountyDiscussViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyDiscussViewController.swift; sourceTree = "<group>"; };
 		46BFEB54204C5FDD00F21608 /* BountyDiscussViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BountyDiscussViewController.storyboard; sourceTree = "<group>"; };
-		46BFEB5C204C6E0800F21608 /* BountyDiscussView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyDiscussView.swift; sourceTree = "<group>"; };
 		46BFEB60204C6FD800F21608 /* ProfileBountyContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBountyContainerViewController.swift; sourceTree = "<group>"; };
 		46BFEB62204C732E00F21608 /* ProfileClaimedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileClaimedViewController.swift; sourceTree = "<group>"; };
 		46BFEB64204C733F00F21608 /* ProfileClaimedViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileClaimedViewController.storyboard; sourceTree = "<group>"; };
@@ -206,7 +204,7 @@
 				2079CDF91FD085CE00A912C9 /* libstdc++.tbd in Frameworks */,
 				2079CDF71FD085C200A912C9 /* libz.tbd in Frameworks */,
 				46B8042F204C50440042446D /* BetterSegmentedControl.framework in Frameworks */,
-				46890502208D4E9800E58837 /* InputBarAccessoryView.framework in Frameworks */,
+				4653762C2098269400F55985 /* InputBarAccessoryView.framework in Frameworks */,
 				9659E79AF67EA510C67AD2AA /* Pods_Gitcoin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,7 +464,6 @@
 				46E8B30B2071493700952ADE /* BountyDetailViewController.swift */,
 				46BFEB52204C5FCC00F21608 /* BountyDiscussViewController.swift */,
 				46BFEB54204C5FDD00F21608 /* BountyDiscussViewController.storyboard */,
-				46BFEB5C204C6E0800F21608 /* BountyDiscussView.swift */,
 				467C84D120814B79003B69BB /* BountyCommentCell.swift */,
 				467C84D220814B79003B69BB /* BountyCommentCell.xib */,
 			);
@@ -485,7 +482,7 @@
 		A205CFEEE0FB5058B9468DEB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				46890501208D4E3E00E58837 /* InputBarAccessoryView.framework */,
+				4653762B2098269400F55985 /* InputBarAccessoryView.framework */,
 				46B8042E204C50440042446D /* BetterSegmentedControl.framework */,
 				2079CDF81FD085CD00A912C9 /* libstdc++.tbd */,
 				2079CDF61FD085C200A912C9 /* libz.tbd */,
@@ -511,6 +508,7 @@
 				9A4D4E235D18A32197970A5A /* [CP] Copy Pods Resources */,
 				20E9DB0B1FB3C0C40076843D /* Fabric */,
 				46B80431204C50440042446D /* Embed Frameworks */,
+				4649D746208E842E00B09E1E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -692,6 +690,21 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		4649D746208E842E00B09E1E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(PROJECT_DIR)/Frameworks/BetterSegmentedControl.framework",
+				"$(PROJECT_DIR)/InputBarAccessoryView.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 		9743B6AA0FBB5E29402D3169 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -908,7 +921,6 @@
 				20B942C01FA932700015481C /* BountyKolodaView.swift in Sources */,
 				20303C9D1FE2D02600E132E8 /* PlayerContainerView.swift in Sources */,
 				46B8042D204C453B0042446D /* BountyDetailsContainerViewController.swift in Sources */,
-				46BFEB5D204C6E0800F21608 /* BountyDiscussView.swift in Sources */,
 				20DF6AB51FD3226C000ADA04 /* NetworkReachability.swift in Sources */,
 				46E8B30C2071493700952ADE /* BountyDetailViewController.swift in Sources */,
 				20FF15091FDD899600D78A26 /* ProfileSignedInViewController.swift in Sources */,
@@ -1076,7 +1088,7 @@
 				CODE_SIGN_ENTITLEMENTS = Gitcoin/Gitcoin.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6H25V2ES8G;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -1102,7 +1114,7 @@
 				CODE_SIGN_ENTITLEMENTS = Gitcoin/Gitcoin.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6H25V2ES8G;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",

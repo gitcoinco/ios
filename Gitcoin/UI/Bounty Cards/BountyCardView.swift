@@ -41,36 +41,39 @@ class BountyCardView: UIView {
     }
     
     class func fromNib(with bounty: Bounty, and _kolodaView: BountyKolodaView) -> BountyCardView {
-        let bountyCardView = Bundle.main.loadNibNamed(String(describing: BountyCardView.self), owner: nil, options: nil)![0] as! BountyCardView
+        if let bountyCardView = Bundle.main.loadNibNamed(String(describing: BountyCardView.self), owner: nil, options: nil)![0] as? BountyCardView{
         
-        bountyCardView.kolodaView = _kolodaView
-        
-        bountyCardView.titleLabel.text = bounty.title
-        
-        bountyCardView.setupTagField(for: bounty)
-        
-        if let avatarUrl = bounty.avatarUrl {
+            bountyCardView.kolodaView = _kolodaView
             
-            Alamofire.request(avatarUrl).responseImage { response in
+            bountyCardView.titleLabel.text = bounty.title
+            
+            bountyCardView.setupTagField(for: bounty)
+            
+            if let avatarUrl = bounty.avatarUrl {
                 
-                if let image = response.result.value {
+                Alamofire.request(avatarUrl).responseImage { response in
                     
-                    let circularImage = image.af_imageRoundedIntoCircle()
-                    
-                    bountyCardView.avatarImageView.image = circularImage
+                    if let image = response.result.value {
+                        
+                        let circularImage = image.af_imageRoundedIntoCircle()
+                        
+                        bountyCardView.avatarImageView.image = circularImage
+                    }
                 }
             }
+            
+            bountyCardView.descriptionText.text = bounty.descriptionText ?? ""
+            
+            bountyCardView.fundingTokenAmountLabel.text = bounty.tokenValueString
+            
+            bountyCardView.fundingUSDAmountLabel.text = bounty.usdtDisplayValue
+            
+            bountyCardView.postedOnLabel.text = bounty.createdAgo
+            
+            return bountyCardView
         }
         
-        bountyCardView.descriptionText.text = bounty.descriptionText ?? ""
-        
-        bountyCardView.fundingTokenAmountLabel.text = bounty.tokenValueString
-        
-        bountyCardView.fundingUSDAmountLabel.text = bounty.usdtDisplayValue
-        
-        bountyCardView.postedOnLabel.text = bounty.createdAgo
-        
-        return bountyCardView
+        return BountyCardView()
     }
     
     fileprivate func setupTagField(for bounty: Bounty) {

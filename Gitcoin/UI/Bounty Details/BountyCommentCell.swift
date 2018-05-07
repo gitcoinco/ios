@@ -12,17 +12,7 @@ class BountyCommentCell: UITableViewCell {
     
     @IBOutlet var lblComment: UILabel!
     @IBOutlet var lblUser: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
+    @IBOutlet weak var backingView: UIView!
     
     func set(comment: String) {
         lblComment.text = comment
@@ -37,6 +27,19 @@ class BountyCommentCell: UITableViewCell {
         }
         
         lblUser.text = "\(user) commented \(created)"
+    }
+    
+    func set(isCommentOwner: Bool = false){
+        
+        if isCommentOwner == true{
+            backingView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 0.0, alpha: 0.28)
+            backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 0.0, alpha: 0.28)
+            return
+        }
+        
+        backingView.backgroundColor = UIColor(red: 204/255, green: 221/255, blue: 201/255, alpha: 1)
+        backgroundColor = UIColor(red: 235/255, green: 242/255, blue: 234/255, alpha: 1)
+        
     }
     
 }

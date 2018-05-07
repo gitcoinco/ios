@@ -195,6 +195,11 @@ extension BountyCardViewController: KolodaViewDelegate {
                     Defaults[UserDefaultKeyConstants.lastViewedBountyId] = bounty.id
                     
                     logger.verbose("set lastViewedBountyId=\(Defaults[UserDefaultKeyConstants.lastViewedBountyId] ?? -1)")
+                    
+                    if direction == SwipeResultDirection.right{
+                        SCLAlertView().showSuccess("Claimed Bounty", subTitle: "You have successfully claimed the bounty '\(bounty.title)'")
+                    }
+                    
                 case .error(let error):
                     logger.error(error)
                 }

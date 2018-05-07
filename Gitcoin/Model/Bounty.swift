@@ -16,7 +16,7 @@ struct Bounty: Mappable {
     let avatarUrl: String?
     let githubUrl: String?
     
-    let valueTrue: Float?
+    let valueTrue: String?
     let tokenName: String?
     
     let status: String?
@@ -30,7 +30,7 @@ struct Bounty: Mappable {
             .filter({ $0.count > 0 })
     }
     
-    let valueInUsdt: Float?
+    let valueInUsdt: String?
 
     var usdtDisplayValue: String {
         if let valueInUsdt = valueInUsdt {

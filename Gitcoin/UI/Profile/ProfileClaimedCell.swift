@@ -19,6 +19,8 @@ class ProfileClaimedCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        //self.addGradientBackground(firstColor: .lightText, secondColor: .lightGray )
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -27,3 +27,29 @@ extension UIViewController{
         return activityIndicator
     }
 }
+
+
+extension UIView {
+    func image() -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, isOpaque, 0)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return UIImage()
+        }
+        layer.render(in: context)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
+    }
+    
+    func addGradientBackground(firstColor: UIColor, secondColor: UIColor){
+        clipsToBounds = true
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [firstColor.cgColor, secondColor.cgColor]
+        gradientLayer.frame = self.bounds
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 0, y: 1)
+        print(gradientLayer.frame)
+        self.layer.insertSublayer(gradientLayer, at: 0)
+    }
+}
+
