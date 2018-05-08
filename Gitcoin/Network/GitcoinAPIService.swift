@@ -130,7 +130,7 @@ extension GitcoinAPIServiceContract: TargetType {
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
             
         case let .bounties(lastViewedBountyId, userKeywords):
-            var params = ["idx_status": "open", "order_by": "pk"]
+            var params = ["idx_status": "open", "network": "mainnet", "order_by": "pk"]
             
             if let lastViewedBountyId = lastViewedBountyId {
                 params["pk__gt"] = String(lastViewedBountyId)
