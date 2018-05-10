@@ -37,6 +37,9 @@ class InfoViewController: UIViewController {
         playerView.load(withVideoId: "DJartWzDn0E")
     }
     
+    override func viewWillLayoutSubviews() {
+        UIApplication.shared.setStatusBarHidden(false, with: .none)
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
