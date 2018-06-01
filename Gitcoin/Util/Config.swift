@@ -50,7 +50,7 @@ struct Config {
         #endif
         
         return "https://gitcoin.co/"
-       // return "https://stage.gitcoin.co/"
+       //return "https://stage.gitcoin.co/"
        //return "https://origin.gitcoin.co/"
     }
     

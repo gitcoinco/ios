@@ -12,6 +12,8 @@ import BetterSegmentedControl
 class BountyDetailsContainerViewController: UIViewController {
     
     var bounty: Bounty?
+    var kolodaView: BountyKolodaView?
+    
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var segControlContainer: UIView!
     @IBOutlet weak var controlXAxisConstraint: NSLayoutConstraint!
@@ -23,6 +25,7 @@ class BountyDetailsContainerViewController: UIViewController {
         let storyboard = UIStoryboard(name: "BountyDetailViewController", bundle: Bundle.main)
         var viewController = storyboard.instantiateInitialViewController() as! BountyDetailViewController
         viewController.bounty = self.bounty
+        viewController.kolodaView = self.kolodaView
         self.add(asChildViewController: viewController)
         return viewController
     }()

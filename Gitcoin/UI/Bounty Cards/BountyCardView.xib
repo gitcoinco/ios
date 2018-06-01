@@ -205,6 +205,30 @@ Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et d
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cx1-1V-2dm" userLabel="Bottom View">
                                     <rect key="frame" x="0.0" y="650" width="414" height="66"/>
                                     <subviews>
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gc-red-cross-icon" translatesAutoresizingMaskIntoConstraints="NO" id="K59-rb-cBm">
+                                            <rect key="frame" x="186" y="12" width="42" height="42"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEXT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fti-dQ-c8M">
+                                            <rect key="frame" x="167.33333333333334" y="13.333333333333371" width="80" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="Ghe-Qi-nib"/>
+                                                <constraint firstAttribute="width" constant="80" id="fdt-l3-sGm"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                            <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AeG-Fk-rPh" userLabel="Border">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
                                             <color key="backgroundColor" name="Black12"/>
@@ -214,29 +238,20 @@ Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et d
                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1" id="Q89-sF-g8t"/>
                                             </constraints>
                                         </view>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="38" translatesAutoresizingMaskIntoConstraints="NO" id="uG1-AB-3Y6">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DqS-K5-snb" userLabel="XButton">
-                                                    <rect key="frame" x="0.0" y="12" width="188" height="42"/>
-                                                    <state key="normal" image="gc-red-cross-icon"/>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYC-ce-rfp" userLabel="HeartButton">
-                                                    <rect key="frame" x="226" y="12" width="188" height="42"/>
-                                                    <state key="normal" image="gc-green-heart-icon"/>
-                                                </button>
-                                            </subviews>
-                                        </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DqS-K5-snb" userLabel="XButton">
+                                            <rect key="frame" x="-0.11075949363737436" y="12" width="414" height="42"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstItem="uG1-AB-3Y6" firstAttribute="leading" secondItem="cx1-1V-2dm" secondAttribute="leading" id="05E-Rm-5cO"/>
-                                        <constraint firstAttribute="trailing" secondItem="uG1-AB-3Y6" secondAttribute="trailing" id="36F-Gs-85j"/>
-                                        <constraint firstAttribute="bottom" secondItem="uG1-AB-3Y6" secondAttribute="bottom" id="3y6-r6-fkx"/>
-                                        <constraint firstItem="uG1-AB-3Y6" firstAttribute="top" secondItem="cx1-1V-2dm" secondAttribute="top" id="Doz-wL-WeA"/>
+                                        <constraint firstItem="K59-rb-cBm" firstAttribute="centerX" secondItem="cx1-1V-2dm" secondAttribute="centerX" id="6N1-QM-3er"/>
+                                        <constraint firstItem="fti-dQ-c8M" firstAttribute="centerX" secondItem="cx1-1V-2dm" secondAttribute="centerX" id="9NU-FS-02r"/>
                                         <constraint firstAttribute="trailing" secondItem="AeG-Fk-rPh" secondAttribute="trailing" id="HfD-VU-0kp"/>
                                         <constraint firstItem="AeG-Fk-rPh" firstAttribute="top" secondItem="cx1-1V-2dm" secondAttribute="top" id="LSO-gd-KUR"/>
+                                        <constraint firstItem="K59-rb-cBm" firstAttribute="centerY" secondItem="cx1-1V-2dm" secondAttribute="centerY" id="Lyn-tB-s4L"/>
                                         <constraint firstAttribute="height" constant="66" id="SLK-Cs-5Hc"/>
+                                        <constraint firstItem="fti-dQ-c8M" firstAttribute="centerY" secondItem="cx1-1V-2dm" secondAttribute="centerY" id="XNW-Zy-meM"/>
                                         <constraint firstItem="AeG-Fk-rPh" firstAttribute="leading" secondItem="cx1-1V-2dm" secondAttribute="leading" id="mm1-Fc-Ly5"/>
                                     </constraints>
                                 </view>
@@ -277,15 +292,13 @@ Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et d
                 <outlet property="fundingUSDAmountLabel" destination="Avd-vU-h0T" id="Ca9-q7-5up"/>
                 <outlet property="keywordContainer" destination="YRj-3b-2uv" id="jYV-Fn-cjJ"/>
                 <outlet property="negativeCardActionButton" destination="DqS-K5-snb" id="7zm-Sp-1WJ"/>
-                <outlet property="positiveCardActionButton" destination="EYC-ce-rfp" id="Y6I-Rx-aIr"/>
                 <outlet property="postedOnLabel" destination="4WB-ES-0DX" id="uyL-P5-BYa"/>
                 <outlet property="titleLabel" destination="xzE-D1-hTG" id="GDk-lK-gK5"/>
             </connections>
-            <point key="canvasLocation" x="32.5" y="53.5"/>
+            <point key="canvasLocation" x="32" y="53"/>
         </view>
     </objects>
     <resources>
-        <image name="gc-green-heart-icon" width="42" height="42"/>
         <image name="gc-red-cross-icon" width="42" height="42"/>
         <image name="user-portrait" width="80" height="80"/>
         <namedColor name="Black12">

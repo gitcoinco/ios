@@ -74,6 +74,7 @@ class BountyCardViewController: UIViewController {
             let bounty = sender as? Bounty{
             
                 destination.bounty = bounty
+                destination.kolodaView = self.kolodaView
         }
     }
 }
@@ -110,7 +111,8 @@ extension BountyCardViewController: KolodaViewDelegate {
         
         if isEndOfBountiesCard(index) { return  [] }
         
-        return [.left, .right]
+        //return [.left, .right]
+        return [.left]
     }
     
     func koloda(_ koloda: KolodaView, didShowCardAt index: Int) {

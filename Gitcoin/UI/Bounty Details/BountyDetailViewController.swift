@@ -11,6 +11,7 @@ import Alamofire
 import AlamofireImage
 import SCLAlertView
 import InputBarAccessoryView
+import SwiftyUserDefaults
 
 class BountyDetailViewController: UITableViewController{
     
@@ -21,9 +22,13 @@ class BountyDetailViewController: UITableViewController{
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var keywordContainer: UIView!
+    @IBOutlet weak var lblClaim: UILabel!
+    @IBOutlet weak var btnClaim: UIButton!
     
     var bounty: Bounty?
     let tagsField = GitCoinWSTagField()
+    var kolodaView: BountyKolodaView?
+    
     
     @IBOutlet weak var headerContentView: UIView!
 
@@ -43,6 +48,12 @@ class BountyDetailViewController: UITableViewController{
         tableView.estimatedRowHeight = 500.0
         tableView.rowHeight = UITableViewAutomaticDimension
         
+        if let bounty = self.bounty, bounty.status != "open"{
+            self.lblClaim.text = "Delete"
+            self.lblClaim.borderColor = .red
+            self.lblClaim.textColor = .red
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,7 +64,120 @@ class BountyDetailViewController: UITableViewController{
         }
         
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
+        // needed to clear the text in the back navigation:
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "webviewSegue",
+            let destination = segue.destination as? WebViewController {
+            
+            destination.title = "SIGN IN"
+        
+            destination.currentURL = OctokitManager.shared.oAuthConfig.authenticate()
+        }
+    }
 
+    @IBAction func doStartWorkTap(_ sender: Any) {
+        
+        // If not connected to network
+        if !NetworkReachability.shared.isConnected.value {
+            
+            SCLAlertView(appearance:  gitcoinAppearance()).showWarning("You are not online", subTitle: "Please find a network before continuing.", closeButtonTitle: "DONE")
+            
+            return
+        }
+        
+        // When usera swipes right for the first time without being signed in
+        // pop alert.  Once show alert once via seenSwipeRightBountyAlert
+        if  OctokitManager.shared.isSignedOut{
+            
+            let appearance = gitcoinAppearance(
+                showCloseButton: false
+            )
+            let alertView = SCLAlertView(appearance: appearance)
+            
+            alertView.addButton("SIGN IN") {
+                //UIApplication.shared.sendAction(self.profileBarButtonItem.action!, to: self.profileBarButtonItem.target, from: self, for: nil)
+                self.performSegue(withIdentifier: "webviewSegue", sender: nil)
+            }
+            
+            alertView.addButton("CONTINUE BROWSING") {}
+            
+            alertView.showInfo("Sign In with Github", subTitle: "to get match email intros to this repo owner.")
+            
+            return
+        }
+        
+        let user = OctokitManager.shared.user.value
+        
+        // The api is looking for + or -
+        let mappedDirection =  "+"
+        
+        guard let bounty = self.bounty else { return }
+        
+        TrackingManager.shared.trackEvent(.didSwipeBounty(bounty: bounty, direction: mappedDirection, user: user))
+        
+        if let bounty = self.bounty, bounty.status != "open"{
+            
+            let appearance = SCLAlertView.SCLAppearance(
+                showCloseButton: false
+            )
+            let alertView = SCLAlertView(appearance: appearance)
+            
+            alertView.addButton("No") {}
+            alertView.addButton("YES") {
+        
+                _ = GitcoinAPIService.shared.provider.rx.request(.removeClaimed(bounty: bounty))
+                    .subscribe { event in
+                        switch event {
+                        case .success(_):
+                            
+                         SCLAlertView().showSuccess("Removed Bounty", subTitle: "You have successfully removed this bounty '\(bounty.title)'")
+                         
+                            self.lblClaim.text = "Removed"
+                            self.btnClaim.isUserInteractionEnabled = false
+                        
+                        case .error(let error):
+                            logger.error(error)
+                        }
+                }
+            }
+            
+            alertView.showWarning("Delete Claimed Bounty", subTitle: "Do you really want to delete this bounty?")
+        
+        }
+        else{
+        _ = GitcoinAPIService.shared.provider.rx.request(.fundingSave(bounty: bounty, user: user, direction: mappedDirection))
+            .subscribe { event in
+                switch event {
+                case .success(_):
+                    
+                    // set the lastViewedBountyId after a successful action has been taken
+                    // this will ensure the user only sees the bounties once
+                    Defaults[UserDefaultKeyConstants.seenSwipeRightBountyAlert] = true
+                    Defaults[UserDefaultKeyConstants.lastViewedBountyId] = bounty.id
+                    
+                    logger.verbose("set lastViewedBountyId=\(Defaults[UserDefaultKeyConstants.lastViewedBountyId] ?? -1)")
+                    
+                    
+                    SCLAlertView().showSuccess("Claimed Bounty", subTitle: "You have successfully claimed the bounty '\(bounty.title)'")
+                    
+                    self.lblClaim.text = "Claimed"
+                    self.btnClaim.isUserInteractionEnabled = false
+                    
+                case .error(let error):
+                    logger.error(error)
+                }
+        }
+        }
+        
+    }
+    
     func setPosted(_ bounty: Bounty){
         lblPosted.text = "POSTED: \(bounty.createdAgo) - EXP. \(bounty.expiresIn)"
     }
