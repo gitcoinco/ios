@@ -16,10 +16,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Profile Claimed View Controller-->
+        <!--Profile Saved View Controller-->
         <scene sceneID="Jqy-mP-Ryi">
             <objects>
-                <viewController id="iQO-6R-JbN" customClass="ProfileClaimedViewController" customModule="Gitcoin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iQO-6R-JbN" customClass="ProfileSavedViewController" customModule="Gitcoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jmP-Gb-8jX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,7 +41,7 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dU8-TB-dCL">
                                 <rect key="frame" x="0.0" y="20" width="375" height="100"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no claimed bounties." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHS-Ky-vPD">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no saved bounties." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHS-Ky-vPD">
                                         <rect key="frame" x="0.0" y="24.5" width="375" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="UHF-Pe-3E4"/>
@@ -82,8 +82,7 @@
                     <connections>
                         <outlet property="noClaimedView" destination="dU8-TB-dCL" id="Dqz-01-pBE"/>
                         <outlet property="tableView" destination="ZA5-nK-jPX" id="b7h-SH-ync"/>
-                        <segue destination="1gi-JV-Eyp" kind="show" identifier="claimedDetailsSegue" id="8DY-sd-eVf"/>
-                        <segue destination="Ba1-jl-NSl" kind="show" identifier="webviewSegue" id="HIE-aW-ZxF"/>
+                        <segue destination="1gi-JV-Eyp" kind="show" identifier="savedDetailsSegue" id="8DY-sd-eVf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bav-Lc-P1a" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -131,40 +130,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VXY-GN-1Ab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1162" y="95"/>
-        </scene>
-        <!--WebView Controller-->
-        <scene sceneID="K7L-zv-zdP">
-            <objects>
-                <viewController id="Ba1-jl-NSl" userLabel="WebView Controller" customClass="WebViewController" customModule="Gitcoin" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="l39-qJ-ciG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0AY-uI-Cnr">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" red="0.87450980389999999" green="0.87450980389999999" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.87450980389999999" green="0.87450980389999999" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="bf7-1B-f9c" firstAttribute="bottom" secondItem="0AY-uI-Cnr" secondAttribute="bottom" id="IX2-d1-Q89"/>
-                            <constraint firstItem="0AY-uI-Cnr" firstAttribute="top" secondItem="bf7-1B-f9c" secondAttribute="top" id="L4c-B2-58A"/>
-                            <constraint firstItem="0AY-uI-Cnr" firstAttribute="leading" secondItem="bf7-1B-f9c" secondAttribute="leading" id="OIt-Mw-DMJ"/>
-                            <constraint firstItem="bf7-1B-f9c" firstAttribute="trailing" secondItem="0AY-uI-Cnr" secondAttribute="trailing" id="RfX-CS-RMS"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="bf7-1B-f9c"/>
-                    </view>
-                    <connections>
-                        <outlet property="webView" destination="0AY-uI-Cnr" id="CUd-0L-NGo"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N0G-eW-avo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="129" y="842"/>
         </scene>
     </scenes>
     <resources>

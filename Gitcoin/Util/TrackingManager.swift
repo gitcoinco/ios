@@ -34,6 +34,8 @@ enum GitcoinEvent {
     case didPostComment(bounty: Bounty)
     case didDeleteComment(bounty: Bounty)
     
+    case didViewSavedBounties
+    
     case didTapRefreshBounties
     case didBountyCountChange(count: Int)
     case didBackgroundBountyFetch(hasBounties: Bool)
@@ -228,6 +230,12 @@ class TrackingManager {
                 Answers.logCustomEvent(withName: "didViewClaimedBounties")
                 Mixpanel.mainInstance().track(event: "didViewClaimedBounties")
                 PWInAppManager.shared().postEvent("didViewClaimedBounties")
+                
+            case .didViewSavedBounties:
+                
+                Answers.logCustomEvent(withName: "didViewSavedBounties")
+                Mixpanel.mainInstance().track(event: "didViewSavedBounties")
+                PWInAppManager.shared().postEvent("didViewSavedBounties")
                 
             case .didRemoveClaimedBounty(let bounty):
                 

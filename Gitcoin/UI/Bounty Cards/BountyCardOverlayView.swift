@@ -27,11 +27,9 @@ class BountyCardOverlayView: OverlayView {
         didSet {
             switch overlayState {
             case .left? :
-                overlayImageView.image = nil
-                //overlayImageView.image = UIImage(named: overlayLeftImageName)
+                overlayImageView.image = UIImage(named: overlayLeftImageName)
             case .right? :
-                overlayImageView.image = nil
-                //overlayImageView.image = UIImage(named: overlayRightImageName)
+                overlayImageView.image = UIImage(named: overlayRightImageName)
             default:
                 overlayImageView.image = nil
             }

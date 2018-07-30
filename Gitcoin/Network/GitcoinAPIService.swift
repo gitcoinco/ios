@@ -73,6 +73,10 @@ enum GitcoinAPIServiceContract {
     
     // Skills / Keywords
     case userKeywords(user: User)
+    
+    // get bounties list
+    case bountyList(ids: String?)
+    
 }
 
 // MARK: - TargetType Protocol Implementation
@@ -93,6 +97,8 @@ extension GitcoinAPIServiceContract: TargetType {
             return "api/v0.1/funding/save"
         case .userKeywords(let user):
             return "api/v0.1/profile/\(user.login ?? "")/keywords"
+        case .bountyList(_):
+            return "api/v0.1/bounties"
         }
     }
     
@@ -107,6 +113,8 @@ extension GitcoinAPIServiceContract: TargetType {
         case .fundingSave:
             return .post
         case .userKeywords:
+            return .get
+        case .bountyList:
             return .get
         }
     }
@@ -147,6 +155,13 @@ extension GitcoinAPIServiceContract: TargetType {
             }
 
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
+            
+        case let .bountyList(ids):
+            
+            let params = ["standard_bounties_id__in": ids ?? "", "network": "mainnet"]
+            
+            return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
+            
         default:
             return .requestPlain
         }
@@ -164,6 +179,8 @@ extension GitcoinAPIServiceContract: TargetType {
         case .fundingSave:
             return "[]".utf8Encoded
         case .userKeywords:
+            return "[]".utf8Encoded
+        case .bountyList:
             return "[]".utf8Encoded
         }
     }

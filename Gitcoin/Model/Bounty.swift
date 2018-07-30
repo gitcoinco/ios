@@ -15,6 +15,7 @@ struct Bounty: Mappable {
     let title: String
     let avatarUrl: String?
     let githubUrl: String?
+    let standardBountiesId: Int
     
     let valueTrue: String?
     let tokenName: String?
@@ -101,7 +102,7 @@ struct Bounty: Mappable {
     init(map: Mapper) throws {
         try id = map.from("pk")
         try title = map.from("title")
-        
+        try standardBountiesId = map.from("standard_bounties_id")
         avatarUrl = map.optionalFrom("avatar_url")
         githubUrl = map.optionalFrom("github_url")
         valueTrue = map.optionalFrom("value_true")

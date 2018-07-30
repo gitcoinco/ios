@@ -31,6 +31,13 @@ class ProfileBountyContainerViewController: UIViewController {
         return viewController
     }()
     
+    private lazy var savedViewController: ProfileSavedViewController = {
+        let storyboard = UIStoryboard(name: "ProfileSavedViewController", bundle: Bundle.main)
+        var viewController = storyboard.instantiateInitialViewController() as! ProfileSavedViewController
+        self.add(asChildViewController: viewController)
+        return viewController
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,7 +45,7 @@ class ProfileBountyContainerViewController: UIViewController {
         
         let control = BetterSegmentedControl(
             frame: CGRect(x: 0, y: 0, width: segControlContainer.bounds.width-20, height: segControlContainer.bounds.height),
-            titles: ["My Account", "Bounties Claimed"],
+            titles: ["My Account", "Bounties Saved", "Started Bounties"],
             index: 0,
             options: [.backgroundColor(.white),
                       .titleColor(UIColor(red:13/255, green:0.0, blue:60/255, alpha:1.00)),
@@ -46,8 +53,8 @@ class ProfileBountyContainerViewController: UIViewController {
                       .selectedTitleColor(.white),
                       .titleBorderWidth(1.0),
                       .cornerRadius(6.0),
-                      .titleFont(UIFont(name: "FuturaStd-Book", size: 14.0)!),
-                      .selectedTitleFont(UIFont(name: "FuturaStd-Book", size: 14.0)!)]
+                      .titleFont(UIFont(name: "FuturaStd-Book", size: 12.0)!),
+                      .selectedTitleFont(UIFont(name: "FuturaStd-Book", size: 12.0)!)]
         )
         
         control.addTarget(self, action: #selector(BountyDetailsContainerViewController.navigationSegmentedControlValueChanged(_:)), for: .valueChanged)
@@ -71,11 +78,19 @@ class ProfileBountyContainerViewController: UIViewController {
     // MARK: - Segmented Action handlers
     @objc func navigationSegmentedControlValueChanged(_ sender: BetterSegmentedControl) {
         if sender.index == 0 {
-            remove(asChildViewController: claimedViewController)
             add(asChildViewController: accountViewController)
-        } else {
+            remove(asChildViewController: claimedViewController)
+            remove(asChildViewController: savedViewController)
+        }
+        else if sender.index == 1 {
+            add(asChildViewController: savedViewController)
+            remove(asChildViewController: claimedViewController)
             remove(asChildViewController: accountViewController)
+        }
+        else {
             add(asChildViewController: claimedViewController)
+            remove(asChildViewController: savedViewController)
+            remove(asChildViewController: accountViewController)
         }
     }
     

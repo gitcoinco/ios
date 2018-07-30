@@ -111,8 +111,7 @@ extension BountyCardViewController: KolodaViewDelegate {
         
         if isEndOfBountiesCard(index) { return  [] }
         
-        //return [.left, .right]
-        return [.left]
+        return [.left, .right]
     }
     
     func koloda(_ koloda: KolodaView, didShowCardAt index: Int) {
@@ -183,28 +182,35 @@ extension BountyCardViewController: KolodaViewDelegate {
         let mappedDirection = direction == SwipeResultDirection.left ? "-" : "+"
         
         TrackingManager.shared.trackEvent(.didSwipeBounty(bounty: bounty, direction: mappedDirection, user: user))
-
-        _ = GitcoinAPIService.shared.provider.rx.request(.fundingSave(bounty: bounty, user: user, direction: mappedDirection))
-            .subscribe { event in
-                switch event {
-                case .success(_):
-                    
-                    // dont set lastViewedBountyId if not logged in
-                    // guard let _ = user else { return }
-                    
-                    // set the lastViewedBountyId after a successful action has been taken
-                    // this will ensure the user only sees the bounties once
-                    Defaults[UserDefaultKeyConstants.lastViewedBountyId] = bounty.id
-                    
-                    logger.verbose("set lastViewedBountyId=\(Defaults[UserDefaultKeyConstants.lastViewedBountyId] ?? -1)")
-                    
-                    if direction == SwipeResultDirection.right{
-                        SCLAlertView().showSuccess("Claimed Bounty", subTitle: "You have successfully claimed the bounty '\(bounty.title)'")
+        
+        if mappedDirection == "+"{
+            SavedBountiesManager.save(id: bounty.standardBountiesId)
+            Defaults[UserDefaultKeyConstants.lastViewedBountyId] = bounty.id
+            Defaults[UserDefaultKeyConstants.seenSwipeRightBountyAlert] = true
+        }
+        else{
+            _ = GitcoinAPIService.shared.provider.rx.request(.fundingSave(bounty: bounty, user: user, direction: mappedDirection))
+                .subscribe { event in
+                    switch event {
+                    case .success(_):
+                        
+                        // dont set lastViewedBountyId if not logged in
+                        // guard let _ = user else { return }
+                        
+                        // set the lastViewedBountyId after a successful action has been taken
+                        // this will ensure the user only sees the bounties once
+                        Defaults[UserDefaultKeyConstants.lastViewedBountyId] = bounty.id
+                        
+                        logger.verbose("set lastViewedBountyId=\(Defaults[UserDefaultKeyConstants.lastViewedBountyId] ?? -1)")
+                        
+                        if direction == SwipeResultDirection.right{
+                            SCLAlertView().showSuccess("Started Bounty", subTitle: "You have successfully claimed the bounty '\(bounty.title)'")
+                        }
+                        
+                    case .error(let error):
+                        logger.error(error)
                     }
-                    
-                case .error(let error):
-                    logger.error(error)
-                }
+            }
         }
     }
     

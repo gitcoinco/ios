@@ -13,6 +13,7 @@ class BountyDetailsContainerViewController: UIViewController {
     
     var bounty: Bounty?
     var kolodaView: BountyKolodaView?
+    var isBountyClaimed = false
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var segControlContainer: UIView!
@@ -26,6 +27,7 @@ class BountyDetailsContainerViewController: UIViewController {
         var viewController = storyboard.instantiateInitialViewController() as! BountyDetailViewController
         viewController.bounty = self.bounty
         viewController.kolodaView = self.kolodaView
+        viewController.isBountyClaimed = isBountyClaimed
         self.add(asChildViewController: viewController)
         return viewController
     }()
@@ -81,11 +83,12 @@ class BountyDetailsContainerViewController: UIViewController {
     // MARK: - Segmented Action handlers
     @objc func navigationSegmentedControlValueChanged(_ sender: BetterSegmentedControl) {
         if sender.index == 0 {
-            remove(asChildViewController: discussViewController)
             add(asChildViewController: detailViewController)
+            remove(asChildViewController: discussViewController)
+            
         } else {
-            remove(asChildViewController: detailViewController)
             add(asChildViewController: discussViewController)
+            remove(asChildViewController: detailViewController)
         }
     }
     

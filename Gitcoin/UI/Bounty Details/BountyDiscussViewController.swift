@@ -100,11 +100,26 @@ class BountyDiscussViewController: UIViewController {
             )
             let alertView = SCLAlertView(appearance: appearance)
             
-            alertView.addButton("CLOSE") {}
+            alertView.addButton("SIGN IN") {
+                self.performSegue(withIdentifier: "webviewSegue", sender: nil)
+            }
             
-            alertView.showInfo("Sign In with Github", subTitle: "The discussion can not begin until you are signed into Github")
+            alertView.addButton("CONTINUE BROWSING") {}
+            
+            alertView.showInfo("Sign In with Github", subTitle: "To be able to discuss this bounty with the funder")
+            
         }
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "webviewSegue",
+            let destination = segue.destination as? WebViewController {
+            
+            destination.title = "SIGN IN"
+            
+            destination.currentURL = OctokitManager.shared.oAuthConfig.authenticate()
+        }
     }
     
     @objc func loadIssueComments(){

@@ -9,6 +9,9 @@
 import UIKit
 
 struct Config {
+    
+    public static let kGitCoinSavedBounties = "com.gitcoin.saved.bounties"
+    
     private static var dictionaryValues: [String: Any]? {
         get {
             if let fileUrl = Bundle.main.url(forResource: "SafeConfiguration", withExtension: "plist"),

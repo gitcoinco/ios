@@ -104,10 +104,10 @@ class BountyCardView: UIView {
         
         disposeBag.insert(negativeCardActionButtonSubscription)
         
-//        let positiveCardActionButtonSubscription = positiveCardActionButton.rx.tap.bind {
-//            self.kolodaView?.swipe(.right)
-//        }
-//
-//        disposeBag.insert(positiveCardActionButtonSubscription)
+    //        let positiveCardActionButtonSubscription = positiveCardActionButton.rx.tap.bind {
+    //            self.kolodaView?.swipe(.right)
+    //        }
+    //
+    //        disposeBag.insert(positiveCardActionButtonSubscription)
     }
 }

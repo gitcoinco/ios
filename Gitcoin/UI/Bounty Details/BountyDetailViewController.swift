@@ -12,6 +12,8 @@ import AlamofireImage
 import SCLAlertView
 import InputBarAccessoryView
 import SwiftyUserDefaults
+import RxSwift
+import RxCocoa
 
 class BountyDetailViewController: UITableViewController{
     
@@ -24,16 +26,23 @@ class BountyDetailViewController: UITableViewController{
     @IBOutlet weak var keywordContainer: UIView!
     @IBOutlet weak var lblClaim: UILabel!
     @IBOutlet weak var btnClaim: UIButton!
+    @IBOutlet weak var lblSavedStartWork: UILabel!
+    @IBOutlet weak var btnSavedClaim: UIButton!
+    @IBOutlet weak var lblUnsave: UILabel!
+    @IBOutlet weak var btnUnsave: UIButton!
+    let disposeBag = DisposeBag()
     
     var bounty: Bounty?
     let tagsField = GitCoinWSTagField()
     var kolodaView: BountyKolodaView?
-    
+    var isBountyClaimed = false
     
     @IBOutlet weak var headerContentView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("bounty id = \(bounty?.id) sbi = \(bounty?.standardBountiesId)")
         
         if let bounty = bounty{
             setPosted(bounty)
@@ -48,8 +57,8 @@ class BountyDetailViewController: UITableViewController{
         tableView.estimatedRowHeight = 500.0
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        if let bounty = self.bounty, bounty.status != "open"{
-            self.lblClaim.text = "Delete"
+        if let bounty = self.bounty, isBountyClaimed == true{
+            self.lblClaim.text = "REMOVE"
             self.lblClaim.borderColor = .red
             self.lblClaim.textColor = .red
         }
@@ -81,6 +90,18 @@ class BountyDetailViewController: UITableViewController{
             destination.currentURL = OctokitManager.shared.oAuthConfig.authenticate()
         }
     }
+    
+    @IBAction func doUnSaveTap(_ sender: Any) {
+        
+        lblUnsave.text = "UNSAVED"
+        btnUnsave.isUserInteractionEnabled = false
+        btnSavedClaim.isUserInteractionEnabled = false
+        
+        if let bounty = self.bounty{
+            SavedBountiesManager.remove(id: bounty.standardBountiesId)
+        }
+    
+    }
 
     @IBAction func doStartWorkTap(_ sender: Any) {
         
@@ -90,7 +111,7 @@ class BountyDetailViewController: UITableViewController{
             SCLAlertView(appearance:  gitcoinAppearance()).showWarning("You are not online", subTitle: "Please find a network before continuing.", closeButtonTitle: "DONE")
             
             return
-        }
+        }   
         
         // When usera swipes right for the first time without being signed in
         // pop alert.  Once show alert once via seenSwipeRightBountyAlert
@@ -102,7 +123,6 @@ class BountyDetailViewController: UITableViewController{
             let alertView = SCLAlertView(appearance: appearance)
             
             alertView.addButton("SIGN IN") {
-                //UIApplication.shared.sendAction(self.profileBarButtonItem.action!, to: self.profileBarButtonItem.target, from: self, for: nil)
                 self.performSegue(withIdentifier: "webviewSegue", sender: nil)
             }
             
@@ -122,7 +142,7 @@ class BountyDetailViewController: UITableViewController{
         
         TrackingManager.shared.trackEvent(.didSwipeBounty(bounty: bounty, direction: mappedDirection, user: user))
         
-        if let bounty = self.bounty, bounty.status != "open"{
+        if let bounty = self.bounty, isBountyClaimed == true{
             
             let appearance = SCLAlertView.SCLAppearance(
                 showCloseButton: false
@@ -132,27 +152,29 @@ class BountyDetailViewController: UITableViewController{
             alertView.addButton("No") {}
             alertView.addButton("YES") {
         
-                _ = GitcoinAPIService.shared.provider.rx.request(.removeClaimed(bounty: bounty))
+                let subscription = GitcoinAPIService.shared.provider.rx.request(.removeClaimed(bounty: bounty))
                     .subscribe { event in
                         switch event {
                         case .success(_):
                             
                          SCLAlertView().showSuccess("Removed Bounty", subTitle: "You have successfully removed this bounty '\(bounty.title)'")
                          
-                            self.lblClaim.text = "Removed"
-                            self.btnClaim.isUserInteractionEnabled = false
+                        self.lblClaim.text = "REMOVED"
+                        self.btnClaim.isUserInteractionEnabled = false
+                        self.isBountyClaimed = false
                         
                         case .error(let error):
                             logger.error(error)
                         }
                 }
+                self.disposeBag.insert(subscription)
             }
             
-            alertView.showWarning("Delete Claimed Bounty", subTitle: "Do you really want to delete this bounty?")
+            alertView.showWarning("Remove Claimed Bounty", subTitle: "Do you really want to delete this bounty?")
         
         }
         else{
-        _ = GitcoinAPIService.shared.provider.rx.request(.fundingSave(bounty: bounty, user: user, direction: mappedDirection))
+         let subscription = GitcoinAPIService.shared.provider.rx.request(.fundingSave(bounty: bounty, user: user, direction: mappedDirection))
             .subscribe { event in
                 switch event {
                 case .success(_):
@@ -164,16 +186,23 @@ class BountyDetailViewController: UITableViewController{
                     
                     logger.verbose("set lastViewedBountyId=\(Defaults[UserDefaultKeyConstants.lastViewedBountyId] ?? -1)")
                     
+                    SCLAlertView().showSuccess("Started Bounty", subTitle: "You have successfully claimed the bounty '\(bounty.title)'")
                     
-                    SCLAlertView().showSuccess("Claimed Bounty", subTitle: "You have successfully claimed the bounty '\(bounty.title)'")
-                    
-                    self.lblClaim.text = "Claimed"
+                    self.lblClaim.text = "STARTED WORK"
                     self.btnClaim.isUserInteractionEnabled = false
+                    self.lblSavedStartWork.text = "STARTED WORK"
+                    self.btnSavedClaim.isUserInteractionEnabled = false
+                    self.btnUnsave.isUserInteractionEnabled = false
+                    self.isBountyClaimed =  true
+                
+                    SavedBountiesManager.remove(id: bounty.standardBountiesId)
                     
                 case .error(let error):
                     logger.error(error)
                 }
-        }
+            }
+            disposeBag.insert(subscription)
+            
         }
         
     }
@@ -263,6 +292,17 @@ class BountyDetailViewController: UITableViewController{
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let isThisASavedBounty = SavedBountiesManager.bountyExists(id: bounty?.standardBountiesId)
+        
+        if indexPath.row == 1 && isThisASavedBounty{
+            return 0
+        }
+        
+        if indexPath.row == 2 && !isThisASavedBounty{
+            return 0
+        }
+        
         return UITableViewAutomaticDimension
     }
     

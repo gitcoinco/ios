@@ -14,6 +14,7 @@ class ProfileClaimedViewController: UIViewController {
     
     var data: [Bounty]?
     @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var noClaimedView: UIView!
     
     lazy var refreshControl: UIRefreshControl = {
         var control: UIRefreshControl = UIRefreshControl()
@@ -25,6 +26,7 @@ class ProfileClaimedViewController: UIViewController {
     }()
     
     var disposable: Disposable?
+    var didShowSigninDialog = false
     
     override func viewDidLoad() {
         
@@ -45,12 +47,37 @@ class ProfileClaimedViewController: UIViewController {
         activityIndicator.stopAnimating()
         disposable?.dispose()
         loadClaimedList()
+        
+        noClaimedView.isHidden = true
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         TrackingManager.shared.trackEvent(.didViewClaimedBounties)
+    
+        
+        if  OctokitManager.shared.isSignedOut &&
+            topMostViewController().isKind(of: ProfileClaimedViewController.self) &&
+            didShowSigninDialog == false{
+            
+            didShowSigninDialog = true
+            
+            let appearance = gitcoinAppearance(
+                showCloseButton: false
+            )
+            let alertView = SCLAlertView(appearance: appearance)
+            
+            alertView.addButton("SIGN IN") {
+                self.performSegue(withIdentifier: "webviewSegue", sender: nil)
+            }
+            
+            alertView.addButton("CONTINUE BROWSING") {}
+            
+            alertView.showInfo("Sign In with Github", subTitle: "To see your listing of claimed bounties")
+            
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -59,14 +86,16 @@ class ProfileClaimedViewController: UIViewController {
     }
     
     func showNoDataAlert(){
-        let appearance = gitcoinAppearance(
-            showCloseButton: false
-        )
-        let alertView = SCLAlertView(appearance: appearance)
         
-        alertView.addButton("CONTINUE") {}
-        
-        alertView.showWarning("Oh Snap, We could not find any claimed bounties for you", subTitle: "to show claimed bouties you must be signed in to Github and have claimed a bounty.")
+        noClaimedView.isHidden = false
+//        let appearance = gitcoinAppearance(
+//            showCloseButton: false
+//        )
+//        let alertView = SCLAlertView(appearance: appearance)
+//
+//        alertView.addButton("CONTINUE") {}
+//
+//        alertView.showWarning("Oh Snap, We could not find any claimed bounties for you", subTitle: "to show claimed bouties you must be signed in to Github and have claimed a bounty.")
     }
     
     @objc func loadClaimedList(){
@@ -95,13 +124,15 @@ class ProfileClaimedViewController: UIViewController {
                     self.data = claimed
                     self.tableView.reloadData()
                     
+                    // just in case the feed side claimed bounties somehow gets out of synch with the saved local bounties
+                    SavedBountiesManager.removeByList(of: claimed)
+                    
                 case .error(let error):
                     logger.error(error)
                     print("error = \(error)")
                     self.activityIndicator.stopAnimating()
                     
                 }
-
         }
     }
     
@@ -112,6 +143,14 @@ class ProfileClaimedViewController: UIViewController {
             let bounty = sender as? Bounty{
             
             destination.bounty = bounty
+            destination.isBountyClaimed = true
+        }
+        else if segue.identifier == "webviewSegue",
+            let destination = segue.destination as? WebViewController {
+            
+            destination.title = "SIGN IN"
+            
+            destination.currentURL = OctokitManager.shared.oAuthConfig.authenticate()
         }
     }
     
@@ -221,7 +260,7 @@ extension ProfileClaimedViewController: UITableViewDelegate {
                 }
             }
 
-            alertView.showWarning("Delete Claimed Bounty", subTitle: "Do you really want to delete this bounty?")
+            alertView.showWarning("Remove Claimed Bounty", subTitle: "Do you really want to delete this bounty?")
         }
     }
     
