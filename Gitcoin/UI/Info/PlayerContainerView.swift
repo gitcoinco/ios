@@ -13,9 +13,9 @@ import UIKit
 /// container
 class PlayerContainerView: UIView {
     override var intrinsicContentSize: CGSize {
-        
+
         var height = 177.0
-        
+
         if Device.IS_3_5_INCHES() {
             height = 100.0
         } else if Device.IS_4_INCHES() {
@@ -23,7 +23,7 @@ class PlayerContainerView: UIView {
         } else if Device.IS_4_7_INCHES() {
             height = 150.0
         }
-        
+
         return CGSize(width: 1.0, height: height)
     }
 }

@@ -13,26 +13,26 @@ import RxCocoa
 class ProfileSignedOutViewController: UIViewController {
 
     @IBOutlet weak var signInButton: UIButton!
-    
+
     let disposeBag = DisposeBag()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         observeUI()
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "webviewSegue",
             let destination = segue.destination as? WebViewController {
-            
+
             destination.title = "SIGN IN"
-            
+
             destination.currentURL = OctokitManager.shared.oAuthConfig.authenticate()
         }
     }
-    
-    func observeUI(){
+
+    func observeUI() {
 
         let signInButtonSubscription = signInButton.rx.tap.bind {
             self.performSegue(withIdentifier: "webviewSegue", sender: nil)

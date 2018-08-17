@@ -22,9 +22,9 @@ class ProfileSignedInViewController: UIViewController {
     @IBOutlet weak var tagFieldViewContainer: UIView!
 
     let tagsField = GitCoinWSTagField()
-    
+
     let disposeBag = DisposeBag()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,8 +33,8 @@ class ProfileSignedInViewController: UIViewController {
         observeUser()
         observeUserActions()
     }
-    
-    func observeUI(){
+
+    func observeUI() {
 
         let signedOutButtonSubscription = signOutButton.rx.tap.bind {
             OctokitManager.shared.signOut()
@@ -43,14 +43,14 @@ class ProfileSignedInViewController: UIViewController {
         }
 
         disposeBag.insert(signedOutButtonSubscription)
-        
+
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        
+
         tap.cancelsTouchesInView = false
-        
+
         view.addGestureRecognizer(tap)
     }
-    
+
     @objc func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
@@ -60,15 +60,15 @@ class ProfileSignedInViewController: UIViewController {
     /// So this will be called anytime time OctokitManager.shared.user
     /// is changed.  There by updating the ui base on the state of that
     /// user object
-    func observeUser(){
-        
+    func observeUser() {
+
         let subscription = OctokitManager.shared.user.asObservable()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] user in
-                
+
                 // User logged in
                 if let user = user {
-                    
+
                     if let name = user.name {
                         self?.nameLabel.text = name
                     }
@@ -86,12 +86,12 @@ class ProfileSignedInViewController: UIViewController {
                     }
                 }
             })
-        
+
         disposeBag.insert(subscription)
     }
-    
+
     /// Subscribe to user actions
-    func observeUserActions(){
+    func observeUserActions() {
 
         let subscription = OctokitManager.shared
             .userActionSubject
@@ -151,7 +151,7 @@ class ProfileSignedInViewController: UIViewController {
         tagsField.addTags(Defaults[UserDefaultKeyConstants.userKeywords])
     }
 
-    func populateTagsFromApiKeywords(with user: User){
+    func populateTagsFromApiKeywords(with user: User) {
         _ = GitcoinAPIService.shared.provider.rx
             .request(.userKeywords(user: user))
             .filterSuccessfulStatusCodes()
@@ -163,10 +163,10 @@ class ProfileSignedInViewController: UIViewController {
                     for keyword in keywords {
                         self?.tagsField.addTag(keyword.lowercased())
                     }
-                }else{
+                } else {
 
                 }
-                }, onError: { error in
+                }, onError: { _ in
 
             })
     }

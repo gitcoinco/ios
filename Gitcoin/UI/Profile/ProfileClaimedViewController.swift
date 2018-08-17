@@ -11,82 +11,81 @@ import SCLAlertView
 import RxSwift
 
 class ProfileClaimedViewController: UIViewController {
-    
+
     var data: [Bounty]?
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var noClaimedView: UIView!
-    
+
     lazy var refreshControl: UIRefreshControl = {
         var control: UIRefreshControl = UIRefreshControl()
         return control
     }()
-    
+
     lazy internal var activityIndicator: UIActivityIndicatorView! = {
         return self.createActivityIndicator()
     }()
-    
+
     var disposable: Disposable?
     var didShowSigninDialog = false
-    
+
     override func viewDidLoad() {
-        
+
         tableView.rowHeight = 90
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "ProfileClaimedCell", bundle: Bundle.main), forCellReuseIdentifier: "ProfileClaimedCell")
         tableView.tableFooterView = UIView(frame: .zero)
-        
+
         tableView.addSubview(self.refreshControl)
         refreshControl.addTarget(self, action: #selector(loadClaimedList), for: .valueChanged)
-        
+
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         activityIndicator.stopAnimating()
         disposable?.dispose()
         loadClaimedList()
-        
+
         noClaimedView.isHidden = true
-        
+
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         TrackingManager.shared.trackEvent(.didViewClaimedBounties)
-    
-        
+
         if  OctokitManager.shared.isSignedOut &&
             topMostViewController().isKind(of: ProfileClaimedViewController.self) &&
-            didShowSigninDialog == false{
-            
+            didShowSigninDialog == false {
+
             didShowSigninDialog = true
-            
+
             let appearance = gitcoinAppearance(
                 showCloseButton: false
             )
             let alertView = SCLAlertView(appearance: appearance)
-            
+
             alertView.addButton("SIGN IN") {
                 self.performSegue(withIdentifier: "webviewSegue", sender: nil)
             }
-            
+
             alertView.addButton("CONTINUE BROWSING") {}
-            
+
             alertView.showInfo("Sign In with Github", subTitle: "To see your listing of claimed bounties")
-            
+
         }
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         activityIndicator.stopAnimating()
         disposable?.dispose()
     }
-    
-    func showNoDataAlert(){
-        
+
+    func showNoDataAlert() {
+
         noClaimedView.isHidden = false
 //        let appearance = gitcoinAppearance(
 //            showCloseButton: false
@@ -97,63 +96,62 @@ class ProfileClaimedViewController: UIViewController {
 //
 //        alertView.showWarning("Oh Snap, We could not find any claimed bounties for you", subTitle: "to show claimed bouties you must be signed in to Github and have claimed a bounty.")
     }
-    
-    @objc func loadClaimedList(){
-        
-        if !refreshControl.isRefreshing && (data?.count == 0 || data == nil){
+
+    @objc func loadClaimedList() {
+
+        if !refreshControl.isRefreshing && (data?.count == 0 || data == nil) {
             activityIndicator.startAnimating()
         }
-        
+
         let user = OctokitManager.shared.user.value
-        
+
         disposable = GitcoinAPIService.shared.provider.rx.request(.claimedList(username: user?.login))
             .map(to: [Bounty].self)
             .subscribe { event in
                 switch event {
                 case .success(let claimed):
-                    
+
                     logger.verbose("Bounties Claimed List: \(claimed)")
-                    
+
                     self.refreshControl.endRefreshing()
                     self.activityIndicator.stopAnimating()
-                    
-                    if claimed.count == 0{
+
+                    if claimed.count == 0 {
                         self.showNoDataAlert()
                     }
-                    
+
                     self.data = claimed
                     self.tableView.reloadData()
-                    
+
                     // just in case the feed side claimed bounties somehow gets out of synch with the saved local bounties
                     SavedBountiesManager.removeByList(of: claimed)
-                    
+
                 case .error(let error):
                     logger.error(error)
                     print("error = \(error)")
                     self.activityIndicator.stopAnimating()
-                    
+
                 }
         }
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+
         if segue.identifier == "claimedDetailsSegue",
             let destination = segue.destination as? BountyDetailsContainerViewController,
-            let bounty = sender as? Bounty{
-            
+            let bounty = sender as? Bounty {
+
             destination.bounty = bounty
             destination.isBountyClaimed = true
-        }
-        else if segue.identifier == "webviewSegue",
+        } else if segue.identifier == "webviewSegue",
             let destination = segue.destination as? WebViewController {
-            
+
             destination.title = "SIGN IN"
-            
+
             destination.currentURL = OctokitManager.shared.oAuthConfig.authenticate()
         }
     }
-    
+
 //    fileprivate func whitespaceString(font: UIFont = UIFont.systemFont(ofSize: 15), width: CGFloat) -> String {
 //        let kPadding: CGFloat = 20
 //        let mutable = NSMutableString(string: "")
@@ -167,7 +165,7 @@ class ProfileClaimedViewController: UIViewController {
 
 // MARK: - Table view delegate
 extension ProfileClaimedViewController: UITableViewDelegate {
-    
+
 //    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
 //        return .delete
 //    }
@@ -230,7 +228,7 @@ extension ProfileClaimedViewController: UITableViewDelegate {
 //        return [deleteAction]
 //
 //    }
-    
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
         if editingStyle == .delete {
@@ -239,7 +237,6 @@ extension ProfileClaimedViewController: UITableViewDelegate {
                 showCloseButton: false
             )
             let alertView = SCLAlertView(appearance: appearance)
-
 
             alertView.addButton("No") {}
             alertView.addButton("YES") {
@@ -250,7 +247,7 @@ extension ProfileClaimedViewController: UITableViewDelegate {
                 _ = GitcoinAPIService.shared.provider.rx.request(.removeClaimed(bounty: bounty))
                     .subscribe { event in
                         switch event {
-                        case .success(_):
+                        case .success:
 
                             self.loadClaimedList()
 
@@ -263,14 +260,14 @@ extension ProfileClaimedViewController: UITableViewDelegate {
             alertView.showWarning("Remove Claimed Bounty", subTitle: "Do you really want to delete this bounty?")
         }
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+
         let bounty = self.data?[indexPath.row]
-        
+
         performSegue(withIdentifier: "claimedDetailsSegue", sender: bounty)
     }
-    
+
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -278,34 +275,33 @@ extension ProfileClaimedViewController: UITableViewDelegate {
 
 // MARK: - Table view data source
 extension ProfileClaimedViewController: UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let bounties = self.data{
+        if let bounties = self.data {
             return bounties.count
         }
         return 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "ProfileClaimedCell", for: indexPath) as! ProfileClaimedCell
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-        
-        if let bounties = self.data{
+
+        if let bounties = self.data {
             let title =  bounties[indexPath.row].title
             let avatarUrl =  bounties[indexPath.row].avatarUrl
-           
-            
+
             cell.set(title: title)
             cell.set(imageUrl: avatarUrl)
             cell.set(details: bounties[indexPath.row])
-            
+
             return cell
         }
-        
+
         return ProfileClaimedCell()
     }
 

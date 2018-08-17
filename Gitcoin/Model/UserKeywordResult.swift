@@ -10,7 +10,7 @@ import Foundation
 import Mapper
 
 struct UserKeywordResult: Mappable {
-    
+
     let status: Int?
     let keywords: [String]?
 

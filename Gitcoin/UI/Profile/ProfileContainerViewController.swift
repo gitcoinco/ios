@@ -13,42 +13,42 @@ import SwiftyUserDefaults
 import Octokit
 
 class ProfileContainerViewController: UIViewController {
-    
+
     @IBOutlet weak var signedInContainerView: UIView!
-    
+
     @IBOutlet weak var signedOutContainerView: UIView!
-    
+
     let disposeBag = DisposeBag()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if OctokitManager.shared.isSignedIn {
             showSignedInViews()
-        }else{
+        } else {
             showSignedOutViews()
         }
-        
+
         observeUser()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         TrackingManager.shared.trackEvent(.didViewProfile)
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
+
         TrackingManager.shared.trackEvent(.didCloseProfile)
     }
-    
+
     /// Observe User Object: This subscription listens for changes in the user instance
     /// So this will be called anytime time OctokitManager.shared.user
     /// is changed.  There by updating the ui base on the state of that
     /// user object
-    func observeUser(){
+    func observeUser() {
 
         let subscription = OctokitManager.shared.user.asObservable()
             .observeOn(MainScheduler.instance)
@@ -57,7 +57,7 @@ class ProfileContainerViewController: UIViewController {
                 // User logged in
                 if let _ = user {
                     self?.showSignedInViews()
-                }else{
+                } else {
                     self?.showSignedOutViews()
                 }
             })
@@ -79,7 +79,7 @@ class ProfileContainerViewController: UIViewController {
             self.signedOutContainerView.alpha = 0
         }
     }
-    
+
     fileprivate func showSignedOutViews() {
         signedOutContainerView.isHidden = false
         signedInContainerView.isHidden = true

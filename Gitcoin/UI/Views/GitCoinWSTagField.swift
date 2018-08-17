@@ -15,13 +15,13 @@ class GitCoinWSTagField: WSTagsField {
         super.init(frame: frame)
         internalInit()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         internalInit()
     }
 
-    fileprivate func internalInit(){
+    fileprivate func internalInit() {
         contentInset = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 10.0, right: 10.0)
         spaceBetweenTags = 10.0
         spaceBetweenLines = 10.0

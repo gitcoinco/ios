@@ -16,22 +16,22 @@ class GradientBackgroundView: UIView {
             updateView()
         }
     }
-    
+
     @IBInspectable var bottomColor: UIColor = .clear {
         didSet {
             updateView()
         }
     }
-    
+
     override class var layerClass: AnyClass {
         get {
             return CAGradientLayer.self
         }
     }
-    
-    func updateView(){
+
+    func updateView() {
         let layer = self.layer as! CAGradientLayer
-        
+
         layer.colors = [topColor.cgColor, bottomColor.cgColor]
     }
 }

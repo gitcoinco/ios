@@ -10,20 +10,20 @@ import UIKit
 import Koloda
 
 class BountyCardOverlayView: OverlayView {
-    
+
     let overlayRightImageName = "overlay_like"
     let overlayLeftImageName = "overlay_skip"
 
     @IBOutlet lazy var overlayImageView: UIImageView! = {
     [unowned self] in
-        
+
         var imageView = UIImageView(frame: self.bounds)
         self.addSubview(imageView)
-        
+
         return imageView
     }()
-    
-    override var overlayState: SwipeResultDirection?  {
+
+    override var overlayState: SwipeResultDirection? {
         didSet {
             switch overlayState {
             case .left? :
