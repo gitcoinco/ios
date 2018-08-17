@@ -1,46 +1,43 @@
 <img src='https://d3vv6lp55qjaqc.cloudfront.net/items/263e3q1M2Y2r3L1X3c2y/helmet.png'/>
 
-# Gitcoin iOS app 
+# Gitcoin iOS app
+
+[![CircleCI](https://circleci.com/gh/gitcoinco/ios/tree/master.svg?style=svg)](https://circleci.com/gh/gitcoinco/ios/tree/master)
 
 This is an app that allows one to explore funded issues from their iPhone.
 
 [Star](https://github.com/gitcoinco/ios/stargazers) and [watch](https://github.com/gitcoinco/ios/watchers) this github repository to stay up to date, we're pushing new code several times per week!
 
-# Download it now
+## Download it now
 
 <a href="https://gitcoin.co/itunes">
 <img src='img/app_store.png'/>
 </a>
 
-# Trailer
+## Trailer
 
-<a href="https://www.youtube.com/watch?v=Wx8HCY8M5NY">check out the trailer video</a>:
+<a href="https://www.youtube.com/watch?v=Wx8HCY8M5NY">Check out the trailer video</a>:
 
 <a href="https://www.youtube.com/watch?v=Wx8HCY8M5NY">
 <img src='img/video.png'/>
 </a>
 
-# Gitcoin
+## Gitcoin
 
 Gitcoin pushes Open Source Forward. Learn more at [https://gitcoin.co](https://gitcoin.co)
 
-# Setup
+## Setup
+
 1. [Install cocoapods](https://guides.cocoapods.org/using/getting-started.html), and run `pod install` from the repo
 2. `cp Gitcoin/SafeConfiguration.plist.dist Gitcoin/SafeConfiguration.plist`
 3. Edit your `SafeConfiguration.plist` file and add the following keys as strings: `gitHubOAuthToken`, `gitHubOAuthSecret` ([see here to create these values](https://github.com/settings/developers))
 4. Build the app in xcode (make sure to open the `Gitcoin.xcworkspace` file, not the `Gitcoin.xcodeproj` file)
 
-# Download it now
-
-<a href="https://gitcoin.co/itunes">
-<img src='img/app_store.png'/>
-</a>
-
-# Legal
+## Legal
 
 '''
 
-Copyright (C) 2017 Gitcoin Core 
+Copyright (C) 2017 Gitcoin Core
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published
@@ -55,19 +52,11 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-
 '''
 
-# Credits
+## Credits
 
 Thanks to @cheneveld for the initial app build and @john-brunelle for helping get this in the app store.
 
-
-
-
 <!-- Google Analytics -->
-<img src='https://ga-beacon.appspot.com/UA-102304388-1/gitcoinco/ios' style='width:1px; height:1px;' >
-
-
-
-
+<img src='https://ga-beacon.appspot.com/UA-102304388-1/gitcoinco/ios' style='width:1px; height:1px;'>
