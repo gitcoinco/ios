@@ -26,10 +26,10 @@ class GitCoinWSTagField: WSTagsField {
         spaceBetweenTags = 10.0
         spaceBetweenLines = 10.0
         font = UIFont.robotoMediumFont(size: 12.0)
-        tintColor = UIColor.gitCoin.midnightBlue
+        tintColor = UIColor.GitCoin.midnightBlue
         textColor = .white
         fieldTextColor = .black
-        selectedColor = UIColor.gitCoin.polarisBlue
-        selectedTextColor = UIColor.gitCoin.celestialWhite
+        selectedColor = UIColor.GitCoin.polarisBlue
+        selectedTextColor = UIColor.GitCoin.celestialWhite
     }
 }

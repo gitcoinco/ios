@@ -27,7 +27,7 @@ class NavigationController: UINavigationController {
             .subscribe(onNext: { isConnected in
 
                 if !isConnected {
-                    let message = Message(title: "No Connection", backgroundColor: UIColor.gitCoin.regulusRed)
+                    let message = Message(title: "No Connection", backgroundColor: UIColor.GitCoin.regulusRed)
 
                     Whisper.show(whisper: message, to: self, action: .present)
                 } else {
