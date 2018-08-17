@@ -1,14 +1,21 @@
 # iOS CircleCI 2.0 configuration file
 version: 2
 jobs:
-  build:
-
+  build-and-test:
     # Specify the Xcode version to use
     macos:
-      xcode: "8.3.3"
+      xcode: "9.4.1"
+    environment:
+      FL_OUTPUT_DIR: output
 
     steps:
       - checkout
+
+      # Install CircleCI CocoaPods Specs for faster pod fetching
+      - run:
+          name: Fetch CocoaPods Specs
+          command: |
+            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
 
       # Install CocoaPods
       - run:
@@ -20,17 +27,31 @@ jobs:
           name: Build and run tests
           command: fastlane scan
           environment:
-            SCAN_DEVICE: iPhone 6
+            SCAN_DEVICE: iPhone 8
             SCAN_SCHEME: WebTests
 
       # Collect XML test results data to show in the UI,
       # and save the same XML files under test-results folder
       # in the Artifacts tab
       - store_test_results:
-          path: test_output/report.xml
+          path: output/scan
       - store_artifacts:
-          path: /tmp/test-results
-          destination: scan-test-results
+          path: output
+
+  swiftlint:
+    docker:
+      - image: dantoml/swiftlint:latest
+    steps:
+      - checkout
+      - run: swiftlint lint --reporter junit | tee result.xml
       - store_artifacts:
-          path: ~/Library/Logs/scan
-          destination: scan-logs
+          path: result.xml
+      - store_test_results:
+          path: result.xml
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - swiftlint
+      - build-and-test
